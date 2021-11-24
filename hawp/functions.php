@@ -33,11 +33,11 @@ class Hawp_Theme {
 	 */
 	public function includes() {
 
-		// Return null if Squadbox is not active.
+		// Return null if ACF Pro is not active.
 		if (!class_exists('acf')) {
 			add_action('admin_notices', function() {
 				if (!class_exists('acf')) {
-					printf('<div class="error"><p>'.__('<strong>Advanced Custom Fields</strong> or <strong>Squadbox</strong> is deactivated or does not exist. Please install and activate it to use the active theme', 'hawp').'</p></div>', PHP_VERSION);
+					printf('<div class="error"><p>'.__('<strong>Advanced Custom Fields Pro</strong> is deactivated or does not exist. Please install and activate it to use the active theme', 'hawp').'</p></div>', PHP_VERSION);
 				}
 			});
 			return null;
