@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file
+ * The main template file.
  *
  * @since 4.2.8
  */
@@ -27,15 +27,15 @@ get_header(); ?>
 <?php endif; ?>
 
 	<header class="contain main-header">
-		<?php get_template_part('title', $type); ?>
-		<?php if(is_singular()){ get_template_part('meta', $type); } ?>
+		<?php get_template_part('parts/title/title', $type); ?>
+		<?php if(is_singular()){ get_template_part('parts/meta/meta', $type); } ?>
 	</header>
 
 	<div class="contain entry-wrapper entry-sidebar">
 
 		<div class="clear entry-content entry-<?php echo $type; ?>">
 
-			<?php get_template_part('content', $type); ?>
+			<?php get_template_part('parts/content/content', $type); ?>
 
 		</div>
 

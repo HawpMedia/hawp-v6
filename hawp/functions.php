@@ -18,7 +18,7 @@ class Hawp_Theme {
 		'file'                => __FILE__,
 		'textdomain'          => 'hawp',
 		'option_prefix'       => 'hawp_theme_',
-		'update_url'          => 'https://update.hawp.dev/theme/',
+		'update_url'          => 'https://update.hawp.dev/theme/hawpv6/',
 	);
 
 	/**
@@ -34,9 +34,9 @@ class Hawp_Theme {
 	public function includes() {
 
 		// Return null if Squadbox is not active.
-		if (!class_exists('Squadbox') && !class_exists('acf')) {
+		if (!class_exists('acf')) {
 			add_action('admin_notices', function() {
-				if (!class_exists('Squadbox') && !class_exists('acf')) {
+				if (!class_exists('acf')) {
 					printf('<div class="error"><p>'.__('<strong>Advanced Custom Fields</strong> or <strong>Squadbox</strong> is deactivated or does not exist. Please install and activate it to use the active theme', 'hawp').'</p></div>', PHP_VERSION);
 				}
 			});

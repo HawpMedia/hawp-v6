@@ -6,7 +6,7 @@
  */
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="hawp5 nojs">
+<html <?php language_attributes(); ?> class="hawp6 nojs">
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />

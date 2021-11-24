@@ -1,6 +1,6 @@
 <?php
 /**
- * The closing footer template.
+ * Displays the footer.
  *
  * @since 4.0.1
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * The heading title template file.
+ * Displays the post header.
  *
  * @since 5.2.0
  */
@@ -26,5 +26,4 @@ if (is_404()) {
 if (function_exists('yoast_breadcrumb')) {
 	yoast_breadcrumb('<nav class="main-breadcrumbs">', '</nav>');
 }
-
 ?>

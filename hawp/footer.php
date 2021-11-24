@@ -6,4 +6,4 @@
  */
 ?>
 
-<?php get_template_part('foot'); ?>
+<?php get_template_part('parts/footer/foot'); ?>

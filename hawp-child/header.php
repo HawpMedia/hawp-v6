@@ -5,7 +5,7 @@
  * @since 5.0.7
  */
 
-get_template_part('head');
+get_template_part('parts/header/head');
 ?>
 
 <nav class="menu-buttons">

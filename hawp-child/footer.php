@@ -10,11 +10,7 @@
 
 <footer id="footer" class="footer" role="contentinfo">
 
-	<aside class="contain widget-area">
-		<?php if (is_active_sidebar('footer')) {
-			dynamic_sidebar('footer');
-		} ?>
-	</aside>
+	<?php get_template_part('parts/footer/footer-widgets'); ?>
 
 	<div class="contain site-info">
 		<div class="copyright">
@@ -25,4 +21,4 @@
 
 </footer>
 
-<?php get_template_part('foot'); ?>
+<?php get_template_part('parts/footer/foot'); ?>

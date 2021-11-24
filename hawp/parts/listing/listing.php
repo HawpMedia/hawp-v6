@@ -10,7 +10,7 @@
 
 	<header class="entry-header">
 		<h2 class="listing-title entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-		<?php get_template_part('meta', get_post_type()); ?>
+		<?php get_template_part('parts/meta/meta', get_post_type()); ?>
 	</header>
 
 	<div class="entry-summary clear">

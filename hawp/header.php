@@ -5,5 +5,5 @@
  * @since 4.1.0
  */
 
-get_template_part('head');
+get_template_part('parts/header/head');
 ?>
