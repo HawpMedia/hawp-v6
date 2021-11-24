@@ -1,0 +1,90 @@
+/*--------------------------------------------------------------
+Menu: Hamburger style
+
+To Add: move menu-buttons div below opening header tag.
+To Remove: move menu-buttons div above opening header tag.
+--------------------------------------------------------------*/
+@include bp-max-width('lg') {
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+		.logo {
+			max-width: 10em;
+		}
+	}
+
+	.menu-buttons {
+		position: relative;
+		width: auto;
+		padding-bottom: 0;
+		margin-bottom: 0;
+		order: 2;
+		background: transparent;
+		border: none;
+		.js-turnon.js-on {
+			display: block;
+		}
+	}
+
+	.menu-button {
+		background: transparent;
+		border: none;
+		width: 2rem;
+		&.menu-close {
+			background: transparent;
+			border: none;
+			width: 2rem;
+		}
+		&:hover,
+		&.menu-close.js-on {
+			background: transparent;
+		}
+		.menu-button-label {
+			display: none;
+		}
+		.menu-button-icon {
+			margin: 0;
+			font-size: 2em;
+		}
+
+		.menu-button-bar {
+			background: #ea7616;
+			margin-bottom: 0.45rem;
+			width: 2rem;
+			height: 3px;
+			position: relative;
+			display: block;
+			transition: 300ms ease-in-out;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			&:nth-child(1) {
+				top: 0;
+				transform: translateY(12px) rotate(-45deg);
+			}
+			&:nth-child(2) {
+				opacity: 0;
+			}
+			&:nth-child(3) {
+				top: 0;
+				transform: translateY(-12px) rotate(45deg);
+			}
+		}
+	}
+
+	.menu-tab {
+		top: 0;
+		left: -100%;
+		padding: 5em 0 5em;
+		width: 75%;
+		overflow: auto;
+		transition: left 500ms;
+
+		&.js-on, &:target {
+			left: 0;
+		}
+	}
+}

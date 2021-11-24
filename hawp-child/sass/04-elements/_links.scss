@@ -1,0 +1,11 @@
+a {
+	text-decoration: none;
+	transition: all 300ms ease;
+	color: #77f;
+	&:hover {
+		color: #33f;
+	}
+	&:focus {
+		color: #33f;
+	}
+}

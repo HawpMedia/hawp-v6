@@ -1,0 +1,211 @@
+/* Gravity Forms ------------------------- */
+.gform_fields {
+	margin: 0;
+}
+.gfield {
+	position: relative;
+	z-index: 1;
+	list-style: none;
+	margin-bottom: 1em;
+}
+.gfield_select {
+	appearance: none;
+	-webkit-appearance: none;
+}
+.ginput_container_select {
+	position: relative;
+}
+.ginput_container_select:before {
+	border-radius: 0 0.25em 0.25em 0;
+	content: '';
+	position: absolute;
+	right: 0;
+	background: var(--blue-dark);
+	border: 1px solid var(--blue-dark);
+	width: 2em;
+	height: 100%;
+	top: 0;
+	z-index: 1;
+	pointer-events: none;
+}
+.ginput_container_select:after {
+	border-radius: 0;
+	content: url(./././images/icon-chevron-down.svg);
+	width: 0.75em;
+	line-height: 1;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0.6em;
+	display: inline-block;
+	text-align: center;
+	position: absolute;
+	color: #64bf3e;
+	font-weight: bold;
+	z-index: 2;
+	cursor: pointer;
+	pointer-events: none;
+}
+.gfield_label {
+	font-size: 0.9em;
+	display: none;
+}
+.ginput_recaptcha {
+	margin: auto;
+	padding: 1em 0 0;
+	max-width: 304px;
+	overflow: hidden;
+}
+.gform_footer {
+	margin-top: 1.5em;
+	text-align: center;
+}
+.validation_error {
+	margin: 0 0 1rem;
+	border-radius: 0.4rem;
+	padding: 0.5rem 0.8rem;
+	font-size: 0.8em;
+	color: #fff;
+	background: rgba(215, 54, 72, 0.5);
+}
+.validation_message {
+	margin: 0 0.5rem;
+	border-radius: 0 0 0.4rem 0.4rem;
+	padding: 0.2rem 0.8rem;
+	font-size: 0.8em;
+	color: #fff;
+	background: rgba(215, 54, 72, 0.5);
+}
+.gf_placeholder {
+	color: #ccc;
+}
+
+/* Gravity Forms: Progress Bar ----------- */
+.gf_progressbar_wrapper {
+	margin: 0 0 0.5em 0;
+	}
+.gf_progressbar {
+	background: rgba(100, 191, 62, .4);
+	border: 1px solid #64bf3e;
+	line-height: 1;
+	border-radius: 2rem;
+	padding: 0.25rem;
+	overflow: hidden;
+}
+.gf_progressbar_percentage {
+	background: #64bf3e;
+	padding: 0.15rem 0;
+	text-align: center;
+	border-radius: 2rem;
+	color: #fff;
+}
+.gf_progressbar_percentage > span {
+	padding: 0 0.15rem;
+}
+
+/* Gravity Forms: Loading Spinner -------- */
+.gform_ajax_spinner {
+	margin-left: 1em;
+	border: 4px solid rgba(0, 0, 0, .4);
+	border-left: 4px solid #333;
+	animation: gform_spinner 1.1s infinite linear;
+	border-radius: 50%;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+@keyframes gform_spinner {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* Gravity Forms: Material Design -------- */
+.gfield_material_design .gfield_label {
+	display: block;
+}
+.gfield_material_design .gfield_float_label {
+	position: absolute;
+	z-index: 2;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	align-content: center;
+	font-size: 0.9em;
+	left: 0.75em;
+	color: inherit;
+	bottom: 50%;
+	transform: translateY(50%);
+	transition: 0.3s;
+	height: 1.5em;
+	pointer-events: none;
+}
+.gfield_material_design.gfield_is_set .gfield_float_label {
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	bottom: 100%;
+	transform: none;
+	color: inherit;
+	font-size: 0.6em;
+}
+.ginput_container:before {
+	background: #333;
+	bottom: 0;
+	content: '';
+	height: 2px;
+	left: 45%;
+	position: absolute;
+	transition-duration: .2s;
+	transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+	visibility: hidden;
+	width: 0.5em;
+}
+.gfield_in_focus.ginput_container:before {
+	left: 0;
+	visibility: visible;
+	width: 100%;
+}
+.nojs .gfield_material_design .gfield_float_label {
+	position: relative;
+	transform: none;
+	left: 0;
+	height: auto;
+	color: inherit;
+}
+.gfield_in_focus.ginput_container_select:before {
+	left: unset;
+	width: 2em;
+}
+.ginput_container_select {
+	position: relative;
+}
+.ginput_container_select:before {
+	border-radius: 0;
+	content: '';
+	position: absolute;
+	left: unset;
+	right: 0;
+	background: #333;
+	border: 1px solid #333;
+	width: 2em;
+	height: 100%;
+	top: 0;
+	z-index: 1;
+	pointer-events: none;
+	visibility: visible;
+}
+.ginput_container_select:after {
+	border-radius: 0;
+	content: url(./././images/icon-chevron-down.svg);
+	width: 0.75em;
+	line-height: 1;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0.6em;
+	display: inline-block;
+	text-align: center;
+	position: absolute;
+	color: #64bf3e;
+	font-weight: bold;
+	z-index: 2;
+	cursor: pointer;
+	pointer-events: none;
+}

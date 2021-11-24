@@ -1,0 +1,68 @@
+.wp-block-columns {
+	display: flex;
+	margin-bottom: 1rem;
+	flex-wrap: wrap;
+	&.has-background {
+		padding: 1em;
+	}
+	&.are-vertically-aligned-top {
+		align-items: flex-start;
+	}
+	&.are-vertically-aligned-center {
+		align-items: center;
+	}
+	&.are-vertically-aligned-bottom {
+		align-items: flex-end;
+	}
+	.wp-block-column {
+		flex-grow: 1;
+		min-width: 0;
+		word-break: break-word;
+		overflow-wrap: break-word;
+		&.is-vertically-aligned-top {
+			align-self: flex-start;
+		}
+		&.is-vertically-aligned-center {
+			-ms-grid-row-align: center;
+			align-self: center;
+		}
+		&.is-vertically-aligned-bottom {
+			align-self: flex-end;
+		}
+		&.is-vertically-aligned-bottom,
+		&.is-vertically-aligned-center,
+		&.is-vertically-aligned-top {
+			width: 100%;
+		}
+		@include bp-max-width('md-break') {
+			flex-basis: 100% !important;
+		}
+		@include bp-min-width-max-width('md', 'xm-break') {
+			flex-basis: calc(50% - 0.5rem) !important;
+			flex-grow: 0;
+			&:nth-child(2n) {
+				margin-left: 1rem;
+			}
+			// Disable 2 columns on mobile, remove to add it back
+			& {
+				flex-basis: 100% !important;
+			}
+			&:nth-child(2n) {
+				margin-left: 0;
+			}
+		}
+		@include bp-min-width('xm') {
+			flex-basis: 0;
+			flex-grow: 1;
+			&[style] {
+				flex-grow: 0;
+			}
+			&:not(:first-child) {
+				margin-left: 1.5rem;
+			}
+		}
+	}
+	@include bp-min-width('xm') {
+		flex-wrap: nowrap;
+	}
+}

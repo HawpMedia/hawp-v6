@@ -1,0 +1,16 @@
+/**
+ * Admin styles.
+ *
+ * @since 5.2.1
+ */
+
+/* Widget Editor ------------------------- */
+.blocks-widgets-container .editor-styles-wrapper {
+	max-width: 100% !important;
+}
+
+/* Block Editor -------------------------- */
+.wp-block {
+	width: 98% !important;
+	max-width: 1200px !important;
+}

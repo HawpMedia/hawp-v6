@@ -1,0 +1,26 @@
+// min-width
+@mixin bp-min-width($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media only screen and (min-width: map-get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	}
+}
+
+// min-width and max-width
+@mixin bp-min-width-max-width($lower, $upper) {
+	@if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+		@media only screen and (min-width: map-get($breakpoints, $lower)) and (max-width: map-get($breakpoints, $upper)) {
+			@content;
+		}
+	}
+}
+
+// max-width
+@mixin bp-max-width($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+/* Screen Reader Text -------------------- */
+.sr-only,
+.screen-reader-text {
+	position: absolute !important;
+	top: auto;
+	left: -10000rem;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+/* Skip Link ----------------------------- */
+.skip-link,
+.skip-to-content {
+	display: block;
+	position: absolute;
+	top: -10000rem;
+	left: 1em;
+	z-index: 99999;
+	padding: 0.5em 1em;
+	background: #eee;
+	box-shadow: 1px 1px 0.2em rgba(0, 0, 0, 0.5);
+	transition: none;
+
+	&:focus {
+		top: 1em;
+	}
+}
+
+/* Reduced Motion ------------------------ */
+@media (prefers-reduced-motion) {
+	* {
+		transition-delay: 0s !important;
+		transition-duration: 0s !important;
+	}
+}
