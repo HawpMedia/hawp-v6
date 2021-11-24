@@ -13,15 +13,13 @@ class Hawp_Theme_Admin {
 	 * Constructor.
 	 */
 	public function setup() {
-		if (is_admin()) {
-			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 999);
-			add_action('admin_notices', array($this, 'admin_notices'));
-			add_action('acf/init', array($this, 'add_acf_options_page'));
-			add_action('acf/init', array($this, 'add_acf_options_fields'));
-			add_action('acf/input/admin_footer', array($this, 'add_acf_color_palette'));
-			add_filter('acf/settings/save_json', array($this, 'acf_json_save_point'));
-			add_filter('acf/settings/load_json', array($this, 'acf_json_load_point'));
-		}
+		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 999);
+		add_action('admin_notices', array($this, 'admin_notices'));
+		add_action('acf/init', array($this, 'add_acf_options_page'));
+		add_action('acf/init', array($this, 'add_acf_options_fields'));
+		add_action('acf/input/admin_footer', array($this, 'add_acf_color_palette'));
+		add_filter('acf/settings/save_json', array($this, 'acf_json_save_point'));
+		add_filter('acf/settings/load_json', array($this, 'acf_json_load_point'));
 	}
 
 	/**

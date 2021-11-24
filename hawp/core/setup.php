@@ -187,13 +187,17 @@ class Hawp_Theme_Setup {
 		}
 
 		// Compiled child styles.
-		wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/css/sass.css', $css_deps);
+		if (file_exists(get_stylesheet_directory().'/css/style.css')) {
+			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/css/style.css', $css_deps);
+		}
 
 		// Main child stylesheet.
 		wp_enqueue_style('hm-child-style', get_stylesheet_directory_uri().'/style.css');
 
 		// Child scripts.
-		wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/js/script.js', $js_deps);
+		if (file_exists(get_stylesheet_directory().'/js/script.js')) {
+			wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/js/script.js', $js_deps);
+		}
 	}
 
 	public function add_head_code() {
