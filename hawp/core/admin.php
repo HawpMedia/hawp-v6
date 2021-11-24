@@ -28,8 +28,7 @@ class Hawp_Theme_Admin {
 	public function admin_enqueue_scripts() {
 		wp_enqueue_script('admin-js', get_template_directory_uri().'/assets/js/admin.js', array('jquery'));
 		wp_enqueue_style('admin-css', get_template_directory_uri().'/assets/css/admin.css');
-		wp_enqueue_style('admin-fontawesome-4', get_template_directory_uri().'/lib/fontawesome-4.7/css/font-awesome.min.css');
-		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/lib/fontawesome-5.15.3/css/all.min.css');
+		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/assets/lib/fontawesome/5.15.3/css/all.min.css');
 
 		if (strpos($_SERVER['REQUEST_URI'], 'theme-options') !== false) {
 			wp_enqueue_style('admin-options-css', get_template_directory_uri().'/assets/css/admin-options.css');
@@ -304,17 +303,6 @@ class Hawp_Theme_Admin {
 						'name' => get_theme_option_prefix().'enqueue_select2_styles_scripts',
 						'type' => 'true_false',
 						'default_value' => 1,
-						'ui' => 1,
-						'ui_on_text' => 'On',
-						'ui_off_text' => 'Off',
-					),
-					array(
-						'key' => get_theme_option_prefix().'enqueue_fontawesome_4_style',
-						'label' => 'FontAwesome 4',
-						'instructions' => '',
-						'name' => get_theme_option_prefix().'enqueue_fontawesome_4_style',
-						'type' => 'true_false',
-						'default_value' => 0,
 						'ui' => 1,
 						'ui_on_text' => 'On',
 						'ui_off_text' => 'Off',
