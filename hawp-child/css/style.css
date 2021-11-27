@@ -22,10 +22,9 @@ What to do? - Add custom css to the child theme
 }
 */
 /* Variables ----------------------------- */
-/*--------------------------------------------------------------
-0. Normalize
---------------------------------------------------------------*/
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,7 +51,6 @@ body, table, tbody, thead, tr, th, td, iframe, div, section, article, aside, hea
   color: inherit;
   background: none;
   overflow: visible;
-  outline: none;
 }
 
 iframe, div, section, article, aside, header, footer, main, menu, nav, h1, h2, h3, h4, h5, h6, hr, form, fieldset, legend, ul, ol, dl, dt, dd, blockquote, p, details, summary, pre, figure, figcaption {
@@ -72,7 +70,8 @@ svg:not(:root) {
   overflow: hidden;
 }
 
-[hidden], template {
+[hidden],
+template {
   display: none;
 }
 
@@ -81,25 +80,36 @@ textarea {
   resize: vertical;
 }
 
-button, input[type=button], input[type=reset], input[type=submit] {
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
   -webkit-appearance: button;
   cursor: pointer;
 }
 
-button[disabled], input[disabled] {
+button[disabled],
+input[disabled] {
   cursor: default;
 }
 
-[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
 
-[type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring, button:-moz-focusring {
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
   outline: ButtonText dotted 1px;
 }
 
-[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -113,12 +123,9 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
-a:active, a:hover {
+a:active,
+a:hover {
   outline-width: 0;
-}
-
-a:focus {
-  outline: dotted thin;
 }
 
 code, kbd, pre, samp {
@@ -744,20 +751,20 @@ input[type=submit]:focus {
 }
 
 @media only screen and (min-width: 68.5em) {
-  /* Menu: Buttons ---------------------- */
+  /* Mobile menu buttons */
   .menu-buttons {
     display: none;
   }
 
-  /* Menu: Container ------------------- */
+  /* Primary menu container */
   #menu {
-    background: #9b9b9b;
     position: sticky;
     top: 0;
     z-index: 999;
+    background: #9b9b9b;
   }
 
-  /* Menu: Menu ------------------------ */
+  /* Primary menu */
   #primary-menu {
     display: flex;
     flex-flow: row wrap;
@@ -766,72 +773,57 @@ input[type=submit]:focus {
     text-align: center;
     background: transparent;
   }
-
   #primary-menu,
 #primary-menu ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-
   #primary-menu ul {
     background: #fff;
+    /* START Default nested sub-menu. */
+    /* END Default nested sub-menu. */
   }
-
-  #primary-menu li {
-    display: block;
-    position: relative;
-    z-index: 4;
-    margin: 0;
+  #primary-menu ul a {
+    padding: 0.5em 1.5em;
+    font-size: 0.9em;
+  }
+  #primary-menu ul a:hover {
+    background: #e5e5e5;
+  }
+  #primary-menu ul ul {
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 500ms, opacity 300ms;
+    position: absolute;
+    left: calc(100% + 1rem);
+    top: 0;
     padding: 0;
-    list-style: none;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  #primary-menu > li {
-    flex: 1 0 auto;
-  }
-
-  #primary-menu li li {
+    width: 13rem;
+    max-height: 26rem;
+    box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
     background: #fff;
   }
-
-  #primary-menu .js-on,
-.nojs #primary-menu > li:hover {
-    z-index: 5;
+  #primary-menu ul ul:before {
+    content: "";
+    position: absolute;
+    right: calc(100% - 0.6rem);
+    bottom: calc(100% - 1.6rem);
+    display: inline-block;
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+    transition: all 200ms;
+    box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
+    border: none;
+    background: inherit;
+    transform: rotate(45deg);
   }
-
-  #primary-menu a {
-    display: block;
-    position: relative;
-    padding: 0.75em 0.5em;
-    text-align: left;
-    color: #595959;
+  #primary-menu ul .menu-item-has-children.js-on > ul {
+    opacity: 1;
+    pointer-events: auto;
   }
-
-  #primary-menu a .fa {
-    line-height: 1.5;
-  }
-
-  #primary-menu a:hover {
-    color: #595959;
-    background: #eee;
-  }
-
-  #primary-menu > li > a {
-    text-align: center;
-    color: #fff;
-  }
-
-  #primary-menu > li > a:hover,
-#primary-menu > .js-on > a {
-    color: #fff;
-    background: #777;
-  }
-
-  #primary-menu .menu-item-has-children > a:after {
+  #primary-menu ul .menu-item-has-children > a:after {
     content: "";
     position: absolute;
     right: 1.5em;
@@ -843,7 +835,49 @@ input[type=submit]:focus {
     transition: all 200ms;
     border-top-color: #9b9b9b;
   }
-
+  #primary-menu li {
+    display: block;
+    position: relative;
+    z-index: 4;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  #primary-menu li li {
+    background: #fff;
+  }
+  #primary-menu > li {
+    flex: 1 0 auto;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+  }
+  #primary-menu > li:last-child {
+    border: none;
+  }
+  #primary-menu > li > a {
+    color: #fff;
+    text-align: center;
+  }
+  #primary-menu > li > a:hover {
+    color: #fff;
+    background: #777;
+  }
+  #primary-menu a {
+    display: block;
+    position: relative;
+    padding: 0.75em 0.5em;
+    text-align: left;
+    color: #595959;
+  }
+  #primary-menu a .fa {
+    line-height: 1.5;
+  }
+  #primary-menu a:hover {
+    color: #595959;
+    background: #eee;
+  }
   #primary-menu > .menu-item-has-children > a:after {
     content: "";
     position: relative;
@@ -857,21 +891,9 @@ input[type=submit]:focus {
     transition: all 200ms;
     border-top-color: #fff;
   }
-
   #primary-menu > .menu-item-has-children > a:focus {
-    outline: 1px dotted !important;
+    /* outline: 1px dotted !important; */
   }
-
-  #primary-menu .js-on > a:after,
-.nojs #primary-menu li:hover > a:after {
-    transform: rotate(-90deg);
-  }
-
-  #primary-menu > .js-on > a:after,
-.nojs #primary-menu > li:hover > a:after {
-    transform: rotate(-180deg);
-  }
-
   #primary-menu > .menu-item-has-children > ul {
     position: absolute;
     top: calc(100% + 1rem);
@@ -880,12 +902,14 @@ input[type=submit]:focus {
     padding: 0;
     width: 13rem;
     max-height: 26rem;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
     border-color: #fff;
     background: #fff;
-    border-radius: 0.25rem;
+    opacity: 0;
+    top: calc(100% - 0.5rem);
+    transition: top 500ms, opacity 300ms;
+    pointer-events: none;
   }
-
   #primary-menu > .menu-item-has-children > ul:before {
     content: "";
     position: absolute;
@@ -897,88 +921,62 @@ input[type=submit]:focus {
     width: 1.15rem;
     height: 1.15rem;
     transition: all 200ms;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
     border: none;
     background: #fff;
     transform: rotate(45deg);
-    border-radius: 0.15rem;
   }
-
-  #primary-menu ul li:last-child,
-#primary-menu ul li:last-child > a {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+  #primary-menu .js-on {
+    z-index: 5;
   }
-
-  #primary-menu ul li:first-child,
-#primary-menu ul li:first-child > a {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+  #primary-menu .js-on > a:after {
+    transform: rotate(-90deg);
   }
-
-  #primary-menu ul > li {
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+  #primary-menu > .js-on > a:after {
+    transform: rotate(-180deg);
   }
-
-  #primary-menu ul > li:last-child {
-    border: none;
-  }
-
-  #primary-menu ul a {
-    padding: 0.5em 1.5em;
-    font-size: 0.9em;
-  }
-
-  #primary-menu ul a:hover {
-    background: #e5e5e5;
-  }
-
-  #primary-menu > .menu-item-has-children > ul {
-    opacity: 0;
-    top: calc(100% - 0.5rem);
-    transition: top 500ms, opacity 300ms;
-    pointer-events: none;
-  }
-
-  /* Menu: Default <ul> style ---------- */
-  #primary-menu ul ul {
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 500ms, opacity 300ms;
-    position: absolute;
-    left: calc(100% + 1rem);
-    top: 0;
-    padding: 0;
-    width: 13rem;
-    max-height: 26rem;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    background: #fff;
-    border-radius: 0.25rem;
-  }
-
-  #primary-menu ul ul:before {
-    content: "";
-    position: absolute;
-    right: calc(100% - 0.6rem);
-    bottom: calc(100% - 1.6rem);
-    display: inline-block;
-    margin: 0;
-    width: 1rem;
-    height: 1rem;
-    transition: all 200ms;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    border: none;
-    background: inherit;
-    transform: rotate(45deg);
-    border-radius: 0.15rem;
-  }
-
-  #primary-menu ul .menu-item-has-children.js-on > ul,
-.nojs #primary-menu ul .menu-item-has-children:hover > ul {
+  #primary-menu > .js-on > ul {
     opacity: 1;
+    top: calc(100% + 1rem);
+    transition: top 500ms, opacity 300ms 200ms;
     pointer-events: auto;
   }
 
+  /* If JS is disabled, show sub-menus with hover. */
+  .nojs #primary-menu li:hover > a:after {
+    transform: rotate(-90deg);
+  }
+  .nojs #primary-menu > li:hover {
+    z-index: 5;
+  }
+  .nojs #primary-menu > li:hover > a:after {
+    transform: rotate(-180deg);
+  }
+  .nojs #primary-menu > li:hover > ul {
+    opacity: 1;
+    top: calc(100% + 1rem);
+    transition: top 500ms, opacity 300ms 200ms;
+    pointer-events: auto;
+  }
+  .nojs #primary-menu .js-on > a {
+    color: #fff;
+    background: #777;
+  }
+  .nojs #primary-menu > .menu-item-has-children > ul:after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 100%;
+    height: 1rem;
+  }
+  .nojs #primary-menu ul li {
+    max-height: none;
+  }
+  .nojs #primary-menu ul .menu-item-has-children:hover > ul {
+    opacity: 1;
+    pointer-events: auto;
+  }
   .nojs #primary-menu ul ul:after {
     content: "";
     position: absolute;
@@ -988,40 +986,21 @@ input[type=submit]:focus {
     height: 100%;
   }
 
-  .nojs #primary-menu > .menu-item-has-children > ul:after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    width: 100%;
-    height: 1rem;
-  }
-
-  /* Menu: <ul> active ----------------- */
-  #primary-menu > li.js-on > ul,
-.nojs #primary-menu > li:hover > ul {
-    opacity: 1;
-    top: calc(100% + 1rem);
-    transition: top 500ms, opacity 300ms 200ms;
-    pointer-events: auto;
-  }
-
-  /* Menu: Home & Search --------------- */
-  #primary-menu > .menu-home,
-#primary-menu > .menu-search {
+  /* Home & Search menu items */
+  .menu-home,
+.menu-search {
     width: 3em;
     max-width: 4em;
   }
 
-  #primary-menu > .menu-home > a,
-#primary-menu > .menu-search > a {
+  .menu-home > a,
+.menu-search > a {
     position: relative;
     overflow: hidden;
     text-indent: -999em;
   }
-
-  #primary-menu > .menu-home > a:before,
-#primary-menu > .menu-search > a:before {
+  .menu-home > a:before,
+.menu-search > a:before {
     content: "";
     position: absolute;
     top: 0;
@@ -1031,14 +1010,13 @@ input[type=submit]:focus {
     margin: auto;
     width: 1.4em;
     height: 1.4em;
-    background: url(./images/icon-home.svg) center/contain no-repeat;
+    background: url(../images/icon-home.svg) center/contain no-repeat;
   }
 
-  #primary-menu > .menu-search > a:before {
-    background-image: url(./images/icon-search.svg);
+  .menu-search > a:before {
+    background-image: url(../images/icon-search.svg);
   }
-
-  #primary-menu > .menu-search > .sub-menu {
+  .menu-search > .sub-menu {
     right: 0;
     left: auto;
     margin: 0;
