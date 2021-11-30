@@ -260,7 +260,7 @@ jQuery(function($) {
 		hawp.addLityToGallery();
 		hawp.addTabs();
 		hawp.materialDesignGform();
-		hawp.targetBlankWarning();
+		//hawp.targetBlankWarning();
 		hawp.animateContent();
 		//hawp.animateBackground();
 		//hawp.owlAnimations();
