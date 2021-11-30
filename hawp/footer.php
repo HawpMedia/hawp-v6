@@ -1,8 +1,6 @@
 <?php
 /**
  * The footer content file.
- *
- * @since 4.0.1
  */
 ?>
 

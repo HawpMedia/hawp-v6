@@ -2,8 +2,6 @@
 /**
  * Template Name: No Sidebar Page
  * Template Post Type: post, page, location, staff
- *
- * @since 4.2.8
  */
 
 get_header(); ?>

@@ -1,7 +1,5 @@
 /**
  * Admin scripts.
- *
- * @since 5.0.2
  */
 
 jQuery(window).load(function() {

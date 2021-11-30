@@ -1,8 +1,6 @@
 <?php
 /**
  * The search content file.
- *
- * @since 4.0.1
  */
 
 get_search_form(); ?>

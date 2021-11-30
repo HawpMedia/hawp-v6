@@ -1,8 +1,6 @@
 <?php
 /**
  * The sidebar template file.
- *
- * @since 4.0.1
  */
 
 if (get_post_type()=='post') {

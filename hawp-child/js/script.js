@@ -1,7 +1,5 @@
 /**
  * Child theme scripts.
- *
- * @since 5.1.0
  */
 jQuery(function($) {
 

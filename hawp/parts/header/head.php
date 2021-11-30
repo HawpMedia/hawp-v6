@@ -1,8 +1,6 @@
 <?php
 /**
  * The header opening template.
- *
- * @since 4.1.2
  */
 ?>
 <!doctype html>

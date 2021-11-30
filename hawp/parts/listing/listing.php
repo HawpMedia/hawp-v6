@@ -1,8 +1,6 @@
 <?php
 /**
  * The archive listing template file.
- *
- * @since 4.2.3
  */
 ?>
 

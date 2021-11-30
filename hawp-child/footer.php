@@ -1,8 +1,6 @@
 <?php
 /**
  * The child footer template file.
- *
- * @since 5.1.0
  */
 ?>
 

@@ -1,8 +1,6 @@
 <?php
 /**
  * The post meta template file.
- *
- * @since 4.1.1
  */
 ?>
 

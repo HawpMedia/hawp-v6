@@ -1,8 +1,6 @@
 <?php
 /**
  * The main template file.
- *
- * @since 4.2.8
  */
 
 $type = '';

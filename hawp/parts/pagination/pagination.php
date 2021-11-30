@@ -1,8 +1,6 @@
 <?php
 /**
  * The pagination template file.
- *
- * @since 4.2.4
  */
 
 the_posts_pagination(array(

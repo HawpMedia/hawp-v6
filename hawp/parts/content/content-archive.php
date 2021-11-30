@@ -1,8 +1,6 @@
 <?php
 /**
  * The archive content file.
- *
- * @since 4.0.1
  */
 
 if (have_posts()) : ?>

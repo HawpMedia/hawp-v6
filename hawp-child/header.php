@@ -1,8 +1,6 @@
 <?php
 /**
  * The child header file.
- *
- * @since 5.0.7
  */
 
 get_template_part('parts/header/head');

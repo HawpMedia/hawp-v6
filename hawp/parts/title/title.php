@@ -1,8 +1,6 @@
 <?php
 /**
  * Displays the post header.
- *
- * @since 5.2.0
  */
 
 $title = '';
