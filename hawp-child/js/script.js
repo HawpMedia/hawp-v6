@@ -1,9 +1,12 @@
 /**
  * Child theme scripts.
  */
-jQuery(function($) {
 
-	var domain = window.location.protocol + "//" + window.location.host;
+var urls = {};
+var domain = window.location.protocol + "//" + window.location.host;
+var domainPath = window.location.protocol + "//" + window.location.host + "//" + window.location.pathname;
+
+jQuery(function($) {
 
 	hawp = [];
 
@@ -30,20 +33,32 @@ jQuery(function($) {
 	 * Menu.
 	 */
 	hawp.addMenu = function() {
-		// Dropdown menu
+		// Dropdown menu.
 		$(".menu").on("click", ".menu-item-has-children > a", function(e) {
-			e.preventDefault();
+			e.preventDefault(); // remove this to make the parent pages go to their url on second click.
 			var li = $(this).parent("li");
-			li.hasClass("js-on") ? (li.find(".js-on").removeClass("js-on"), li.removeClass("js-on")) : (li.siblings(".js-on").find(".js-on").removeClass("js-on"), li.siblings(".js-on").removeClass("js-on"), li.addClass("js-on"));
+
+			if (li.hasClass('js-on')) {
+				li.find('.js-on').removeClass('js-active');
+				li.removeClass('js-on');
+				$(this).attr("aria-expanded", "false");
+			} else {
+				e.preventDefault(); // prevents parent items from being clickable
+				li.siblings('.js-on').find('.js-on').removeClass('js-on');
+				li.siblings('.js-on').removeClass('js-on');
+				li.addClass('js-on');
+				$(this).attr("aria-expanded", "true");
+			}
 		})
 
 		$(document).on("click", ".js-turnon,.js-turnoff", function(e) {
 			e.preventDefault();
 			var target = $(this).attr("data-target");
+
 			$(target).hasClass("js-on") ? jsOff(target) : jsOn(target);
 		})
 
-		// Menu deactivate
+		// Deactivate menu.
 		$(document).on("click", function(e) {
 			$(".menu").each(function() {
 				if (!$(this).is(e.target) && $(this).has(e.target).length === 0) {
@@ -52,7 +67,13 @@ jQuery(function($) {
 			});
 			$(".js-on").each(function() {
 				var target = $(this).attr("data-target");
-				target && "0" != $(target).attr("data-autoclose") && ($(target).is(e.target) || 0 !== $(target).has(e.target).length || $('.js-turnon[data-target="' + target + '"]').is(e.target) || 0 !== $('.js-turnon[data-target="' + target + '"]').has(e.target).length || jsOff(target));
+
+				if (!target || $(target).attr('data-autoclose')=='0') {
+					return;
+				}
+				if (!$(target).is(e.target) && $(target).has(e.target).length === 0 && !$('.js-turnon[data-target="'+target+'"]').is(e.target) && $('.js-turnon[data-target="'+target+'"]').has(e.target).length === 0) {
+					jsOff(target);
+				}
 			});
 		})
 
