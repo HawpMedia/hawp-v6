@@ -18,7 +18,7 @@ class Hawp_Theme {
 		'file'                => __FILE__,
 		'textdomain'          => 'hawp',
 		'option_prefix'       => 'hawp_theme_',
-		'update_url'          => 'https://update.hawp.dev/theme/hawpv6/',
+		'update_url'          => 'https://update.hawp.dev/themes/hawp-v6/',
 	);
 
 	/**
