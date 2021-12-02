@@ -180,8 +180,8 @@ class Hawp_Theme_Setup {
 		}
 
 		// Compiled child styles.
-		if (file_exists(get_stylesheet_directory().'/css/style.css')) {
-			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/css/style.css', $css_deps);
+		if (file_exists(get_stylesheet_directory().'/css/compiled.css')) {
+			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/css/compiled.css', $css_deps);
 		}
 
 		// Main child stylesheet.
