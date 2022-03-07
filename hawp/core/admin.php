@@ -332,7 +332,7 @@ class Hawp_Theme_Admin {
 						'name' => get_theme_option_prefix().'force_dynamic_urls',
 						'type' => 'true_false',
 						'instructions' => 'Filter [home], [home_url] and [uploads] shortcodes base URL with Site Address URL (recommended).',
-						'default_value' => 1,
+						'default_value' => 0,
 						'ui' => 1,
 						'ui_on_text' => 'On',
 						'ui_off_text' => 'Off',
