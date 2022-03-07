@@ -16,6 +16,7 @@ What to do? - Add custom css to the child theme
 
 @import "03-generic/reset";
 @import "03-generic/clearings";
+@import "03-generic/helpers";
 
 @import "04-elements/headings";
 @import "04-elements/misc";
@@ -27,7 +28,6 @@ What to do? - Add custom css to the child theme
 
 @import "05-blocks/blocks";
 
-@import "07-utilities/helpers";
 @import "07-utilities/color-palette";
 
 @import "06-components/wrapper";

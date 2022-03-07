@@ -10,6 +10,7 @@
 @import "03-generic/normalize";
 @import "03-generic/reset";
 @import "03-generic/clearings";
+@import "03-generic/helpers";
 
 /* Category 04 can contain any default HTML element. Do not add classes here, just give the elements some basic styles. */
 @import "04-elements/headings";
@@ -36,7 +37,7 @@
 @import "06-components/comments";
 @import "06-components/nav-desktop";
 @import "06-components/nav-mobile";
-// @import "06-components/nav-mobile-burger";
+@import "06-components/nav-mobile-burger";
 @import "06-components/pagination";
 @import "06-components/widgets";
 @import "06-components/gravity-forms";
@@ -45,7 +46,6 @@
 
 /* Category 07 is for any utility classes that are not assigned to a specific component. */
 @import "07-utilities/a11y";
-@import "07-utilities/helpers";
 @import "07-utilities/color-palette";
 @import "07-utilities/animations";
 @import "07-utilities/print";

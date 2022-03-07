@@ -61,10 +61,14 @@ class Hawp_Theme_Setup {
 	public function child_theme_setup() {
 		// Child base editor styles
 		add_editor_style(get_stylesheet_directory_uri().'/css/admin/style-editor.css');
+		add_editor_style(get_stylesheet_directory_uri().'/assets/css/admin/style-editor.css');
 
 		// Child custom editor styles
 		if (file_exists(get_stylesheet_directory().'/css/admin/style-editor-custom.css')) {
 			add_editor_style(get_stylesheet_directory_uri().'/css/admin/style-editor-custom.css');
+		}
+		if (file_exists(get_stylesheet_directory().'/assets/css/admin/style-editor-custom.css')) {
+			add_editor_style(get_stylesheet_directory_uri().'/assets/css/admin/style-editor-custom.css');
 		}
 	}
 
@@ -183,13 +187,19 @@ class Hawp_Theme_Setup {
 		if (file_exists(get_stylesheet_directory().'/css/compiled.css')) {
 			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/css/compiled.css', $css_deps);
 		}
+		if (file_exists(get_stylesheet_directory().'/assets/css/compiled.css')) {
+			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/assets/css/compiled.css', $css_deps);
+		}
 
 		// Main child stylesheet.
 		wp_enqueue_style('hm-child-style', get_stylesheet_directory_uri().'/style.css');
 
 		// Child scripts.
-		if (file_exists(get_stylesheet_directory().'/js/script.js')) {
-			wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/js/script.js', $js_deps);
+		if (file_exists(get_stylesheet_directory().'/assets/js/script.js')) {
+			wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/assets/js/script.js', $js_deps);
+		}
+		if (file_exists(get_stylesheet_directory().'/assets/js/script.js')) {
+			wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/assets/js/script.js', $js_deps);
 		}
 	}
 

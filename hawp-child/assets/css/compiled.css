@@ -172,6 +172,36 @@ button {
   height: 0;
 }
 
+/* Container ----------------------------- */
+.contain {
+  display: block;
+  position: relative;
+  margin: auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+@media only screen and (min-width: 38.5em) {
+  .contain {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+@media only screen and (min-width: 82.5em) {
+  .contain {
+    padding-left: calc(50% - 30rem);
+    padding-right: calc(50% - 30rem);
+  }
+}
+
+/* Layout -------------------------------- */
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
 /* Category 04 can contain any default HTML element. Do not add classes here, just give the elements some basic styles. */
 h1, .h1,
 h2, .h2,
@@ -565,10 +595,12 @@ input[type=submit]:focus {
 /* Category 06 contains all "bigger" components which contain elements of the previous two categories like header, footer, page template, single template, comments section, archives, ... */
 /* Site Info ----------------------------- */
 .site-info {
-  padding-top: 1.2em;
-  padding-bottom: 6em;
-  margin-top: 2em;
+  font-size: 0.8rem;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   text-align: center;
+  color: #fff;
+  background-color: #000;
 }
 @media only screen and (min-width: 68.5em) {
   .site-info {
@@ -576,12 +608,16 @@ input[type=submit]:focus {
     justify-content: space-between;
     align-items: center;
     text-align: left;
-    padding-bottom: 1.2em;
-    font-size: 0.8rem;
   }
 }
+.site-info a {
+  color: #fff;
+}
+.site-info a:hover, .site-info a:focus {
+  color: #ccc;
+}
 .site-info .copyright {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.75em;
 }
 @media only screen and (min-width: 68.5em) {
   .site-info .copyright {
@@ -598,8 +634,31 @@ input[type=submit]:focus {
     justify-content: space-between;
   }
   .site-info .menu li {
-    margin: 0;
-    margin-left: 0.5rem;
+    position: relative;
+  }
+}
+@media only screen and (min-width: 68.5em) and (min-width: 68.5em) {
+  .site-info .menu li {
+    padding: 0 0.5rem 0 0;
+    margin: 0 0.5rem 0 0;
+  }
+  .site-info .menu li:after {
+    position: absolute;
+    display: block;
+    content: "";
+    right: 0;
+    width: 1px;
+    height: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+  }
+  .site-info .menu li:last-child {
+    padding-right: 0;
+    margin-right: 0;
+  }
+  .site-info .menu li:last-child:after {
+    display: none;
   }
 }
 
@@ -1236,6 +1295,7 @@ input[type=submit]:focus {
     border-radius: 0.25em 0 0 0.25em;
     height: 100%;
     border: none;
+    outline: none;
   }
   .menu-search-form .search-submit {
     font-weight: 400;
@@ -1244,6 +1304,97 @@ input[type=submit]:focus {
     color: #fff;
     background: #777;
     border-radius: 0 0.25em 0.25em 0;
+  }
+}
+/*--------------------------------------------------------------
+Menu: Hamburger style
+--------------------------------------------------------------*/
+@media only screen and (max-width: 68.5em) {
+  .menu-buttons {
+    position: relative;
+    width: auto;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    order: 2;
+    background: transparent;
+    border: none;
+    justify-content: flex-end;
+  }
+  .menu-buttons .js-turnon.js-on {
+    display: block;
+  }
+
+  .menu-button {
+    background: transparent;
+    border: none;
+    width: 2.35rem;
+  }
+  .menu-button.menu-close {
+    background: transparent;
+    border: none;
+    width: 2rem;
+  }
+  .menu-button:hover, .menu-button.menu-close.js-on {
+    background: transparent;
+  }
+  .menu-button .menu-button-label {
+    display: none;
+  }
+  .menu-button .menu-button-icon {
+    margin: 0;
+    font-size: 2em;
+  }
+  .menu-button .menu-button-bar {
+    top: 12px;
+    transition-duration: 0.22s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  .menu-button .menu-button-bar, .menu-button .menu-button-bar:before, .menu-button .menu-button-bar:after {
+    position: absolute;
+    display: block;
+    width: 2.35rem;
+    height: 3px;
+    background: #030608;
+    transition: 300ms ease-in-out;
+  }
+  .menu-button .menu-button-bar:before, .menu-button .menu-button-bar:after {
+    content: "";
+    display: block;
+  }
+  .menu-button .menu-button-bar:before {
+    top: -12px;
+    transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+  }
+  .menu-button .menu-button-bar:after {
+    bottom: -12px;
+    transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  .menu-button.js-on .menu-button-bar {
+    transform: rotate(225deg);
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .menu-button.js-on .menu-button-bar:before {
+    top: 0;
+    opacity: 0;
+    transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+  }
+  .menu-button.js-on .menu-button-bar:after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .menu-tab {
+    top: 0;
+    left: -100%;
+    padding: 5em 0 5em;
+    width: 75% !important;
+    overflow: auto;
+    transition: left 500ms;
+  }
+  .menu-tab.js-on, .menu-tab:target {
+    left: 0;
   }
 }
 .pagination {
@@ -1519,36 +1670,6 @@ input[type=submit]:focus {
     transition-duration: 0s !important;
   }
 }
-/* Container ----------------------------- */
-.contain {
-  display: block;
-  position: relative;
-  margin: auto;
-  padding: 0 1.5rem;
-  width: 100%;
-}
-@media only screen and (min-width: 38.5em) {
-  .contain {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-@media only screen and (min-width: 82.5em) {
-  .contain {
-    padding-left: calc(50% - 30rem);
-    padding-right: calc(50% - 30rem);
-  }
-}
-
-/* Layout -------------------------------- */
-.no-margin {
-  margin: 0;
-}
-
-.no-padding {
-  padding: 0;
-}
-
 @media print {
   @page {
     margin: 0.5cm;

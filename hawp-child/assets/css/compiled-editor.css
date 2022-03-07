@@ -42,6 +42,36 @@ button {
   height: 0;
 }
 
+/* Container ----------------------------- */
+.contain {
+  display: block;
+  position: relative;
+  margin: auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+@media only screen and (min-width: 38.5em) {
+  .contain {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+@media only screen and (min-width: 82.5em) {
+  .contain {
+    padding-left: calc(50% - 30rem);
+    padding-right: calc(50% - 30rem);
+  }
+}
+
+/* Layout -------------------------------- */
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -363,36 +393,6 @@ input[type=submit]:focus {
 }
 .wp-block-buttons .wp-block-button {
   margin-bottom: 0.5em;
-}
-
-/* Container ----------------------------- */
-.contain {
-  display: block;
-  position: relative;
-  margin: auto;
-  padding: 0 1.5rem;
-  width: 100%;
-}
-@media only screen and (min-width: 38.5em) {
-  .contain {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-@media only screen and (min-width: 82.5em) {
-  .contain {
-    padding-left: calc(50% - 30rem);
-    padding-right: calc(50% - 30rem);
-  }
-}
-
-/* Layout -------------------------------- */
-.no-margin {
-  margin: 0;
-}
-
-.no-padding {
-  padding: 0;
 }
 
 #wrapper {

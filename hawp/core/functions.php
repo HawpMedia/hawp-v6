@@ -62,9 +62,9 @@ function get_random_post($type = 'post') {
 	$rand  = rand(0, $count);
 
 	return get_posts([
-		'post_type'   => $type,
+		'post_type' => $type,
 		'numberposts' => 1,
-		'offset'      => max(0, $rand - 1)
+		'offset' => max(0, $rand - 1)
 	])[0];
 }
 
