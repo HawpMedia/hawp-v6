@@ -250,7 +250,7 @@ class Hawp_Theme_Shortcodes {
 		$atts = shortcode_atts(array(
 			'post_type' => 'page',
 			'orderby' => 'title',
-			'order' => 'DESC',
+			'order' => 'ASC',
 			'exclude' => '',
 			'show_title' => '',
 			'wrapper_class' => '',
