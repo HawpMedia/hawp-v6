@@ -29,6 +29,7 @@ class Hawp_Theme_Admin {
 		wp_enqueue_script('admin-js', get_template_directory_uri().'/assets/js/admin.js', array('jquery'));
 		wp_enqueue_style('admin-css', get_template_directory_uri().'/assets/css/admin.css');
 		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/assets/lib/fontawesome/5.15.3/css/all.min.css');
+		wp_enqueue_style('admin-fontawesome-6', get_template_directory_uri().'/assets/lib/fontawesome/6.1.1/css/all.min.css');
 
 		if (strpos($_SERVER['REQUEST_URI'], 'theme-options') !== false) {
 			wp_enqueue_style('admin-options-css', get_template_directory_uri().'/assets/css/admin-options.css');
@@ -313,6 +314,17 @@ class Hawp_Theme_Admin {
 						'instructions' => '',
 						'name' => get_theme_option_prefix().'enqueue_fontawesome_5_style',
 						'type' => 'true_false',
+						'default_value' => 0,
+						'ui' => 1,
+						'ui_on_text' => 'On',
+						'ui_off_text' => 'Off',
+					),
+					array(
+						'key' => get_theme_option_prefix().'enqueue_fontawesome_6_style',
+						'label' => 'FontAwesome 6',
+						'instructions' => '',
+						'name' => get_theme_option_prefix().'enqueue_fontawesome_6_style',
+						'type' => 'true_false',
 						'default_value' => 1,
 						'ui' => 1,
 						'ui_on_text' => 'On',
@@ -325,17 +337,6 @@ class Hawp_Theme_Admin {
 						'type' => 'tab',
 						'placement' => 'left',
 						'endpoint' => 0,
-					),
-					array(
-						'key' => get_theme_option_prefix().'force_dynamic_urls',
-						'label' => 'Dynamic URL\'s',
-						'name' => get_theme_option_prefix().'force_dynamic_urls',
-						'type' => 'true_false',
-						'instructions' => 'Filter [home], [home_url] and [uploads] shortcodes base URL with Site Address URL (recommended).',
-						'default_value' => 0,
-						'ui' => 1,
-						'ui_on_text' => 'On',
-						'ui_off_text' => 'Off',
 					),
 					array(
 						'key' => get_theme_option_prefix().'force_ssl',

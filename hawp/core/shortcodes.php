@@ -19,6 +19,7 @@ class Hawp_Theme_Shortcodes {
 		add_shortcode('theme', array($this, 'relative_stylesheet'));
 		add_shortcode('logo', array($this, 'shortcode_logo'));
 		add_shortcode('svg', array($this, 'shortcode_svg'));
+		add_shortcode('year', array($this, 'shortcode_year'));
 		add_shortcode('custom_loop', array($this, 'shortcode_custom_loop'));
 		add_filter('the_content', array($this, 'do_custom_loop'), 2);
 		add_shortcode('content_cta', array($this, 'shortcode_content_cta'));
@@ -105,6 +106,23 @@ class Hawp_Theme_Shortcodes {
 		);
 
 		$result = '<span class="wpsb-svg wpsb-svg-id-'.$args['id'].' '.$option_values['class'].'">'.$option_values['svg'].'</span>';
+
+		return $result;
+	}
+
+	/**
+	 * Shortcode: [year].
+	 */
+	public function shortcode_year($atts=array()) {
+		$atts = shortcode_atts(array(
+			'since' => '',
+		), $atts);
+
+		if ($atts['since']) {
+			$result = date('Y') - floatval($atts['since']);
+		} else {
+			$result = date('Y');
+		}
 
 		return $result;
 	}
