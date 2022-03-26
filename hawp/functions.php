@@ -12,20 +12,20 @@ if (!class_exists('Hawp_Theme')):
 
 class Hawp_Theme {
 
-	public static $theme = array(
+	public static $theme = [
 		'name'                => 'Hawp Theme',
 		'version'             => '6.0.0',
 		'file'                => __FILE__,
 		'textdomain'          => 'hawp',
 		'option_prefix'       => 'hawp_theme_',
 		'update_url'          => 'https://update.hawp.dev/themes/hawp-v6/',
-	);
+	];
 
 	/**
 	 * Constructor.
 	 */
 	public function setup() {
-		add_action('after_setup_theme', array($this, 'includes'), 1);
+		add_action('after_setup_theme', [$this, 'includes'], 1);
 	}
 
 	/**
