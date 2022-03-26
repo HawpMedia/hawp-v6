@@ -14,7 +14,6 @@ class Hawp_Theme_Setup {
 	 */
 	public function setup() {
 		add_action('after_setup_theme', [$this, 'theme_setup']);
-		add_action('after_setup_theme', [$this, 'child_theme_setup']);
 		add_action('widgets_init', [$this, 'widgets_init']);
 		add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts']);
 		add_action('wp_head', [$this, 'add_head_code']);
@@ -52,23 +51,6 @@ class Hawp_Theme_Setup {
 			'social' => 'Social Menu',
 			'copyright' => 'Copyright Menu',
 		]));
-	}
-
-	/**
-	 * Set up child theme presets.
-	 */
-	public function child_theme_setup() {
-		// Child base editor styles
-		add_editor_style(get_stylesheet_directory_uri().'/css/admin/style-editor.css');
-		add_editor_style(get_stylesheet_directory_uri().'/assets/css/admin/style-editor.css');
-
-		// Child custom editor styles
-		if (file_exists(get_stylesheet_directory().'/css/admin/style-editor-custom.css')) {
-			add_editor_style(get_stylesheet_directory_uri().'/css/admin/style-editor-custom.css');
-		}
-		if (file_exists(get_stylesheet_directory().'/assets/css/admin/style-editor-custom.css')) {
-			add_editor_style(get_stylesheet_directory_uri().'/assets/css/admin/style-editor-custom.css');
-		}
 	}
 
 	/**
