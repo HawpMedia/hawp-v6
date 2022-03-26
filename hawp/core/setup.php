@@ -195,7 +195,7 @@ class Hawp_Theme_Setup {
 	 */
 	public function enqueue_jquery_migrate($scripts){
 		if (get_theme_option('enqueue_jquery_migrate') == 0) {
-			if (!is_admin() && isset( $scripts->registered['jquery'])) {
+			if (!is_admin() && isset($scripts->registered['jquery'])) {
 				$script = $scripts->registered['jquery'];
 				if ($script->deps) { // Check whether the script has any dependencies
 					$script->deps = array_diff($script->deps, ['jquery-migrate']);
@@ -242,19 +242,19 @@ class Hawp_Theme_Setup {
 		}
 
 		if ($query->is_category) {
-			$query->set( 'posts_per_page', (int) get_theme_option('catnum_posts') );
+			$query->set('posts_per_page', (int) get_theme_option('catnum_posts'));
 		} elseif ($query->is_tag) {
-			$query->set( 'posts_per_page', (int) get_theme_option('tagnum_posts') );
+			$query->set('posts_per_page', (int) get_theme_option('tagnum_posts'));
 		} elseif ($query->is_search) {
-			$query->set( 'posts_per_page', (int) get_theme_option('searchnum_posts') );
+			$query->set('posts_per_page', (int) get_theme_option('searchnum_posts'));
 		} elseif ($query->is_archive) {
 			if (function_exists('is_woocommerce') && is_woocommerce()) {
 				// Plugin Compatibility :: Skip query->set if "loop_shop_per_page" filter is being used by 3rd party plugins
 				if (!has_filter('loop_shop_per_page')) {
-					$query->set( 'posts_per_page', get_theme_option('woocommerce_archive_num_posts') );
+					$query->set('posts_per_page', get_theme_option('woocommerce_archive_num_posts'));
 				}
 			} else {
-				$query->set( 'posts_per_page', get_theme_option('archivenum_posts') );
+				$query->set('posts_per_page', get_theme_option('archivenum_posts'));
 			}
 		}
 	}

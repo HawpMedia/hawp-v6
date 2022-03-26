@@ -15,7 +15,7 @@ class Hawp_Theme_Updater {
 	public function setup() {
 		if (is_admin()) {
 			if (get_theme_update_url() != '') {
-				add_filter('pre_set_site_transient_update_themes', array($this, 'update_theme_check'));
+				add_filter('pre_set_site_transient_update_themes', [$this, 'update_theme_check']);
 			}
 		}
 	}

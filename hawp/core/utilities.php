@@ -13,7 +13,7 @@ class Hawp_Theme_Utilities {
 	 * Constructor.
 	 */
 	public function setup() {
-		add_action('acf/init', array($this, 'acf_option_commands'));
+		add_action('acf/init', [$this, 'acf_option_commands']);
 	}
 
 	/**
@@ -23,37 +23,37 @@ class Hawp_Theme_Utilities {
 
 		// Filter Dynamic URL's
 		if (get_theme_option('force_dynamic_urls') && is_admin()) {
-			add_filter('content_save_pre', array($this, 'filter_dynamic_urls'), 999);
-			add_filter('content_edit_pre', array($this, 'unfilter_dynamic_urls'), 1);
-			add_filter('the_content', array($this, 'unfilter_dynamic_urls'), 1);
-			add_filter('rest_request_after_callbacks', array($this, 'rest_unfilter_dynamic_urls'), 10);
+			add_filter('content_save_pre', [$this, 'filter_dynamic_urls'], 999);
+			add_filter('content_edit_pre', [$this, 'unfilter_dynamic_urls'], 1);
+			add_filter('the_content', [$this, 'unfilter_dynamic_urls'], 1);
+			add_filter('rest_request_after_callbacks', [$this, 'rest_unfilter_dynamic_urls'], 10);
 		}
 
 		// Force SSL
 		if (get_theme_option('force_ssl')) {
-			add_action('template_redirect', array($this, 'force_ssl'));
+			add_action('template_redirect', [$this, 'force_ssl']);
 		}
 
 		// Allow SVG Upload
 		if (get_theme_option('allow_svg_upload')) {
 			if (current_user_can('upload_files')) {
-				add_filter('upload_mimes', array($this, 'allow_svg_upload'));
+				add_filter('upload_mimes', [$this, 'allow_svg_upload']);
 			}
 		}
 
 		// Remove WP admin items
 		if (get_theme_option('wordpress_admin_item') == 0 && is_admin()) {
-			add_action('admin_bar_menu', array($this, 'remove_wp_logo'), 999);
-			add_action('wp_dashboard_setup', array($this, 'disable_default_dashboard_widgets'), 999); // Dashboard widgets
-			add_filter('admin_head', array($this, 'disable_help_tabs')); // Help tab
+			add_action('admin_bar_menu', [$this, 'remove_wp_logo'], 999);
+			add_action('wp_dashboard_setup', [$this, 'disable_default_dashboard_widgets'], 999); // Dashboard widgets
+			add_filter('admin_head', [$this, 'disable_help_tabs']); // Help tab
 			add_filter('admin_footer_text', '__return_false'); // Admin footer
 		}
 
 		// Remove comments menu item
 		if (get_theme_option('comments_admin_menu_item') == 0) {
-			add_action('admin_menu', array($this, 'remove_comments_menu_item'));
-			add_action('init', array($this, 'remove_comment_support'), 100);
-			add_action('wp_before_admin_bar_render', array($this, 'admin_bar_render')); // Removes from admin bar
+			add_action('admin_menu', [$this, 'remove_comments_menu_item']);
+			add_action('init', [$this, 'remove_comment_support'], 100);
+			add_action('wp_before_admin_bar_render', [$this, 'admin_bar_render']); // Removes from admin bar
 		}
 	}
 
@@ -90,7 +90,7 @@ class Hawp_Theme_Utilities {
 	 * Unfilter dynamic urls.
 	 */
 	public function unfilter_dynamic_urls($content) {
-		$content = str_replace(array('[home_url]', '[home]'), home_url(), $content);
+		$content = str_replace(['[home_url]', '[home]'], home_url(), $content);
 		$content = str_replace('[uploads]', wp_get_upload_dir()['baseurl'], $content);
 		preg_match_all('/\[uploads[^\]]*\]/i', $content, $matches);
 		foreach($matches[0] as $match) {

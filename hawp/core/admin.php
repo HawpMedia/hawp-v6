@@ -13,20 +13,20 @@ class Hawp_Theme_Admin {
 	 * Constructor.
 	 */
 	public function setup() {
-		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'), 999);
-		add_action('admin_notices', array($this, 'admin_notices'));
-		add_action('acf/init', array($this, 'add_acf_options_page'));
-		add_action('acf/init', array($this, 'add_acf_options_fields'));
-		add_action('acf/input/admin_footer', array($this, 'add_acf_color_palette'));
-		add_filter('acf/settings/save_json', array($this, 'acf_json_save_point'));
-		add_filter('acf/settings/load_json', array($this, 'acf_json_load_point'));
+		add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'], 999);
+		add_action('admin_notices', [$this, 'admin_notices']);
+		add_action('acf/init', [$this, 'add_acf_options_page']);
+		add_action('acf/init', [$this, 'add_acf_options_fields']);
+		add_action('acf/input/admin_footer', [$this, 'add_acf_color_palette']);
+		add_filter('acf/settings/save_json', [$this, 'acf_json_save_point']);
+		add_filter('acf/settings/load_json', [$this, 'acf_json_load_point']);
 	}
 
 	/**
 	 * Add admin styles and scripts.
 	 */
 	public function admin_enqueue_scripts() {
-		wp_enqueue_script('admin-js', get_template_directory_uri().'/assets/js/admin.js', array('jquery'));
+		wp_enqueue_script('admin-js', get_template_directory_uri().'/assets/js/admin.js', ['jquery']);
 		wp_enqueue_style('admin-css', get_template_directory_uri().'/assets/css/admin.css');
 		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/assets/lib/fontawesome/5.15.3/css/all.min.css');
 		wp_enqueue_style('admin-fontawesome-6', get_template_directory_uri().'/assets/lib/fontawesome/6.1.1/css/all.min.css');
@@ -35,7 +35,7 @@ class Hawp_Theme_Admin {
 			wp_enqueue_style('admin-options-css', get_template_directory_uri().'/assets/css/admin-options.css');
 		}
 
-		wp_enqueue_code_editor(array('type'=>'application/x-httpd-php'));
+		wp_enqueue_code_editor(['type'=>'application/x-httpd-php']);
 	}
 
 	/**
@@ -426,10 +426,10 @@ class Hawp_Theme_Admin {
 	 */
 	public function get_editor_color_palette() {
 		// get the colors
-		$color_palette = current( (array) get_theme_support( 'editor-color-palette' ) );
+		$color_palette = current((array) get_theme_support('editor-color-palette'));
 
 		// bail if there aren't any colors found
-		if ( !$color_palette )
+		if (!$color_palette)
 			return;
 
 		// output begins
@@ -437,7 +437,7 @@ class Hawp_Theme_Admin {
 
 		// output the names in a string
 		echo '[';
-			foreach ( $color_palette as $color ) {
+			foreach ($color_palette as $color) {
 				echo "'" . $color['color'] . "', ";
 			}
 		echo ']';
@@ -456,7 +456,7 @@ class Hawp_Theme_Admin {
 		} else {
 			echo '<script type="text/javascript">
 				(function($) {
-					acf.add_filter( "color_picker_args", function( args, $field ){
+					acf.add_filter("color_picker_args", function(args, $field) {
 
 						// add the hex codes for the colors appearing as swatches
 						args.palettes = '. $color_palette .'
