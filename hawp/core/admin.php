@@ -28,7 +28,7 @@ class Hawp_Theme_Admin {
 	public function admin_enqueue_scripts() {
 		wp_enqueue_script('admin-js', get_template_directory_uri().'/assets/js/admin.js', ['jquery']);
 		wp_enqueue_style('admin-css', get_template_directory_uri().'/assets/css/admin.css');
-		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/assets/lib/fontawesome/5.15.3/css/all.min.css');
+		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/assets/lib/fontawesome/5.15.4/css/all.min.css');
 		wp_enqueue_style('admin-fontawesome-6', get_template_directory_uri().'/assets/lib/fontawesome/6.1.1/css/all.min.css');
 
 		if (strpos($_SERVER['REQUEST_URI'], 'theme-options') !== false) {
