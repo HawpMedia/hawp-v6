@@ -13,23 +13,22 @@ class Hawp_Theme_Setup {
 	 * Constructor.
 	 */
 	public function setup() {
-		add_action('after_setup_theme', array($this, 'theme_setup'));
-		add_action('after_setup_theme', array($this, 'child_theme_setup'));
-		add_action('widgets_init', array($this, 'widgets_init'));
-		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
-		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_child_scripts'));
-		add_action('wp_head', array($this, 'add_head_code'));
+		add_action('after_setup_theme', [$this, 'theme_setup']);
+		add_action('after_setup_theme', [$this, 'child_theme_setup']);
+		add_action('widgets_init', [$this, 'widgets_init']);
+		add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts']);
+		add_action('wp_head', [$this, 'add_head_code']);
 		remove_action('wp_head', 'print_emoji_detection_script', 7);
-		add_action('wp_body_open', array($this, 'add_body_code'));
-		add_action('wp_footer', array($this, 'add_footer_code'));
-		add_action('wp_default_scripts', array($this, 'enqueue_jquery_migrate'));
+		add_action('wp_body_open', [$this, 'add_body_code']);
+		add_action('wp_footer', [$this, 'add_footer_code']);
+		add_action('wp_default_scripts', [$this, 'enqueue_jquery_migrate']);
 		remove_action('wp_print_styles', 'print_emoji_styles');
-		add_action('wp_print_styles', array($this, 'enqueue_gutenberg_style'), 100);
-		add_filter('excerpt_more', array($this, 'excerpt_more'));
-		add_filter('get_the_archive_title', array($this, 'remove_archive_title'));
-		add_action('pre_get_posts', array($this, 'num_posts_per_page'));
-		add_filter('gform_ajax_spinner_url', array($this, 'gform_ajax_spinner_url'), 10, 2);
-		add_filter('gform_submit_button', array($this, 'gform_submit_button'), 10, 5);
+		add_action('wp_print_styles', [$this, 'enqueue_gutenberg_style'], 100);
+		add_filter('excerpt_more', [$this, 'excerpt_more']);
+		add_filter('get_the_archive_title', [$this, 'remove_archive_title']);
+		add_action('pre_get_posts', [$this, 'num_posts_per_page']);
+		add_filter('gform_ajax_spinner_url', [$this, 'gform_ajax_spinner_url'], 10, 2);
+		add_filter('gform_submit_button', [$this, 'gform_submit_button'], 10, 5);
 		add_filter('widget_text', 'do_shortcode');
 		add_filter('gform_tabindex', '__return_false');
 		add_filter('wp_nav_menu_items', 'do_shortcode');
@@ -44,15 +43,15 @@ class Hawp_Theme_Setup {
 		add_theme_support('title-tag');
 		add_theme_support('automatic-feed-links');
 		add_theme_support('post-thumbnails');
-		add_theme_support('html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', ));
+		add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
 		add_post_type_support('page', 'excerpt');
-		register_nav_menus(apply_filters('hawp_menus', array(
+		register_nav_menus(apply_filters('hawp_menus', [
 			'primary' => 'Primary Menu',
 			'top' => 'Top Menu',
 			'secondary' => 'Footer Menu',
 			'social' => 'Social Menu',
 			'copyright' => 'Copyright Menu',
-		)));
+		]));
 	}
 
 	/**
@@ -76,7 +75,7 @@ class Hawp_Theme_Setup {
 	 * Set up theme widgets.
 	 */
 	public function widgets_init() {
-		register_sidebar(array(
+		register_sidebar([
 			'name' => 'Footer',
 			'id' => 'footer',
 			'description' => '',
@@ -84,8 +83,8 @@ class Hawp_Theme_Setup {
 			'after_widget' => '</section>',
 			'before_title' => '<header><h3 class="widget-title">',
 			'after_title' => '</h3></header>',
-		));
-		register_sidebar(array(
+		]);
+		register_sidebar([
 			'name' => 'Site Sidebar',
 			'id' => 'site',
 			'description' => '',
@@ -93,8 +92,8 @@ class Hawp_Theme_Setup {
 			'after_widget' => '</section>',
 			'before_title' => '<header><h3 class="widget-title">',
 			'after_title' => '</h3></header>',
-		));
-		register_sidebar(array(
+		]);
+		register_sidebar([
 			'name' => 'Blog Sidebar',
 			'id' => 'blog',
 			'description' => '',
@@ -102,111 +101,89 @@ class Hawp_Theme_Setup {
 			'after_widget' => '</section>',
 			'before_title' => '<header><h3 class="widget-title">',
 			'after_title' => '</h3></header>',
-		));
+		]);
 	}
 
 	/**
 	 * Scripts and styles.
 	 */
 	public function wp_enqueue_scripts() {
-		$js_deps = array('jquery');
-		$css_deps = array();
+		$scripts = [
+			[
+				'is_on' => get_theme_option('google_fonts') ? true : false,
+				'style' => [ ['hm-google-fonts', esc_html(get_theme_option('google_fonts')), [], false, false] ],
+			],
+			[
+				'is_on' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
+				'style' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css', [], false, false] ],
+				'script' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery'], false, true] ],
+			],
+			[
+				'is_on' => get_theme_option('enqueue_owl_styles_scripts') ? true : false,
+				'style' => [
+					['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css', [], false, true],
+					['hm-owl-theme', HM_URL.'/assets/lib/owl/2.3.4/owl.theme.default.min.css', [], false, true]
+				],
+				'script' => [ ['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery'], false, true] ],
+			],
+			[
+				'is_on' => get_theme_option('enqueue_select2_styles_scripts') ? true : false,
+				'style' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css', [], false, false] ],
+				'script' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery'], false, true] ],
+			],
+			[
+				'is_on' => get_theme_option('enqueue_litepicker_styles_scripts') ? true : false,
+				'script' => [ ['hm-litepicker', 'https://cdnjs.cloudflare.com/ajax/lib/litepicker/2.0.11/litepicker.js', [], false, true] ]
+			],
+			[
+				'is_on' => get_theme_option('enqueue_mixitup_styles_scripts') ? true : false,
+				'script' => [ ['hm-mixitup', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js', [], false, true] ]
+			],
+			[
+				'is_on' => get_theme_option('enqueue_fontawesome_5_style') ? true : false,
+				'style' => [ ['hm-fontawesome-5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css', [], false, false] ],
+			],
+			[
+				'is_on' => get_theme_option('enqueue_fontawesome_6_style') ? true : false,
+				'style' => [ ['hm-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css', [], false, false] ],
+			],
+			[
+				'is_on' => file_exists(HMC_PATH.'/css/compiled.css') ? true : false,
+				'style' => [ ['hm-child-compiled-old', HMC_URL.'/css/compiled.css', [], false, false] ],
+			],
+			[
+				'is_on' => file_exists(HMC_PATH.'/assets/css/compiled.css') ? true : false,
+				'style' => [ ['hm-child-compiled', HMC_URL.'/assets/css/compiled.css', [], false, false] ],
+			],
+			[
+				'is_on' => true,
+				'style' => [ ['hm-child', HMC_URL.'/style.css', [], false, false] ],
+			],
+			[
+				'is_on' => file_exists(HMC_PATH.'/js/script.js') ? true : false,
+				'script' => [ ['hm-child-old', HMC_URL.'/js/script.js', ['jquery'], false, true] ],
+			],
+			[
+				'is_on' => file_exists(HMC_PATH.'/assets/js/script.js') ? true : false,
+				'script' => [ ['hm-child', HMC_URL.'/assets/js/script.js', ['jquery'], false, true] ],
+			],
+		];
 
-		// Google fonts
-		if (get_theme_option('google_fonts')) {
-			wp_enqueue_style('google-fonts', esc_html(get_theme_option('google_fonts')), $css_deps);
-			$css_deps[] = 'google-fonts';
-		}
-
-		// Lity styles & scripts
-		if (get_theme_option('enqueue_lity_styles_scripts')) {
-			wp_register_style('hm-lity-style', get_template_directory_uri().'/assets/lib/lity/2.4.0/lity.min.css', $css_deps);
-			wp_enqueue_style('hm-lity-style');
-			$css_deps[] = 'hm-lity-style';
-
-			wp_register_script('hm-lity-script', get_template_directory_uri().'/assets/lib/lity/2.4.0/lity.min.js', $js_deps);
-			wp_enqueue_script('hm-lity-script');
-			$js_deps[] = 'hm-lity-script';
-		}
-
-		// Owl styles & scripts
-		if (get_theme_option('enqueue_owl_styles_scripts')) {
-			wp_register_style('hm-owl-style', get_template_directory_uri().'/assets/lib/owl/2.3.4/owl.carousel.min.css', $css_deps);
-			wp_register_style('hm-owl-theme-style', get_template_directory_uri().'/assets/lib/owl/2.3.4/owl.theme.default.min.css', $css_deps);
-			wp_enqueue_style('hm-owl-style');
-			wp_enqueue_style('hm-owl-theme-style');
-			$css_deps[] = 'hm-owl-style';
-
-			wp_register_script('hm-owl-script', get_template_directory_uri().'/assets/lib/owl/2.3.4/owl.carousel.min.js', $js_deps);
-			wp_enqueue_script('hm-owl-script');
-			$js_deps[] = 'hm-owl-script';
-		}
-
-		// Litepicker styles & scripts
-		if (get_theme_option('enqueue_litepicker_styles_scripts')) {
-			wp_enqueue_script('hm-litepicker-script', 'https://cdnjs.cloudflare.com/ajax/lib/litepicker/2.0.11/litepicker.js');
-		}
-
-		// Mixitup styles & scripts
-		if (get_theme_option('enqueue_mixitup_styles_scripts')) {
-			wp_enqueue_script('hm-mixitup-script', get_template_directory_uri().'/assets/lib/mixitup/3.3.1/mixitup.min.js', [], false, true);
-		}
-
-		// Select2 styles & scripts
-		if (get_theme_option('enqueue_select2_styles_scripts')) {
-			wp_register_style('hm-select2-style', get_template_directory_uri().'/assets/lib/select2/4.0.13/select2.min.css', $css_deps);
-			wp_enqueue_style('hm-select2-style');
-			$css_deps[] = 'hm-select2-style';
-
-			wp_register_script('hm-select2-script', get_template_directory_uri().'/assets/lib/select2/4.0.13/select2.min.js', $js_deps);
-			wp_enqueue_script('hm-select2-script');
-			$js_deps[] = 'hm-select2-script';
-		}
-
-		// Font Awesome 5 styles.
-		if (get_theme_option('enqueue_fontawesome_5_style')) {
-			wp_register_style('hm-fontawesome-5-style', get_template_directory_uri().'/assets/lib/fontawesome/5.15.4/css/all.min.css');
-			wp_enqueue_style('hm-fontawesome-5-style');
-			$css_deps[] = 'hm-fontawesome-5-style';
-		}
-
-		// Font Awesome 5 styles.
-		if (get_theme_option('enqueue_fontawesome_6_style')) {
-			wp_register_style('hm-fontawesome-6-style', get_template_directory_uri().'/assets/lib/fontawesome/6.1.1/css/all.min.css');
-			wp_enqueue_style('hm-fontawesome-6-style');
-			$css_deps[] = 'hm-fontawesome-6-style';
-		}
-	}
-
-	/**
-	 * Child scripts and styles.
-	 */
-	public function wp_enqueue_child_scripts() {
-		$js_deps = array('jquery');
-		$css_deps = array();
-
-		// Google font styles.
-		if (get_theme_option('google_fonts')) {
-			wp_enqueue_style('google-fonts', esc_html(get_theme_option('google_fonts')), $css_deps);
-		}
-
-		// Compiled child styles.
-		if (file_exists(get_stylesheet_directory().'/css/compiled.css')) {
-			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/css/compiled.css', $css_deps);
-		}
-		if (file_exists(get_stylesheet_directory().'/assets/css/compiled.css')) {
-			wp_enqueue_style('hm-child-compiled-style', get_stylesheet_directory_uri().'/assets/css/compiled.css', $css_deps);
-		}
-
-		// Main child stylesheet.
-		wp_enqueue_style('hm-child-style', get_stylesheet_directory_uri().'/style.css');
-
-		// Child scripts.
-		if (file_exists(get_stylesheet_directory().'/js/script.js')) {
-			wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/assets/js/script.js', $js_deps);
-		}
-		if (file_exists(get_stylesheet_directory().'/assets/js/script.js')) {
-			wp_enqueue_script('hm-child-script', get_stylesheet_directory_uri().'/assets/js/script.js', $js_deps);
+		foreach($scripts as $data) {
+			if ($data['is_on'] == true) {
+				if (isset($data['style'])) {
+					foreach ($data['style'] as $style) {
+						wp_register_style($style[0], $style[1], $style[2], $style[3], $style[4]);
+						wp_enqueue_style($style[0]);
+					}
+				}
+				if (isset($data['script'])) {
+					foreach ($data['script'] as $script) {
+						wp_register_script($script[0], $script[1], $script[2], $script[3], $script[4]);
+						wp_enqueue_script($script[0]);
+					}
+				}
+			}
 		}
 	}
 
@@ -239,7 +216,7 @@ class Hawp_Theme_Setup {
 			if (!is_admin() && isset( $scripts->registered['jquery'])) {
 				$script = $scripts->registered['jquery'];
 				if ($script->deps) { // Check whether the script has any dependencies
-					$script->deps = array_diff($script->deps, array('jquery-migrate'));
+					$script->deps = array_diff($script->deps, ['jquery-migrate']);
 				}
 			}
 		}
