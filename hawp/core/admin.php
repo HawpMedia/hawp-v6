@@ -339,6 +339,17 @@ class Hawp_Theme_Admin {
 						'endpoint' => 0,
 					),
 					array(
+						'key' => get_theme_option_prefix().'force_dynamic_urls',
+						'label' => 'Dynamic URL\'s',
+						'name' => get_theme_option_prefix().'force_dynamic_urls',
+						'type' => 'true_false',
+						'instructions' => 'Filter [home], [home_url] and [uploads] shortcodes base URL with Site Address URL. <strong>NOT recommended as its being depricated in future updates.</strong>',
+						'default_value' => 0,
+						'ui' => 1,
+						'ui_on_text' => 'On',
+						'ui_off_text' => 'Off',
+					),
+					array(
 						'key' => get_theme_option_prefix().'force_ssl',
 						'label' => 'Force SSL URL\'s',
 						'name' => get_theme_option_prefix().'force_ssl',
