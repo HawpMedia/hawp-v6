@@ -46,8 +46,8 @@ class Hawp_Theme {
 		// Loop through core folder and auto include files.
 		$includes = [
 			'functions',
-			'setup',
 			'helpers',
+			'setup',
 			'admin',
 			'shortcodes',
 			'utilities',

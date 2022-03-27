@@ -26,15 +26,20 @@ class Hawp_Theme_Admin {
 	 * Add admin styles and scripts.
 	 */
 	public function admin_enqueue_scripts() {
-		wp_enqueue_script('admin-js', get_template_directory_uri().'/assets/js/admin.js', ['jquery']);
-		wp_enqueue_style('admin-css', get_template_directory_uri().'/assets/css/admin.css');
-		wp_enqueue_style('admin-fontawesome-5', get_template_directory_uri().'/assets/lib/fontawesome/5.15.4/css/all.min.css');
-		wp_enqueue_style('admin-fontawesome-6', get_template_directory_uri().'/assets/lib/fontawesome/6.1.1/css/all.min.css');
-
-		if (strpos($_SERVER['REQUEST_URI'], 'theme-options') !== false) {
-			wp_enqueue_style('admin-options-css', get_template_directory_uri().'/assets/css/admin-options.css');
-		}
-
+		add_styles_and_scripts([
+			[
+				'styles' => [
+					[ 'hm-admin-fontawesome-5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css' ],
+					[ 'hm-admin-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css' ],
+					[ 'hm-admin', HM_URL.'/assets/css/admin.css' ],
+				],
+				'scripts' => [ [ 'hm-admin', HM_URL.'/assets/js/admin.js', ['jquery'] ] ]
+			],
+			[
+				'enable' => strpos($_SERVER['REQUEST_URI'], 'theme-options') !== false ? true : false,
+				'styles' => [ [ 'hm-admin-options', HM_URL.'/assets/css/admin-options.css' ] ]
+			]
+		]);
 		wp_enqueue_code_editor(['type'=>'application/x-httpd-php']);
 	}
 

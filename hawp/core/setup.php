@@ -90,83 +90,65 @@ class Hawp_Theme_Setup {
 	 * Scripts and styles.
 	 */
 	public function wp_enqueue_scripts() {
-		$scripts = [
+		add_styles_and_scripts([
 			[
-				'is_on' => get_theme_option('google_fonts') ? true : false,
-				'style' => [ ['hm-google-fonts', esc_html(get_theme_option('google_fonts')), [], false, false] ],
+				'enable' => get_theme_option('google_fonts') ? true : false,
+				'styles' => [ ['hm-google-fonts', esc_html(get_theme_option('google_fonts'))] ],
 			],
 			[
-				'is_on' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
-				'style' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css', [], false, false] ],
-				'script' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery'], false, true] ],
+				'enable' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
+				'styles' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css'] ],
+				'scripts' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery']] ],
 			],
 			[
-				'is_on' => get_theme_option('enqueue_owl_styles_scripts') ? true : false,
-				'style' => [
-					['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css', [], false, true],
-					['hm-owl-theme', HM_URL.'/assets/lib/owl/2.3.4/owl.theme.default.min.css', [], false, true]
+				'enable' => get_theme_option('enqueue_owl_styles_scripts') ? true : false,
+				'styles' => [
+					['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css'],
+					['hm-owl-theme', HM_URL.'/assets/lib/owl/2.3.4/owl.theme.default.min.css']
 				],
-				'script' => [ ['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery'], false, true] ],
+				'scripts' => [ ['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery']] ],
 			],
 			[
-				'is_on' => get_theme_option('enqueue_select2_styles_scripts') ? true : false,
-				'style' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css', [], false, false] ],
-				'script' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery'], false, true] ],
+				'enable' => get_theme_option('enqueue_select2_styles_scripts') ? true : false,
+				'styles' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css'] ],
+				'scripts' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery']] ],
 			],
 			[
-				'is_on' => get_theme_option('enqueue_litepicker_styles_scripts') ? true : false,
-				'script' => [ ['hm-litepicker', 'https://cdnjs.cloudflare.com/ajax/lib/litepicker/2.0.11/litepicker.js', [], false, true] ]
+				'enable' => get_theme_option('enqueue_litepicker_styles_scripts') ? true : false,
+				'scripts' => [ ['hm-litepicker', 'https://cdnjs.cloudflare.com/ajax/lib/litepicker/2.0.11/litepicker.js'] ]
 			],
 			[
-				'is_on' => get_theme_option('enqueue_mixitup_styles_scripts') ? true : false,
-				'script' => [ ['hm-mixitup', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js', [], false, true] ]
+				'enable' => get_theme_option('enqueue_mixitup_styles_scripts') ? true : false,
+				'scripts' => [ ['hm-mixitup', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js'] ]
 			],
 			[
-				'is_on' => get_theme_option('enqueue_fontawesome_5_style') ? true : false,
-				'style' => [ ['hm-fontawesome-5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css', [], false, false] ],
+				'enable' => get_theme_option('enqueue_fontawesome_5_style') ? true : false,
+				'styles' => [ ['hm-fontawesome-5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css'] ],
 			],
 			[
-				'is_on' => get_theme_option('enqueue_fontawesome_6_style') ? true : false,
-				'style' => [ ['hm-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css', [], false, false] ],
+				'enable' => get_theme_option('enqueue_fontawesome_6_style') ? true : false,
+				'styles' => [ ['hm-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css'] ],
 			],
 			[
-				'is_on' => file_exists(HMC_PATH.'/css/compiled.css') ? true : false,
-				'style' => [ ['hm-child-compiled-old', HMC_URL.'/css/compiled.css', [], false, false] ],
+				'enable' => file_exists(HMC_PATH.'/css/compiled.css') ? true : false,
+				'styles' => [ ['hm-child-compiled-old', HMC_URL.'/css/compiled.css'] ],
 			],
 			[
-				'is_on' => file_exists(HMC_PATH.'/assets/css/compiled.css') ? true : false,
-				'style' => [ ['hm-child-compiled', HMC_URL.'/assets/css/compiled.css', [], false, false] ],
+				'enable' => file_exists(HMC_PATH.'/assets/css/compiled.css') ? true : false,
+				'styles' => [ ['hm-child-compiled', HMC_URL.'/assets/css/compiled.css'] ],
 			],
 			[
-				'is_on' => true,
-				'style' => [ ['hm-child', HMC_URL.'/style.css', [], false, false] ],
+				'styles' => [ ['hm-child', HMC_URL.'/style.css'] ],
 			],
 			[
-				'is_on' => file_exists(HMC_PATH.'/js/script.js') ? true : false,
-				'script' => [ ['hm-child-old', HMC_URL.'/js/script.js', ['jquery'], false, true] ],
+				'enable' => file_exists(HMC_PATH.'/js/script.js') ? true : false,
+				'scripts' => [ ['hm-child-old', HMC_URL.'/js/script.js', ['jquery']] ],
 			],
 			[
-				'is_on' => file_exists(HMC_PATH.'/assets/js/script.js') ? true : false,
-				'script' => [ ['hm-child', HMC_URL.'/assets/js/script.js', ['jquery'], false, true] ],
+				'enable' => file_exists(HMC_PATH.'/assets/js/script.js') ? true : false,
+				'scripts' => [ ['hm-child', HMC_URL.'/assets/js/script.js', ['jquery']] ],
 			],
-		];
-
-		foreach($scripts as $data) {
-			if ($data['is_on'] == true) {
-				if (isset($data['style'])) {
-					foreach ($data['style'] as $style) {
-						wp_register_style($style[0], $style[1], $style[2], $style[3], $style[4]);
-						wp_enqueue_style($style[0]);
-					}
-				}
-				if (isset($data['script'])) {
-					foreach ($data['script'] as $script) {
-						wp_register_script($script[0], $script[1], $script[2], $script[3], $script[4]);
-						wp_enqueue_script($script[0]);
-					}
-				}
-			}
-		}
+		]);
 	}
 
 	public function add_head_code() {
