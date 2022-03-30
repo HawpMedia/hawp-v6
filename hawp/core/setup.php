@@ -169,6 +169,7 @@ class Hawp_Theme_Setup {
 	public function enqueue_gutenberg_style() {
 		if (get_theme_option('dequeue_gutenberg_style') == 0) {
 			wp_dequeue_style('wp-block-library');
+			remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 		}
 	}
 

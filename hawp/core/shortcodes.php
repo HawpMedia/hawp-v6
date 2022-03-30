@@ -212,16 +212,34 @@ class Hawp_Theme_Shortcodes {
 	public function shortcode_menu($atts) {
 		$atts = shortcode_atts([
 			'name' => '',
-			'wrapper_class' => '',
+			'container_class' => '',
+			'container_id' => '',
+			'menu_class' => '',
+			'wrapper_class' => '', // keep for backward compatibility, use container_class
 		], $atts);
 
-		$args = [
-			'name' => preg_replace('/\s+/', '-', strtolower($atts['name'])),
+		$menu_args = [
+			'menu' => !is_numeric($atts['name']) ? preg_replace('/\s+/', '-', strtolower($atts['name'])) : $atts['name'],
+			'container' => 'nav',
+			'echo' => false,
 		];
+		if (!empty($atts['container_class'])) {
+			$menu_args['container_class'] = $atts['container_class'];
+		} elseif ($atts['wrapper_class']) { // back compat for if 'wrapper_class' attr is used
+			$menu_args['container_class'] = $atts['wrapper_class'];
+		}
+		if (stripos($atts['name'], 'social') !== false && empty($atts['menu_class'])) { // back compat for if 'social' is used in the 'name' attr
+			$menu_args['container_class'] = !empty($menu_args['container_class']) ? $menu_args['container_class'].' '.strtolower($atts['name']).'-navigation' : strtolower($atts['name']).'-navigation';
+		}
+		if (!empty($atts['container_id'])) {
+			$menu_args['container_id'] = $atts['container_id'];
+		}
+		if (!empty($atts['menu_class'])) {
+			$menu_args['menu_class'] = $atts['menu_class'];
+		}
 
-		$result = '<nav id="'.$args['name'].'-navigation" class="'.$atts['wrapper_class'].' '.$args['name'].'-navigation" role="navigation">';
-		$result .= wp_nav_menu(['menu' => $args['name'], 'echo' => false]);
-		$result .= '</nav>';
+		$result = wp_nav_menu($menu_args);
+
 		return $result;
 	}
 
