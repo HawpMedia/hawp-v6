@@ -270,6 +270,16 @@ class Hawp_Theme_Admin {
 						'ui_off_text' => 'Off',
 					),
 					array(
+						'key' => get_theme_option_prefix().'enqueue_swiper_styles_scripts',
+						'label' => 'Swiper',
+						'name' => get_theme_option_prefix().'enqueue_swiper_styles_scripts',
+						'type' => 'true_false',
+						'default_value' => 0,
+						'ui' => 1,
+						'ui_on_text' => 'On',
+						'ui_off_text' => 'Off',
+					),
+					array(
 						'key' => get_theme_option_prefix().'enqueue_owl_styles_scripts',
 						'label' => 'Owl Carousel',
 						'instructions' => 'A jQuery library for developers to create responsive and touch enabled carousel sliders.',

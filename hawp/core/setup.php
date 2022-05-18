@@ -109,6 +109,11 @@ class Hawp_Theme_Setup {
 				'scripts' => [ ['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery']] ],
 			],
 			[
+				'enable' => get_theme_option('enqueue_swiper_styles_scripts') ? true : false,
+				'styles' => [ ['hm-swiper', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.css'] ],
+				'scripts' => [ ['hm-swiper', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.js' ] ],
+			],
+			[
 				'enable' => get_theme_option('enqueue_select2_styles_scripts') ? true : false,
 				'styles' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css'] ],
 				'scripts' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery']] ],
