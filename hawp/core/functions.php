@@ -124,6 +124,12 @@ function add_styles_and_scripts($array=[]) {
 					wp_enqueue_script($args['handle']);
 				}
 			}
+			// Loop through raw html
+			if (isset($data['html'])) {
+				foreach ($data['html'] as $html) {
+					echo $html;
+				}
+			}
 		}
 	}
 }
