@@ -14,23 +14,27 @@ class Hawp_Theme_Setup {
 	 */
 	public function setup() {
 		add_action('after_setup_theme', [$this, 'theme_setup']);
+		add_filter('widget_text', 'do_shortcode');
 		add_action('widgets_init', [$this, 'widgets_init']);
+		add_filter('wp_nav_menu_items', 'do_shortcode');
 		add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts']);
 		add_action('wp_head', [$this, 'add_head_code']);
 		remove_action('wp_head', 'print_emoji_detection_script', 7);
 		add_action('wp_body_open', [$this, 'add_body_code']);
 		add_action('wp_footer', [$this, 'add_footer_code']);
-		add_action('wp_default_scripts', [$this, 'enqueue_jquery_migrate']);
-		remove_action('wp_print_styles', 'print_emoji_styles');
+		add_filter('body_class', [$this, 'add_featured_image_body_class']);
 		add_action('wp_print_styles', [$this, 'enqueue_gutenberg_style'], 100);
+		remove_action('wp_print_styles', 'print_emoji_styles');
+		add_filter('tiny_mce_before_init', [$this, 'override_mce_options'], 99);
+		add_action('wp_default_scripts', [$this, 'enqueue_jquery_migrate']);
+		add_post_type_support('page', 'excerpt');
 		add_filter('excerpt_more', [$this, 'excerpt_more']);
+		add_filter('get_the_excerpt', 'do_shortcode');
 		add_filter('get_the_archive_title', [$this, 'remove_archive_title']);
 		add_action('pre_get_posts', [$this, 'num_posts_per_page']);
 		add_filter('gform_ajax_spinner_url', [$this, 'gform_ajax_spinner_url'], 10, 2);
 		add_filter('gform_submit_button', [$this, 'gform_submit_button'], 10, 5);
-		add_filter('widget_text', 'do_shortcode');
 		add_filter('gform_tabindex', '__return_false');
-		add_filter('wp_nav_menu_items', 'do_shortcode');
 		add_filter('wpseo_json_ld_output', '__return_empty_array');
 	}
 
@@ -94,6 +98,7 @@ class Hawp_Theme_Setup {
 			[
 				'enable' => get_theme_option('google_fonts') ? true : false,
 				'styles' => [ ['hm-google-fonts', esc_html(get_theme_option('google_fonts'))] ],
+				'html' => [ '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' ],
 			],
 			[
 				'enable' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
@@ -166,6 +171,16 @@ class Hawp_Theme_Setup {
 
 	public function add_footer_code() {
 		echo get_theme_option('footer_code');
+	}
+
+	public function add_featured_image_body_class($classes) {
+		global $post;
+
+		if (isset ($post->ID) && get_the_post_thumbnail($post->ID)) {
+			$classes[] = 'has-featured-image';
+		}
+
+		return $classes;
 	}
 
 	/**
