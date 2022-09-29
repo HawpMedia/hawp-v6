@@ -1,0 +1,49 @@
+{
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"color": {
+			"palette": [
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#000000"
+				},
+				{
+					"name": "White",
+					"slug": "white",
+					"color": "#ffffff"
+				}
+			],
+			"text": true,
+			"background": true,
+			"custom": true,
+			"customGradient": true,
+			"defaultGradients": true,
+			"defaultPalette": false
+		},
+		"typography": {
+			"fontSizes": [
+				{
+					"slug": "small",
+					"size": "1rem",
+					"name": "Small"
+				},
+				{
+					"slug": "medium",
+					"size": "1.25rem",
+					"name": "medium"
+				}
+			]
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"units": [ "rem", "em", "vh", "vw", "px" ]
+		},
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "1920px"
+		}
+	}
+}

@@ -22,9 +22,10 @@ foreach ($includes as $include) {
  */
 add_action('after_setup_theme', function() {
 	add_theme_support('editor-styles');
+	add_theme_support('wp-block-styles');
 	add_editor_style(HMC_URL.'/assets/css/compiled-editor.css');
 	add_editor_style(HMC_URL.'/style-editor.css');
-	add_theme_support('editor-color-palette', array(
+	add_theme_support('editor-color-palette', array( // this is overwritten by theme.json
 		array(
 			'name'  => 'White',
 			'slug'  => 'white',
