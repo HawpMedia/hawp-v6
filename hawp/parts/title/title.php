@@ -20,8 +20,7 @@ if (is_404()) {
 ?>
 
 <h1 class="main-title entry-title"><?php echo $title; ?></h1>
-<?php
-if (function_exists('yoast_breadcrumb')) {
-	yoast_breadcrumb('<nav class="main-breadcrumbs">', '</nav>');
-}
-?>
+
+<?php if (function_exists('yoast_breadcrumb')) yoast_breadcrumb('<nav class="main-breadcrumbs">', '</nav>'); ?>
+
+<?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
