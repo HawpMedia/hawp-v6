@@ -21,17 +21,16 @@ class Hawp_Theme_Utilities {
 	 */
 	public function acf_option_commands() {
 
-		// Filter Dynamic URL's
-		if (get_theme_option('force_dynamic_urls') && is_admin()) {
-			add_filter('content_save_pre', [$this, 'filter_dynamic_urls'], 999);
-			add_filter('content_edit_pre', [$this, 'unfilter_dynamic_urls'], 1);
-			add_filter('the_content', [$this, 'unfilter_dynamic_urls'], 1);
-			add_filter('rest_request_after_callbacks', [$this, 'rest_unfilter_dynamic_urls'], 10);
-		}
-
 		// Force SSL
 		if (get_theme_option('force_ssl')) {
 			add_action('template_redirect', [$this, 'force_ssl']);
+		}
+
+		// Prefix post urls
+		if (get_theme_option('prefix_post_urls')) {
+			add_action('init', [$this, 'create_new_post_url_querystring'], 999);
+			add_filter('post_link', [$this, 'append_post_query_string'], 10, 3);
+			add_filter('template_redirect', [$this, 'redirect_old_post_urls']);
 		}
 
 		// Allow SVG Upload
@@ -58,74 +57,62 @@ class Hawp_Theme_Utilities {
 	}
 
 	/**
-	 * Filter dynamic urls.
-	 */
-	public function filter_dynamic_urls($content) {
-		preg_match_all('/'.preg_quote(wp_get_upload_dir()['baseurl'],'/').'[^#?"\'\\\,\s()<>]+/', $content, $matches);
-		foreach($matches[0] as $match) {
-			$attachment = attachment_url_to_postid($match);
-			if (!empty($attachment)) {
-				$pos = strpos($content, $match);
-				if ($pos!==false) {
-					$content = substr_replace($content, '[uploads id='.$attachment.']', $pos, strlen($match));
-				}
-			}
-		}
-		preg_match_all('/'.preg_quote(home_url(),'/').'[^#?"\'\\\,\s()<>]+/', $content, $matches);
-		foreach($matches[0] as $match) {
-			$postid = url_to_postid($match);
-			if (!empty($postid) && $match!=home_url('/')) {
-				$pos = strpos($content, $match);
-				if ($pos!==false) {
-					$content = substr_replace($content, '[home_url id='.$postid.']', $pos, strlen($match));
-				}
-			}
-		}
-		$content = str_replace(wp_get_upload_dir()['baseurl'], '[uploads]', $content);
-		$content = str_replace(home_url(), '[home_url]', $content);
-		return $content;
-	}
-
-	/**
-	 * Unfilter dynamic urls.
-	 */
-	public function unfilter_dynamic_urls($content) {
-		$content = str_replace(['[home_url]', '[home]'], home_url(), $content);
-		$content = str_replace('[uploads]', wp_get_upload_dir()['baseurl'], $content);
-		preg_match_all('/\[uploads[^\]]*\]/i', $content, $matches);
-		foreach($matches[0] as $match) {
-			$pos = strpos($content, $match);
-			if ($pos!==false) {
-				$content = substr_replace($content, do_shortcode($match), $pos, strlen($match));
-			}
-		}
-		preg_match_all('/\[home_url[^\]]*\]/i', $content, $matches);
-		foreach($matches[0] as $match) {
-			$pos = strpos($content, $match);
-			if ($pos!==false) {
-				$content = substr_replace($content, do_shortcode($match), $pos, strlen($match));
-			}
-		}
-		return $content;
-	}
-
-	/**
-	 * Unfilter dynamic urls in the REST API.
-	 */
-	public function rest_unfilter_dynamic_urls($result) {
-		if (!empty($result->data['content']['raw'])) {
-			$result->data['content']['raw'] = $this->unfilter_dynamic_urls($result->data['content']['raw']);
-		}
-		return $result;
-	}
-
-	/**
 	 * Force SSL for sites that are set to SSL.
 	 */
 	public function force_ssl() {
 		if (!is_ssl() && stripos(home_url('/'), 'https://') === 0) {
 			wp_redirect('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 301);
 			exit();
+		}
+	}
+
+	/**
+	 * Add new post rewrite rule
+	 */
+	public function create_new_post_url_querystring() {
+		add_rewrite_rule(
+			'blog/([^/]*)$',
+			'index.php?name=$matches[1]',
+			'top'
+		);
+
+		add_rewrite_tag('%blog%','([^/]*)');
+	}
+
+	/**
+	 * Modify post link
+	 * This will print /blog/post-name instead of /post-name
+	 */
+	public function append_post_query_string( $url, $post, $leavename ) {
+		if ($post->post_type != 'post') {
+			return $url;
+		}
+
+		if (strpos($url, '%postname%') !== false) {
+			$slug = '%postname%';
+		} elseif ($post->post_name) {
+			$slug = $post->post_name;
+		} else {
+			$slug = sanitize_title($post->post_title);
+		}
+
+		$url = home_url(user_trailingslashit('blog/'. $slug));
+
+		return $url;
+	}
+
+	/**
+	 * Redirect all posts to new url
+	 * If you get error 'Too many redirects' or 'Redirect loop', then delete everything below
+	 */
+	public function redirect_old_post_urls() {
+		if (is_singular('post')) {
+			global $post;
+
+			if (strpos($_SERVER['REQUEST_URI'], '/blog/') === false) {
+			   wp_redirect(home_url(user_trailingslashit("blog/$post->post_name")), 301);
+			   exit();
+			}
 		}
 	}
 
