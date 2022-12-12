@@ -1,5 +1,5 @@
 # Hawp Theme v6
-Bboilerplate WordPress theme for Hawp Media projects.
+This repo includes the parent (hawp) and child (hawp-child) WordPress themes for Hawp Media projects.
 
 ## Requirements
 * WordPress 5.6+
