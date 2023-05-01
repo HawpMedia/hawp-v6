@@ -14,7 +14,7 @@ class Hawp_Theme {
 
 	public static $theme = [
 		'name'                => 'Hawp Theme',
-		'version'             => '6.2.0',
+		'version'             => '6.2.1',
 		'file'                => __FILE__,
 		'textdomain'          => 'hawp',
 		'option_prefix'       => 'hawp_theme_',
