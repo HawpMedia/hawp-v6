@@ -15,6 +15,8 @@ class Hawp_Theme_Admin {
 	public function setup() {
 		add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'], 999);
 		add_action('admin_notices', [$this, 'admin_notices']);
+		add_action('admin_bar_menu', [$this, 'add_admin_bar_menu'], 100);
+		add_filter('admin_footer_text', [$this, 'change_admin_footer']);
 		add_action('acf/init', [$this, 'add_acf_options_page']);
 		add_action('acf/init', [$this, 'add_acf_options_fields']);
 		add_action('acf/input/admin_footer', [$this, 'add_acf_color_palette']);
@@ -50,6 +52,26 @@ class Hawp_Theme_Admin {
 		if (current_user_can('administrator') && !get_option('blogname')) {
 			echo '<div class="error notice is-dismissible"><p>Site title is NOT set. Please go to the <a href="'.home_url().'/wp-admin/options-general.php">Settings page</a> and add the site title.</p></div>';
 		}
+	}
+
+	/**
+	 * Add menu item to admin menu bar
+	 */
+	public function add_admin_bar_menu($meta = true) {
+		global $wp_admin_bar;
+		$wp_admin_bar->add_menu( array(
+			'id' => 'contact_hawp',
+			'title' => __('Need help? Contact Hawp Media'),
+			'href' => 'https://hawpmedia.com/',
+			'meta' 	=> array('target' => '_blank'))
+		);
+	}
+
+	/**
+	 * Change admin footer text
+	 */
+	public function change_admin_footer() {
+		echo '<span id="hm-footer-note">This website was developed by <a href="https://hawpmedia.com/" target="_blank">Hawp Media</a>.</span><svg style="max-width: 50px; position: absolute; right: 27px; top: -36px;" viewBox="0 0 50 43.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m0 0h50v43.5h-50z"/></clipPath><g clip-path="url(#a)" fill="#48bdee"><path d="m35.8 20.09c6.45.74 3.61 4.89-1.78 6.66 3.57-5.3.77-3.93-7.05-6.21 13.25-4.4 13.2-9.92 12.5-14.12-1.24-2.44-3.2-4.43-1.79-6.43.97.5 2.66 2.17 3.12 3.02 2.83.45 4.69 3.11 9.17 5.41.07.24-.1 1.4-1.25 1.86-1.48.59-3.21-.51-4.83 1.12-1.05 1.06-1.24 3.08-2.19 4.36-1.54 2.13-3.97 3.45-5.91 4.32z"/><path d="m36.84 9.38c0 .57-.91 5.01-7.13 7-2.65.72-5.41.69-8.63-.6 8.12 8.68-.13 11.51-2.81 17.5-.66 1.79.86 5.04.88 6.74-.06 1.81-1.44 3.3-3.24 3.49.07-.54.52-3.26.32-4.33-.23-1.21-1.38-2.99-1.61-4.62-.4-2.9 2.79-6.01 3.24-8.17.17-.79-.36-1.8-1.11-3.02-.79-1.27-1.92-2.32-2.04-2.28-.59.31-1.5 2.31-1.81 3.17-1.02 2.79-2.68 8.68-4.57 10.97-1.38 1.67-4.87 3.33-8.31 2.34 3.09 0 6.05-2.33 6.84-4.17 1.99-4.69.94-12.6 6.58-19.31 6.5-6.99 13.05-3.86 18.6-3.67 2.82.09 4.77-1 4.82-1.03z"/></g></svg>';
 	}
 
 	/**

@@ -311,6 +311,7 @@ class Hawp_Theme_Shortcodes {
 			$vals['thumbnail'] = get_the_post_thumbnail($post->ID, $atts['size']);
 			$vals['thumbnail_url'] = get_the_post_thumbnail_url($post->ID, $atts['size']);
 			$item = $content;
+			$item = str_ireplace('{counter}', $counter, $item);
 			preg_match_all('/\{([A-Z][A-Z0-9_-]*)([^}]*)\}(.*?)\{\/\1\}/is',$item,$matches);
 			for ($i=0;$i<=count($matches[0]);$i++) {
 				if (array_key_exists($matches[1][$i],$vals)) {
