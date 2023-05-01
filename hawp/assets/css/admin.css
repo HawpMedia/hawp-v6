@@ -2,6 +2,62 @@
  * Admin styles.
  */
 
+/* Dashboard Styles ---------------------- */
+#wpadminbar {
+	background: #00405e !important;
+}
+/* admin menu and third level sub */
+.menu-top,
+#adminmenuback,
+#adminmenuwrap,
+#adminmenu li.wp-menu-separator,
+#adminmenu .wp-not-current-submenu .wp-submenu,
+#collapse-button {
+	background: #00405e;
+}
+#adminmenu li.wp-menu-separator {
+	margin-bottom: 0;
+	padding-bottom: 6px;
+}
+/* active top level link */
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, #adminmenu li.current a.menu-top {
+background: #4dbdeb;
+}
+#adminmenu div.wp-menu-image:before {
+	color: #a7aaad;
+}
+#wpadminbar .ab-top-menu>li.hover>.ab-item, #wpadminbar.nojq .quicklinks .ab-top-menu>li>.ab-item:focus, #wpadminbar:not(.mobile) .ab-top-menu>li:hover>.ab-item, #wpadminbar:not(.mobile) .ab-top-menu>li>.ab-item:focus {
+	background: #02293a !important;
+}
+#wpadminbar .menupop .ab-sub-wrapper, #wpadminbar .shortlink-input {
+	background: #02293a !important;
+}
+#adminmenu li.menu-top:hover, #adminmenu li.opensub>a.menu-top, #adminmenu li>a.menu-top:focus {
+	background: #02293a !important;
+}
+/* submenu */
+#adminmenu .wp-has-current-submenu .wp-submenu,
+#adminmenu .wp-submenu:focus,
+#adminmenu .wp-submenu a:focus {
+	background: #02293a !important;
+}
+#adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after,
+#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+	border-right-color: #08425c;
+}
+#wpadminbar #adminbarsearch:before, #wpadminbar .ab-icon:before, #wpadminbar .ab-item:before, ul#adminmenu a.wp-has-current-submenu::after, ul#adminmenu > li.current > a.current::after, #collapse-button {
+color: #fff;
+}
+#adminmenu .update-plugins, .yoast-issue-counter {
+background: #e31a1a;
+}
+#footer-left svg {
+	max-width: 50px;
+	position: absolute;
+	right: 27px;
+	top: -36px;
+}
+
 /* Widget Editor ------------------------- */
 .blocks-widgets-container .editor-styles-wrapper {
 	max-width: 100% !important;
