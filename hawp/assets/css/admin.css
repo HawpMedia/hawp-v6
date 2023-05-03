@@ -65,6 +65,11 @@ background: #e31a1a;
 
 /* Block Editor -------------------------- */
 .wp-block {
-	width: 98% !important;
-	max-width: 1200px !important;
+	width: 100% !important;
+	max-width: 1400px !important;
+}
+
+/* Block: Container ---------------------- */
+.editor-styles-wrapper .container {
+	border: 1px dashed #e0e0e0;
 }
