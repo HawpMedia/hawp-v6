@@ -49,6 +49,7 @@ class Hawp_Theme {
 			'helpers',
 			'setup',
 			'admin',
+			'options',
 			'shortcodes',
 			'utilities',
 			'updater',
