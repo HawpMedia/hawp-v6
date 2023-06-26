@@ -26,11 +26,3 @@
 		top: 1em;
 	}
 }
-
-/* Reduced Motion ------------------------ */
-@media (prefers-reduced-motion) {
-	* {
-		transition-delay: 0s !important;
-		transition-duration: 0s !important;
-	}
-}
