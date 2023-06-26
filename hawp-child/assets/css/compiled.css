@@ -311,10 +311,7 @@ a {
   transition: all 300ms ease;
   color: #77f;
 }
-a:hover {
-  color: #33f;
-}
-a:focus {
+a:hover, a:focus {
   color: #33f;
 }
 
@@ -704,7 +701,6 @@ input[type=submit]:focus {
     margin: 0 2rem 2em 0;
     max-width: 48%;
   }
-
   .alignright {
     clear: none;
     float: right;
@@ -730,53 +726,44 @@ input[type=submit]:focus {
 }
 
 /* Template: Default --------------------- */
-@media only screen and (min-width: 38.5em) {
-  .entry-sidebar {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-  }
+.entry-sidebar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 .entry-sidebar .entry-content {
-  padding-top: 2em;
-  padding-bottom: 2em;
-}
-@media only screen and (min-width: 38.5em) {
-  .entry-sidebar .entry-content {
-    flex-basis: 0;
-    flex-grow: 1;
-    width: 100%;
-    padding-top: 2em;
-    padding-bottom: 2em;
-  }
+  flex-basis: 0;
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 @media only screen and (min-width: 68.5em) {
   .entry-sidebar .entry-content {
-    flex-basis: 0;
-    flex-grow: 1;
-    width: 100%;
-    padding-top: 4em;
-    padding-bottom: 4em;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 .entry-sidebar #secondary {
   position: relative;
   z-index: 1;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-@media only screen and (min-width: 38.5em) {
-  .entry-sidebar #secondary {
-    flex: 0 0 100%;
-  }
+  padding-top: 0;
+  padding-bottom: 3rem;
+  flex: 0 0 100%;
 }
 @media only screen and (min-width: 68.5em) {
   .entry-sidebar #secondary {
     flex: 0 0 30%;
     max-width: 30%;
-    padding-top: 4em;
-    padding-left: 4%;
-    margin-left: 4%;
+    padding-top: 3rem;
+    padding-left: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+@media only screen and (min-width: 82.5em) {
+  .entry-sidebar #secondary {
+    padding-left: 2rem;
+    margin-left: 2rem;
   }
 }
 
@@ -814,7 +801,6 @@ input[type=submit]:focus {
   .menu-buttons {
     display: none;
   }
-
   /* Primary menu container */
   #menu {
     position: sticky;
@@ -822,7 +808,6 @@ input[type=submit]:focus {
     z-index: 999;
     background: #9b9b9b;
   }
-
   /* Primary menu */
   #primary-menu {
     display: flex;
@@ -834,7 +819,7 @@ input[type=submit]:focus {
     /* Toggle submenus */
   }
   #primary-menu,
-#primary-menu ul {
+  #primary-menu ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -1018,7 +1003,6 @@ input[type=submit]:focus {
   #primary-menu .menu-toggle.js-on li {
     max-height: 5em;
   }
-
   /* If JS is disabled, show sub-menus with hover. */
   .nojs #primary-menu ul li {
     max-height: none;
@@ -1039,22 +1023,20 @@ input[type=submit]:focus {
   .nojs #primary-menu > li a :after {
     transform: rotate(-180deg);
   }
-
   /* Home & Search menu items */
   .menu-home,
-.menu-search {
+  .menu-search {
     width: 3em;
     max-width: 4em;
   }
-
   .menu-home > a,
-.menu-search > a {
+  .menu-search > a {
     position: relative;
     overflow: hidden;
     text-indent: -999em;
   }
   .menu-home > a:before,
-.menu-search > a:before {
+  .menu-search > a:before {
     content: "";
     position: absolute;
     top: 0;
@@ -1066,7 +1048,6 @@ input[type=submit]:focus {
     height: 1.4em;
     background: url(../images/icon-home.svg) center/contain no-repeat;
   }
-
   .menu-search > a:before {
     background-image: url(../images/icon-search.svg);
   }
@@ -1078,16 +1059,13 @@ input[type=submit]:focus {
     width: 15rem;
     transform-origin: top right;
   }
-
   /* Menu: Search Form ----------------- */
   .menu-search-form {
     display: none;
   }
-
   #primary-menu .menu-search-form {
     display: block;
   }
-
   .menu-search-form .search-field {
     padding: 0.5em 1.5em;
     width: 100%;
@@ -1096,7 +1074,6 @@ input[type=submit]:focus {
     line-height: 2;
     -webkit-appearance: textfield;
   }
-
   .menu-search-form .search-submit {
     display: none;
   }
@@ -1123,7 +1100,6 @@ input[type=submit]:focus {
   .menu-buttons .js-turnoff.js-on {
     display: block;
   }
-
   .menu-button {
     display: block;
     flex: 0 1 auto;
@@ -1160,7 +1136,6 @@ input[type=submit]:focus {
     color: #fff;
     background: #444;
   }
-
   /* Menu tabs. */
   .menu-tab {
     position: fixed;
@@ -1178,19 +1153,17 @@ input[type=submit]:focus {
   .menu-tab.js-on, .menu-tab:target {
     top: 0;
   }
-
   .menu-contain {
     margin: auto;
     max-width: 22rem;
   }
-
   /* Primary menu */
   #primary-menu {
     margin: auto;
     max-width: 22rem;
   }
   #primary-menu,
-#primary-menu ul {
+  #primary-menu ul {
     position: relative;
     z-index: 2;
     padding: 0;
@@ -1255,7 +1228,6 @@ input[type=submit]:focus {
     max-height: 100em;
     transition: max-height 500ms;
   }
-
   /* If JS is disabled, show sub-menus with hover. */
   .nojs #primary-menu ul li {
     max-height: none;
@@ -1263,12 +1235,10 @@ input[type=submit]:focus {
   .nojs #primary-menu .menu-item-has-children > a:after {
     display: none;
   }
-
   /* Menu search form. */
   .menu-search {
     display: none;
   }
-
   .menu-search-form {
     margin: auto;
     list-style: none;
@@ -1318,7 +1288,6 @@ Menu: Hamburger style
   .menu-buttons .js-turnon.js-on {
     display: block;
   }
-
   .menu-button {
     background: transparent;
     border: none;
@@ -1379,7 +1348,6 @@ Menu: Hamburger style
     transform: rotate(-90deg);
     transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-
   .menu-tab {
     top: 0;
     left: -100%;
@@ -1658,13 +1626,6 @@ Menu: Hamburger style
   top: 1em;
 }
 
-/* Reduced Motion ------------------------ */
-@media (prefers-reduced-motion) {
-  * {
-    transition-delay: 0s !important;
-    transition-duration: 0s !important;
-  }
-}
 @media print {
   @page {
     margin: 0.5cm;
@@ -1677,64 +1638,54 @@ Menu: Hamburger style
     filter: none !important;
     -ms-filter: none !important;
   }
-
   a,
-a:visited {
+  a:visited {
     color: #444 !important;
     text-decoration: underline;
   }
-
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
-
   pre,
-blockquote {
+  blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
-
   thead {
     display: table-header-group;
   }
-
   tr,
-img {
+  img {
     page-break-inside: avoid;
   }
-
   img {
     max-width: 100% !important;
   }
-
   p,
-h1,
-h2,
-h3 {
+  h1,
+  h2,
+  h3 {
     orphans: 3;
     widows: 3;
   }
-
   h1,
-h2,
-h3 {
+  h2,
+  h3 {
     page-break-after: avoid;
   }
-
   #primary-menu,
-#sidebar,
-#sidebar-post,
-#header,
-#footer,
-#comments,
-.menu-buttons,
-.page-navigation,
-.pagination,
-.wp-prev-next,
-.respond-form {
+  #sidebar,
+  #sidebar-post,
+  #header,
+  #footer,
+  #comments,
+  .menu-buttons,
+  .page-navigation,
+  .pagination,
+  .wp-prev-next,
+  .respond-form {
     display: none;
   }
-
   .contain {
     padding-left: 0;
     padding-right: 0;

@@ -180,10 +180,7 @@ a {
   transition: all 300ms ease;
   color: #77f;
 }
-a:hover {
-  color: #33f;
-}
-a:focus {
+a:hover, a:focus {
   color: #33f;
 }
 
@@ -437,7 +434,6 @@ input[type=submit]:focus {
     margin: 0 2rem 2em 0;
     max-width: 48%;
   }
-
   .alignright {
     clear: none;
     float: right;
@@ -463,53 +459,44 @@ input[type=submit]:focus {
 }
 
 /* Template: Default --------------------- */
-@media only screen and (min-width: 38.5em) {
-  .entry-sidebar {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-  }
+.entry-sidebar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 .entry-sidebar .entry-content {
-  padding-top: 2em;
-  padding-bottom: 2em;
-}
-@media only screen and (min-width: 38.5em) {
-  .entry-sidebar .entry-content {
-    flex-basis: 0;
-    flex-grow: 1;
-    width: 100%;
-    padding-top: 2em;
-    padding-bottom: 2em;
-  }
+  flex-basis: 0;
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 @media only screen and (min-width: 68.5em) {
   .entry-sidebar .entry-content {
-    flex-basis: 0;
-    flex-grow: 1;
-    width: 100%;
-    padding-top: 4em;
-    padding-bottom: 4em;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 .entry-sidebar #secondary {
   position: relative;
   z-index: 1;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-@media only screen and (min-width: 38.5em) {
-  .entry-sidebar #secondary {
-    flex: 0 0 100%;
-  }
+  padding-top: 0;
+  padding-bottom: 3rem;
+  flex: 0 0 100%;
 }
 @media only screen and (min-width: 68.5em) {
   .entry-sidebar #secondary {
     flex: 0 0 30%;
     max-width: 30%;
-    padding-top: 4em;
-    padding-left: 4%;
-    margin-left: 4%;
+    padding-top: 3rem;
+    padding-left: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+@media only screen and (min-width: 82.5em) {
+  .entry-sidebar #secondary {
+    padding-left: 2rem;
+    margin-left: 2rem;
   }
 }
 
