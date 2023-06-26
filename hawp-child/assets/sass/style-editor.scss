@@ -11,9 +11,10 @@ What to do? - Add custom css to the child theme
 "style-editor.css" file.
 ------------------------------------------ */
 
-@import "02-tools/vars";
 @import "02-tools/mixins";
+@import "02-tools/functions";
 
+@import "03-generic/breakpoints";
 @import "03-generic/reset";
 @import "03-generic/clearings";
 @import "03-generic/helpers";
