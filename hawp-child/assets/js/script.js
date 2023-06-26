@@ -9,6 +9,7 @@ var domainPath = window.location.protocol + "//" + window.location.host + "//" +
 jQuery(function($) {
 
 	hawp = [];
+	hawp.lastScrollPos = $(window).scrollTop();
 
 	/**
 	 * Browser js check.
@@ -235,6 +236,24 @@ jQuery(function($) {
 		})
 	};
 
+	hawp.headerAnimationDown = function() {
+		var scrollPos = $(window).scrollTop();
+		if($(window).width() > 981){
+			if(scrollPos > 142){
+				if (scrollPos >= hawp.lastScrollPos){
+					$('html').removeClass('scrolled-up').addClass('scrolled-down');
+				} else {
+					$('html').removeClass('scrolled-down').addClass('scrolled-up');
+				}
+			} else {
+				$('html').removeClass('scrolled-up scrolled-down');
+			}
+		} else {
+			$('html').removeClass('scrolled-up scrolled-down');
+		}
+		hawp.lastScrollPos = scrollPos;
+	}
+
 	// Place items in here to have them run when the document is loaded
 	$(document).ready(function() {
 		hawp.browserJsCheck();
@@ -248,11 +267,13 @@ jQuery(function($) {
 		hawp.animateContent();
 		//hawp.owlAnimations();
 		hawp.stickyHeader();
+		hawp.headerAnimationDown();
 	});
 
 	// Place items in here to have them run when the window is scrolled
 	$(window).scroll(function() {
 		hawp.animateContent();
+		hawp.headerAnimationDown();
 	});
 
 });
