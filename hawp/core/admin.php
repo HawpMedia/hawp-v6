@@ -20,7 +20,8 @@ class Hawp_Theme_Admin {
 		add_filter('admin_footer_text', [$this, 'change_admin_footer']);
 		add_action('acf/init', [$this, 'add_acf_options_page']);
 		add_action('acf/init', [$this, 'add_acf_options_fields']);
-		add_action('acf/input/admin_footer', [$this, 'add_acf_color_palette']);
+		//add_action('acf/input/admin_footer', [$this, 'add_acf_color_palette']);
+		add_action('acf/input/admin_footer', [$this, 'add_theme_colors_to_acf_color_picker']);
 		add_filter('acf/settings/save_json', [$this, 'acf_json_save_point']);
 		add_filter('acf/settings/load_json', [$this, 'acf_json_load_point']);
 	}
@@ -530,6 +531,27 @@ class Hawp_Theme_Admin {
 				})(jQuery);
 			</script>';
 		}
+	}
+
+	/**
+	 * Add theme.json colors to acf color picker.
+	 */
+	public function add_theme_colors_to_acf_color_picker() {
+		echo '<script type="text/javascript">
+		(function($) {
+		  acf.add_filter("color_picker_args", function( $args, $field ){
+
+			// this will create a settings variable with all settings
+			const $settings = wp.data.select( "core/editor" ).getEditorSettings();
+			// pull out the colors from that variable
+			let $colors = $settings.colors.map(x => x.color);
+
+			// assign those colors to palettes
+			$args.palettes = $colors;
+			return $args;
+		  });
+		})(jQuery);
+		</script>';
 	}
 
 	/**
