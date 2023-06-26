@@ -44,6 +44,7 @@ class Hawp_Theme_Setup {
 	public function theme_setup() {
 		load_theme_textdomain('hawp');
 		add_theme_support('title-tag');
+		add_theme_support('block-templates');
 		add_theme_support('automatic-feed-links');
 		add_theme_support('post-thumbnails');
 		add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
@@ -94,6 +95,10 @@ class Hawp_Theme_Setup {
 	 * Scripts and styles.
 	 */
 	public function wp_enqueue_scripts() {
+		if (is_singular() && comments_open() && get_option('thread_comments')) {
+			wp_enqueue_script('comment-reply');
+		}
+
 		add_styles_and_scripts([
 			[
 				'enable' => get_theme_option('google_fonts') ? true : false,

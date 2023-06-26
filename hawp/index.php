@@ -42,6 +42,13 @@ get_header(); ?>
 	</div>
 
 <?php if (is_singular()) : ?>
+
+	<?php if (comments_open() || get_comments_number()): ?>
+		<div class="contain comments-wrapper comments-sidebar">
+			<?php comments_template(); ?>
+		</div>
+	<?php endif; ?>
+
 	</article>
 <?php else : ?>
 	</div>
