@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: No Sidebar Page
- * Template Post Type: post, page, location, staff
+ * Template Post Type: post, page
  */
 
 get_header(); ?>
