@@ -16,6 +16,7 @@ class Hawp_Theme_Admin {
 		add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'], 999);
 		add_action('admin_notices', [$this, 'admin_notices']);
 		add_action('admin_bar_menu', [$this, 'add_admin_bar_menu'], 100);
+		add_action('admin_bar_menu', [$this, 'add_admin_bar_notice'], 0);
 		add_filter('admin_footer_text', [$this, 'change_admin_footer']);
 		add_action('acf/init', [$this, 'add_acf_options_page']);
 		add_action('acf/init', [$this, 'add_acf_options_fields']);
@@ -49,8 +50,32 @@ class Hawp_Theme_Admin {
 	 * Add admin notices.
 	 */
 	public function admin_notices() {
+		$url = $_SERVER['HTTP_HOST'];
+
 		if (current_user_can('administrator') && !get_option('blogname')) {
-			echo '<div class="error notice is-dismissible"><p>Site title is NOT set. Please go to the <a href="'.home_url().'/wp-admin/options-general.php">Settings page</a> and add the site title.</p></div>';
+			echo '<div class="notice notice-error"><p>Warning: Site Title is NOT set. Please go to the <a href="'.home_url().'/wp-admin/options-general.php">Settings page</a> and add the site title.</p></div>';
+		}
+
+		if (current_user_can('administrator') && get_option('blog_public')==1 && strpos($url, '.local') !== false || strpos($url, '.dev') !== false ) {
+			echo '<div class="notice notice-error"><p>Warning: <a href="options-reading.php">Discourage search engines from indexing this site</a> is NOT checked in Settings->Reading->Search Engine Visibility. Make sure this option IS checked if the site is not live.</p></div>';
+		}
+	}
+
+	/**
+	 * Add menu node to admin bar
+	 */
+	public function add_admin_bar_notice($meta = true) {
+		global $wp_admin_bar;
+
+		if (current_user_can('administrator')) {
+			// Add the notice to the admin bar
+			$wp_admin_bar->add_node(array(
+				'id'    => 'dev-site-notice',
+				'title' => '&lt;/&gt;',
+				'meta'  => array('class' => 'dev-site-notice'),
+				'position' => -99999,
+				'style' => 'background-color: #FF0000;'
+			));
 		}
 	}
 
@@ -59,6 +84,7 @@ class Hawp_Theme_Admin {
 	 */
 	public function add_admin_bar_menu($meta = true) {
 		global $wp_admin_bar;
+
 		$wp_admin_bar->add_menu( array(
 			'id' => 'contact_hawp',
 			'title' => __('Need help? Contact Hawp Media'),
