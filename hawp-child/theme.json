@@ -15,11 +15,13 @@
 					"color": "#ffffff"
 				}
 			],
+			"duotone": [],
+			"defaultDuotone": false,
 			"text": true,
 			"background": true,
 			"custom": true,
 			"customGradient": true,
-			"defaultGradients": true,
+			"defaultGradients": false,
 			"defaultPalette": false
 		},
 		"typography": {
