@@ -540,18 +540,20 @@ class Hawp_Theme_Admin {
 	 */
 	public function add_theme_colors_to_acf_color_picker() {
 		echo '<script type="text/javascript">
-		(function($) {
-		  acf.add_filter("color_picker_args", function( $args, $field ){
+			(function($) {
+			if (typeof wp !== "undefined" && typeof wp.data !== "undefined") {
+				acf.add_filter("color_picker_args", function( $args, $field ){
 
-			// this will create a settings variable with all settings
-			const $settings = wp.data.select( "core/editor" ).getEditorSettings();
-			// pull out the colors from that variable
-			let $colors = $settings.colors.map(x => x.color);
+					// this will create a settings variable with all settings
+					const $settings = wp.data.select( "core/editor" ).getEditorSettings();
+					// pull out the colors from that variable
+					let $colors = $settings.colors.map(x => x.color);
 
-			// assign those colors to palettes
-			$args.palettes = $colors;
-			return $args;
-		  });
+					// assign those colors to palettes
+					$args.palettes = $colors;
+					return $args;
+				});
+			}
 		})(jQuery);
 		</script>';
 	}
