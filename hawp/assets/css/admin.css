@@ -62,15 +62,18 @@ background: #e31a1a;
 	color: #FFFFFF;
 }
 
+/* Block Editor -------------------------- */
+.wp-block,
+.editor-styles-wrapper > * {
+	width: 100% !important;
+	max-width: 1400px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
 /* Widget Editor ------------------------- */
 .blocks-widgets-container .editor-styles-wrapper {
 	max-width: 100% !important;
-}
-
-/* Block Editor -------------------------- */
-.wp-block {
-	width: 100% !important;
-	max-width: 1400px !important;
 }
 
 /* Block: Container ---------------------- */
