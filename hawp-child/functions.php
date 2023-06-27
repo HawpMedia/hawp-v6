@@ -21,8 +21,6 @@ foreach ($includes as $include) {
  * Set up child theme stuff.
  */
 add_action('after_setup_theme', function() {
-	add_theme_support('editor-styles');
-	add_theme_support('wp-block-styles');
 	add_editor_style(HMC_URL.'/assets/css/compiled-editor.css');
 	add_editor_style(HMC_URL.'/style-editor.css');
 });
