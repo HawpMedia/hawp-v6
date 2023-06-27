@@ -35,7 +35,8 @@ class Hawp_Theme_Setup {
 		add_filter('gform_ajax_spinner_url', [$this, 'gform_ajax_spinner_url'], 10, 2);
 		add_filter('gform_submit_button', [$this, 'gform_submit_button'], 10, 5);
 		add_filter('gform_tabindex', '__return_false');
-		add_filter('wpseo_json_ld_output', '__return_empty_array');
+		remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+		remove_action('wp_body_open', 'gutenberg_global_styles_render_svg_filters');
 	}
 
 	/**
@@ -44,10 +45,12 @@ class Hawp_Theme_Setup {
 	public function theme_setup() {
 		load_theme_textdomain('hawp');
 		add_theme_support('title-tag');
-		add_theme_support('block-templates');
 		add_theme_support('automatic-feed-links');
 		add_theme_support('post-thumbnails');
 		add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
+		add_theme_support('disable-layout-styles');
+		add_theme_support('editor-styles');
+		add_theme_support('wp-block-styles');
 		add_post_type_support('page', 'excerpt');
 		register_nav_menus(apply_filters('hawp_menus', [
 			'primary' => 'Primary Menu',
@@ -63,31 +66,31 @@ class Hawp_Theme_Setup {
 	 */
 	public function widgets_init() {
 		register_sidebar([
-			'name' => 'Footer',
+			'name' => esc_html__('Footer', 'hawp'),
 			'id' => 'footer',
-			'description' => '',
+			'description' => esc_html__('Add widgets here to appear in your footer.', 'hawp'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget' => '</section>',
-			'before_title' => '<header><h3 class="widget-title">',
-			'after_title' => '</h3></header>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
 		]);
 		register_sidebar([
-			'name' => 'Site Sidebar',
+			'name' => esc_html__('Site Sidebar', 'hawp'),
 			'id' => 'site',
-			'description' => '',
+			'description' => esc_html__('Add widgets here to appear in your site sidebar.', 'hawp'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget' => '</section>',
-			'before_title' => '<header><h3 class="widget-title">',
-			'after_title' => '</h3></header>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
 		]);
 		register_sidebar([
-			'name' => 'Blog Sidebar',
+			'name' => esc_html__('Blog Sidebar', 'hawp'),
 			'id' => 'blog',
-			'description' => '',
+			'description' => esc_html__('Add widgets here to appear in your blog sidebar.', 'hawp'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget' => '</section>',
-			'before_title' => '<header><h3 class="widget-title">',
-			'after_title' => '</h3></header>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
 		]);
 	}
 
@@ -95,6 +98,8 @@ class Hawp_Theme_Setup {
 	 * Scripts and styles.
 	 */
 	public function wp_enqueue_scripts() {
+		wp_dequeue_style('global-styles');
+
 		if (is_singular() && comments_open() && get_option('thread_comments')) {
 			wp_enqueue_script('comment-reply');
 		}
