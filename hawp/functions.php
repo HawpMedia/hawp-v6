@@ -7,6 +7,7 @@ define('HM_PATH', get_template_directory());
 define('HM_URL', get_template_directory_uri());
 define('HMC_PATH', get_stylesheet_directory());
 define('HMC_URL', get_stylesheet_directory_uri());
+define('HM_THEME_VERSION', wp_get_theme(get_template())->get('Version'));
 
 if (!class_exists('Hawp_Theme')):
 
@@ -14,7 +15,7 @@ class Hawp_Theme {
 
 	public static $theme = [
 		'name'                => 'Hawp Theme',
-		'version'             => '6.2.2',
+		'version'             => HM_THEME_VERSION,
 		'file'                => __FILE__,
 		'textdomain'          => 'hawp',
 		'option_prefix'       => 'hawp_theme_',
