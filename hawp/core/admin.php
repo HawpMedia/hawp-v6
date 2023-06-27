@@ -54,12 +54,13 @@ class Hawp_Theme_Admin {
 		$url = $_SERVER['HTTP_HOST'];
 
 		if (current_user_can('administrator') && !get_option('blogname')) {
-			echo '<div class="notice notice-error"><p>Warning: Site Title is NOT set. Please go to the <a href="'.home_url().'/wp-admin/options-general.php">Settings page</a> and add the site title.</p></div>';
+			echo '<div class="notice notice-error"><p>Warning: Site Title is NOT set. Please go to the <a href="' . admin_url('options-general.php') . '">Settings page</a> and add the site title.</p></div>';
 		}
 
-		if (current_user_can('administrator') && get_option('blog_public')==1 && strpos($url, '.local') !== false || strpos($url, '.dev') !== false ) {
-			echo '<div class="notice notice-error"><p>Warning: <a href="options-reading.php">Discourage search engines from indexing this site</a> is NOT checked in Settings->Reading->Search Engine Visibility. Make sure this option IS checked if the site is not live.</p></div>';
+		if (current_user_can('administrator') && get_option('blog_public') == 1 && (strpos($url, '.local') !== false || strpos($url, '.dev') !== false)) {
+			echo '<div class="notice notice-error"><p>Warning: <a href="' . admin_url('options-reading.php') . '">Discourage search engines from indexing this site</a> is NOT checked in Settings->Reading->Search Engine Visibility. Make sure this option IS checked if the site is not live.</p></div>';
 		}
+
 	}
 
 	/**
@@ -67,8 +68,9 @@ class Hawp_Theme_Admin {
 	 */
 	public function add_admin_bar_notice($meta = true) {
 		global $wp_admin_bar;
+		$url = $_SERVER['HTTP_HOST'];
 
-		if (current_user_can('administrator')) {
+		if (current_user_can('administrator') && (strpos($url, '.local') !== false || strpos($url, '.dev') !== false)) {
 			// Add the notice to the admin bar
 			$wp_admin_bar->add_node(array(
 				'id'    => 'dev-site-notice',
