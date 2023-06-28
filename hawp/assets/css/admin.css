@@ -71,6 +71,10 @@ background: #e31a1a;
 	margin-right: auto !important;
 }
 
+.editor-styles-wrapper > * {
+	width: calc(100% - 20px) !important;
+}
+
 /* Widget Editor ------------------------- */
 .blocks-widgets-container .editor-styles-wrapper {
 	max-width: 100% !important;
