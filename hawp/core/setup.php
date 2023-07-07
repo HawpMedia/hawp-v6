@@ -218,6 +218,18 @@ class Hawp_Theme_Setup {
 		}
 	}
 
+	/**
+	 * Adjust excerpt length.
+	 */
+	public function adjust_excerpt_length($length) {
+		if (get_theme_option('excerpt_length')) {
+			return esc_attr(get_theme_option('excerpt_length'));
+		}
+	}
+
+	/**
+	 * The excerpt more string at the end of an excerpt.
+	 */
 	public function excerpt_more($more) {
 		return '...';
 	}
@@ -270,15 +282,6 @@ class Hawp_Theme_Setup {
 			} else {
 				$query->set('posts_per_page', get_theme_option('archivenum_posts'));
 			}
-		}
-	}
-
-	/**
-	 * Adjust excerpt length
-	 */
-	public function adjust_excerpt_length($length) {
-		if (get_theme_option('excerpt_length')) {
-			return esc_attr(get_theme_option('excerpt_length'));
 		}
 	}
 
