@@ -94,42 +94,48 @@ function add_styles_and_scripts($array=[]) {
 		// Set enable to true by default
 		$enable = isset($data['enable']) ? $data['enable'] : true;
 
-		// If enable is true, register and enqueue the styles or scripts
-		if ($enable == true) {
-			// Loop through styles
-			if (isset($data['styles'])) {
-				foreach ($data['styles'] as $style) {
-					$args = [
-						'handle' => $style[0],
-						'src' => $style[1],
-						'deps' => isset($style[2]) ? $style[2] : [],
-						'ver' => isset($style[3]) ? $style[3] : false,
-						'media' => isset($style[4]) ? $style[4] : 'all',
-					];
-					wp_register_style($args['handle'], $args['src'], $args['deps'], $args['ver'], $args['media']);
+		// Loop through styles
+		if (isset($data['styles'])) {
+			foreach ($data['styles'] as $style) {
+				$args = [
+					'handle' => $style[0],
+					'src' => $style[1],
+					'deps' => isset($style[2]) ? $style[2] : [],
+					'ver' => isset($style[3]) ? $style[3] : false,
+					'media' => isset($style[4]) ? $style[4] : 'all',
+				];
+				wp_register_style($args['handle'], $args['src'], $args['deps'], $args['ver'], $args['media']);
+
+				// If enable is true, enqueue the style
+				if ($enable == true) {
 					wp_enqueue_style($args['handle']);
 				}
 			}
-			// Loop through scripts
-			if (isset($data['scripts'])) {
-				foreach ($data['scripts'] as $script) {
-					$args = [
-						'handle' => $script[0],
-						'src' => $script[1],
-						'deps' => isset($script[2]) ? $script[2] : [],
-						'ver' => isset($script[3]) ? $script[3] : false,
-						'in_footer' => isset($script[4]) ? $script[4] : true,
-					];
-					wp_register_script($args['handle'], $args['src'], $args['deps'], $args['ver'], $args['in_footer']);
+		}
+		// Loop through scripts
+		if (isset($data['scripts'])) {
+			foreach ($data['scripts'] as $script) {
+				$args = [
+					'handle' => $script[0],
+					'src' => $script[1],
+					'deps' => isset($script[2]) ? $script[2] : [],
+					'ver' => isset($script[3]) ? $script[3] : false,
+					'in_footer' => isset($script[4]) ? $script[4] : true,
+				];
+				wp_register_script($args['handle'], $args['src'], $args['deps'], $args['ver'], $args['in_footer']);
+
+				// If enable is true, enqueue the script
+				if ($enable == true) {
 					wp_enqueue_script($args['handle']);
 				}
 			}
-			// Loop through raw html
-			if (isset($data['html'])) {
-				foreach ($data['html'] as $html) {
-					echo $html;
-				}
+		}
+		// Loop through raw html
+		if (isset($data['html'])) {
+			foreach ($data['html'] as $html) {
+				echo $html;
 			}
 		}
+
 	}
 }
