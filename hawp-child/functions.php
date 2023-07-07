@@ -69,7 +69,7 @@ add_action('init', function() {
 /**
  * Register block scripts.
  */
-add_action('init', function() {
-	//wp_register_script("hm-mixitup-pagination", HMC_URL."/assets/js/mixitup-pagination.min.js", [ 'jquery', 'hm-mixitup' ], null, true);
-});
+// add_action('init', function() {
+// 	wp_register_script("hm-mixitup-pagination", HMC_URL."/assets/js/mixitup-pagination.min.js", [ 'jquery', 'hm-mixitup' ], null, true);
+// });
 
