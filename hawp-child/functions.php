@@ -26,7 +26,7 @@ add_action('after_setup_theme', function() {
 });
 
 /**
- * Add block styles/
+ * Add block styles
  */
 /*
 add_action('init', function() {
@@ -48,17 +48,30 @@ add_action('init', function() {
 /**
  * Add ACF block category.
  */
-/*
-add_filter('block_categories', function($categories, $post) {
-	return array_merge(
-		$categories,
-		array(
-			array(
-				'slug' => 'newsitename',
-				'title' => 'New Site Name',
-			),
-		)
-	);
-}, 10, 2);
-*/
+// add_filter('block_categories_all' , function($categories) {
+// 	$categories[] = array(
+// 		'slug'  => 'ashenborne',
+// 		'title' => 'AshenBorne'
+// 	);
+// 	return $categories;
+// });
+
+/**
+ * Register ACF blocks.
+ */
+add_action('init', function() {
+	$blocks = [
+		//'container',
+	];
+	foreach ($blocks as $block) {
+		register_block_type(HMC_PATH . "/blocks/{$block}");
+	}
+});
+
+/**
+ * Register block scripts.
+ */
+add_action('init', function() {
+	//wp_register_script("hm-mixitup-pagination", HMC_URL."/assets/js/mixitup-pagination.min.js", [ 'jquery', 'hm-mixitup' ], null, true);
+});
 
