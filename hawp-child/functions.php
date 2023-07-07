@@ -3,19 +3,28 @@
 // Child theme functions.
 // ------------------------------------------
 
-if (!defined('ABSPATH')) exit();
+/**
+ * Loop through folders and auto include files.
+ */
+add_action('init', function() {
+	// Auto include 'inc' files
+	$inc_dir = HMC_PATH.'/inc/';
+	if (is_dir($inc_dir)) {
+		$includes = glob($inc_dir . '*.php');
+		foreach ($includes as $include) {
+			require_once $include;
+		}
+	}
 
-if (!isset($content_width)) {
-	$content_width = 1400;
-}
-
-// Loop through inc folder and auto include files.
-$includes = [
-	//'add_item_here',
-];
-foreach ($includes as $include) {
-	require_once "inc/{$include}.php";
-}
+	// Auto include 'blocks' files
+	$block_dir = HMC_PATH.'/blocks/';
+	if (is_dir($block_dir) && function_exists('register_block_type')) {
+		$blocks = glob($block_dir . '*.php');
+		foreach ($blocks as $block) {
+			register_block_type(HMC_PATH . "/blocks/{$block}");
+		}
+	}
+});
 
 /**
  * Set up child theme stuff.
@@ -56,17 +65,6 @@ add_action('init', function() {
 // 	return $categories;
 // });
 
-/**
- * Register ACF blocks.
- */
-add_action('init', function() {
-	$blocks = [
-		//'container',
-	];
-	foreach ($blocks as $block) {
-		register_block_type(HMC_PATH . "/blocks/{$block}");
-	}
-});
 
 /**
  * Register block scripts.
