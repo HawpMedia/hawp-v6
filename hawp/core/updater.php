@@ -13,10 +13,8 @@ class Hawp_Theme_Updater {
 	 * Constructor.
 	 */
 	public function setup() {
-		if (is_admin()) {
-			if (get_theme_update_url() != '') {
-				add_filter('pre_set_site_transient_update_themes', [$this, 'update_theme_check']);
-			}
+		if (is_admin() && get_theme_update_url() != '') {
+			add_filter('pre_set_site_transient_update_themes', [$this, 'update_theme_check']);
 		}
 	}
 
