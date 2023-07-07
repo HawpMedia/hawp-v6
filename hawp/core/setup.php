@@ -32,6 +32,7 @@ class Hawp_Theme_Setup {
 		add_filter('get_the_excerpt', 'do_shortcode');
 		add_filter('get_the_archive_title', [$this, 'remove_archive_title']);
 		add_action('pre_get_posts', [$this, 'num_posts_per_page']);
+		add_filter('excerpt_length', [$this, 'adjust_excerpt_length']);
 		add_filter('gform_ajax_spinner_url', [$this, 'gform_ajax_spinner_url'], 10, 2);
 		add_filter('gform_submit_button', [$this, 'gform_submit_button'], 10, 5);
 		add_filter('gform_tabindex', '__return_false');
@@ -269,6 +270,15 @@ class Hawp_Theme_Setup {
 			} else {
 				$query->set('posts_per_page', get_theme_option('archivenum_posts'));
 			}
+		}
+	}
+
+	/**
+	 * Adjust excerpt length
+	 */
+	public function adjust_excerpt_length($length) {
+		if (get_theme_option('excerpt_length')) {
+			return esc_attr(get_theme_option('excerpt_length'));
 		}
 	}
 
