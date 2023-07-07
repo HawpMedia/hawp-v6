@@ -18,6 +18,7 @@ class Hawp_Theme_Setup {
 		add_action('widgets_init', [$this, 'widgets_init']);
 		add_filter('wp_nav_menu_items', 'do_shortcode');
 		add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts']);
+		add_action('enqueue_block_editor_assets', [$this, 'add_admin_editor_scripts']);
 		add_action('wp_head', [$this, 'add_head_code']);
 		remove_action('wp_head', 'print_emoji_detection_script', 7);
 		add_action('wp_body_open', [$this, 'add_body_code']);
@@ -96,7 +97,7 @@ class Hawp_Theme_Setup {
 	}
 
 	/**
-	 * Scripts and styles.
+	 * Front-end scripts and styles.
 	 */
 	public function wp_enqueue_scripts() {
 		wp_dequeue_style('global-styles');
@@ -168,6 +169,46 @@ class Hawp_Theme_Setup {
 			[
 				'enable' => file_exists(HMC_PATH.'/assets/js/script.js') ? true : false,
 				'scripts' => [ ['hm-child', HMC_URL.'/assets/js/script.js', ['jquery']] ],
+			],
+		]);
+	}
+
+	/**
+	 * Front-end scripts and styles.
+	 */
+	public function add_admin_editor_scripts() {
+		add_styles_and_scripts([
+			[
+				'styles' => [ ['hm-google-fonts', esc_html(get_theme_option('google_fonts'))] ],
+				'html' => [ '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' ],
+			],
+			[
+				'styles' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css'] ],
+				'scripts' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery']] ],
+			],
+			[
+				'styles' => [
+					['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css'],
+					['hm-owl-theme', HM_URL.'/assets/lib/owl/2.3.4/owl.theme.default.min.css']
+				],
+				'scripts' => [ ['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery']] ],
+			],
+			[
+				'styles' => [ ['hm-swiper', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.css'] ],
+				'scripts' => [ ['hm-swiper', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.js' ] ],
+			],
+			[
+				'styles' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css'] ],
+				'scripts' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery']] ],
+			],
+			[
+				'scripts' => [ ['hm-mixitup', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js'] ]
+			],
+			[
+				'styles' => [ ['hm-fontawesome-5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css'] ],
+			],
+			[
+				'styles' => [ ['hm-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css'] ],
 			],
 		]);
 	}
