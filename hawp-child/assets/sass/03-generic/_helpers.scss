@@ -5,10 +5,12 @@
 	margin: auto;
 	padding: 0 1.5rem;
 	width: 100%;
+
 	@include bp-min-width('sm') {
 		padding-left: 3rem;
 		padding-right: 3rem;
 	}
+
 	@include bp-min-width('xxl') {
 		padding-left: calc(50% - 30rem);
 		padding-right: calc(50% - 30rem);

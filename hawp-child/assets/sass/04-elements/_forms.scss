@@ -33,27 +33,32 @@ select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
+
 textarea {
 	max-height: 5em;
 }
+
 label {
 	line-height: 1;
 	display: block;
 }
 
-input::placeholder {
-	color: #ccc;
-	line-height: normal;
-}
-input::-webkit-input-placeholder {
-	color: #ccc;
-	line-height: normal;
-}
-input:-ms-input-placeholder {
-	color: #ccc;
-	line-height: normal;
-}
-input::-moz-placeholder {
-	color: #ccc;
-	line-height: normal;
+input,
+textarea {
+	&::placeholder {
+		color: #ccc;
+		line-height: normal;
+	}
+	&::-webkit-input-placeholder {
+		color: #ccc;
+		line-height: normal;
+	}
+	&:-ms-input-placeholder {
+		color: #ccc;
+		line-height: normal;
+	}
+	&::-moz-placeholder {
+		color: #ccc;
+		line-height: normal;
+	}
 }

@@ -1,0 +1,17 @@
+.has-white {
+	&-color {
+		color: #ffffff;
+	}
+	&-background-color {
+		background-color: #fff;
+	}
+}
+
+.has-black {
+	&-color {
+		color: #000;
+	}
+	&-background-color {
+		background-color: #000;
+	}
+}
