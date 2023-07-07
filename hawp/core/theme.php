@@ -39,7 +39,7 @@ class Hawp_Theme {
 				'updater',
 			];
 			foreach ($includes as $include) {
-				require_once "{$include}.php";
+				require_once HM_PATH."/core/{$include}.php";
 			}
 		} else {
 			add_action('admin_notices', function () {
