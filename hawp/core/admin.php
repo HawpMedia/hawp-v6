@@ -55,11 +55,13 @@ class Hawp_Theme_Admin {
 		if (current_user_can('administrator') && get_option('blog_public') == 1 && (strpos($url, '.local') !== false || strpos($url, '.dev') !== false)) {
 			echo '<div class="notice notice-error"><p>Warning: <a href="' . admin_url('options-reading.php') . '">Discourage search engines from indexing this site</a> is NOT checked in Settings->Reading->Search Engine Visibility. Make sure this option IS checked if the site is not live.</p></div>';
 		}
-
 	}
 
 	/**
 	 * Add menu node to admin bar
+	 * 
+	 * This gets added if the url contains
+	 * .local or .dev, so its only for dev sites.
 	 */
 	public function add_admin_bar_notice($meta = true) {
 		global $wp_admin_bar;
