@@ -107,11 +107,6 @@ class Hawp_Theme_Setup {
 
 		add_styles_and_scripts([
 			[
-				'enable' => get_theme_option('google_fonts') ? true : false,
-				'styles' => [ ['hm-google-fonts', esc_html(get_theme_option('google_fonts'))] ],
-				'html' => [ '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' ],
-			],
-			[
 				'enable' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
 				'styles' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css'] ],
 				'scripts' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery']] ],
@@ -136,7 +131,7 @@ class Hawp_Theme_Setup {
 			],
 			[
 				'enable' => get_theme_option('enqueue_litepicker_styles_scripts') ? true : false,
-				'scripts' => [ ['hm-litepicker', 'https://cdnjs.cloudflare.com/ajax/lib/litepicker/2.0.11/litepicker.js'] ]
+				'scripts' => [ ['hm-litepicker', 'https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js'] ]
 			],
 			[
 				'enable' => get_theme_option('enqueue_mixitup_styles_scripts') ? true : false,
@@ -149,27 +144,43 @@ class Hawp_Theme_Setup {
 			[
 				'enable' => get_theme_option('enqueue_fontawesome_6_style') ? true : false,
 				'styles' => [ ['hm-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css'] ],
-			],
-			[
-				'enable' => file_exists(HMC_PATH.'/css/compiled.css') ? true : false,
-				'styles' => [ ['hm-child-compiled-old', HMC_URL.'/css/compiled.css'] ],
-			],
-			[
-				'enable' => file_exists(HMC_PATH.'/assets/css/compiled.css') ? true : false,
-				'styles' => [ ['hm-child-compiled', HMC_URL.'/assets/css/compiled.css'] ],
-			],
-			[
-				'styles' => [ ['hm-child', HMC_URL.'/style.css'] ],
-			],
-			[
-				'enable' => file_exists(HMC_PATH.'/js/script.js') ? true : false,
-				'scripts' => [ ['hm-child-old', HMC_URL.'/js/script.js', ['jquery']] ],
-			],
-			[
-				'enable' => file_exists(HMC_PATH.'/assets/js/script.js') ? true : false,
-				'scripts' => [ ['hm-child', HMC_URL.'/assets/js/script.js', ['jquery']] ],
-			],
+			]
 		]);
+
+		$js_deps = ['jquery'];
+		if (file_exists(HMC_PATH.'/assets/js/script.js')) {
+			wp_register_script('hm_child_script', HMC_URL.'/assets/js/script.js', $js_deps);
+			wp_enqueue_script('hm_child_script');
+			$js_deps[] = 'hm_child_script';
+		} elseif (file_exists(HMC_PATH.'/js/script.js')) {
+			wp_register_script('hm_child_script', HMC_URL.'/js/script.js', $js_deps);
+			wp_enqueue_script('hm_child_script');
+			$js_deps[] = 'hm_child_script';
+		}
+
+		$css_deps = [];
+		$google_fonts = get_theme_option('google_fonts');
+		if ($google_fonts) {
+			wp_enqueue_style('google_fonts', $google_fonts, $css_deps);
+			$css_deps[] = 'google_fonts';
+		}
+
+		// Child compiled scss stylesheet
+		wp_register_style('hm_child_style_compiled', HMC_URL.'/assets/css/compiled.css', $css_deps);
+		wp_enqueue_style('hm_child_style_compiled');
+		$css_deps[] = 'hm_child_style_compiled';
+
+		// Child theme stylesheet
+		wp_register_style('hm_child_style', HMC_URL.'/style.css', $css_deps);
+		wp_enqueue_style('hm_child_style');
+		$css_deps[] = 'hm_child_style';
+
+		// Backward compatibility for child theme with older compiled scss paths
+		if (file_exists(HMC_PATH.'/css/compiled.css')) {
+			wp_register_style('hm_child_style_compiled_old', HMC_URL.'/css/compiled.css', $css_deps);
+			wp_enqueue_style('hm_child_style_compiled_old');
+			$css_deps[] = 'hm_child_style_compiled_old';
+		}
 	}
 
 	public function add_head_code() {
