@@ -105,6 +105,7 @@ class Hawp_Theme_Setup {
 			wp_enqueue_script('comment-reply');
 		}
 
+		// Register assets
 		add_styles_and_scripts([
 			[
 				'enable' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
@@ -148,13 +149,18 @@ class Hawp_Theme_Setup {
 		]);
 
 		$js_deps = ['jquery'];
+		
+		// Child theme script
 		if (file_exists(HMC_PATH.'/assets/js/script.js')) {
 			wp_register_script('hm_child_script', HMC_URL.'/assets/js/script.js', $js_deps);
 			wp_enqueue_script('hm_child_script');
 			$js_deps[] = 'hm_child_script';
-		} elseif (file_exists(HMC_PATH.'/js/script.js')) {
-			wp_register_script('hm_child_script', HMC_URL.'/js/script.js', $js_deps);
-			wp_enqueue_script('hm_child_script');
+		}
+		
+		// Backward compatibility for child theme with older script path
+		if (file_exists(HMC_PATH.'/js/script.js')) {
+			wp_register_script('hm_child_script_old', HMC_URL.'/js/script.js', $js_deps);
+			wp_enqueue_script('hm_child_script_old');
 			$js_deps[] = 'hm_child_script';
 		}
 
@@ -165,12 +171,14 @@ class Hawp_Theme_Setup {
 			$css_deps[] = 'google_fonts';
 		}
 
-		// Child compiled scss stylesheet
-		wp_register_style('hm_child_style_compiled', HMC_URL.'/assets/css/compiled.css', $css_deps);
-		wp_enqueue_style('hm_child_style_compiled');
-		$css_deps[] = 'hm_child_style_compiled';
+		// Child theme compiled scss stylesheet
+		if (file_exists(HMC_PATH.'/assets/css/compiled.css')) {
+			wp_register_style('hm_child_style_compiled', HMC_URL.'/assets/css/compiled.css', $css_deps);
+			wp_enqueue_style('hm_child_style_compiled');
+			$css_deps[] = 'hm_child_style_compiled';
+		}
 
-		// Child theme stylesheet
+		// Child theme stylesheet - this is required so no need to check if it exists
 		wp_register_style('hm_child_style', HMC_URL.'/style.css', $css_deps);
 		wp_enqueue_style('hm_child_style');
 		$css_deps[] = 'hm_child_style';
