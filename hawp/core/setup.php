@@ -161,7 +161,7 @@ class Hawp_Theme_Setup {
 		if (file_exists(HMC_PATH.'/js/script.js')) {
 			wp_register_script('hm_child_script_old', HMC_URL.'/js/script.js', $js_deps);
 			wp_enqueue_script('hm_child_script_old');
-			$js_deps[] = 'hm_child_script';
+			$js_deps[] = 'hm_child_script_old';
 		}
 
 		$css_deps = [];
@@ -177,18 +177,18 @@ class Hawp_Theme_Setup {
 			wp_enqueue_style('hm_child_style_compiled');
 			$css_deps[] = 'hm_child_style_compiled';
 		}
-
-		// Child theme stylesheet - this is required so no need to check if it exists
-		wp_register_style('hm_child_style', HMC_URL.'/style.css', $css_deps);
-		wp_enqueue_style('hm_child_style');
-		$css_deps[] = 'hm_child_style';
-
+		
 		// Backward compatibility for child theme with older compiled scss paths
 		if (file_exists(HMC_PATH.'/css/compiled.css')) {
 			wp_register_style('hm_child_style_compiled_old', HMC_URL.'/css/compiled.css', $css_deps);
 			wp_enqueue_style('hm_child_style_compiled_old');
 			$css_deps[] = 'hm_child_style_compiled_old';
 		}
+
+		// Child theme stylesheet - this is required so no need to check if it exists
+		wp_register_style('hm_child_style', HMC_URL.'/style.css', $css_deps);
+		wp_enqueue_style('hm_child_style');
+		$css_deps[] = 'hm_child_style';
 	}
 
 	public function add_head_code() {
