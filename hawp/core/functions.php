@@ -84,6 +84,26 @@ function insert_edit_post_link($id) {
 }
 
 /**
+ * Get a multisite subsite slug from its url.
+ *
+ * @param variable $url The url
+ */
+function get_subsite_slug_from_url($url) {
+	if (is_multisite() && get_theme_option('separate_multisite_acf_json')) {
+		if (defined('SUBDOMAIN_INSTALL') && SUBDOMAIN_INSTALL === true) {
+			$parsed_url = parse_url($url);
+			$host_parts = explode('.', $parsed_url['host']);
+			return $host_parts[0];
+		} else {
+			$path = trim(parse_url($url, PHP_URL_PATH), '/');
+			return $path !== '' ? $path : 'root';
+		}
+	} else {
+		return '';
+	}
+}
+
+/**
  * Register and enqueue scripts and styles with array
  *
  * @param array $scripts The scripts array
