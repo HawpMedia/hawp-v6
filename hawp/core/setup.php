@@ -132,7 +132,10 @@ class Hawp_Theme_Setup {
 			],
 			[
 				'enable' => get_theme_option('enqueue_litepicker_styles_scripts') ? true : false,
-				'scripts' => [ ['hm-litepicker', 'https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js'] ]
+				'styles' => [
+					['hm_litepicker_style', 'https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css'],
+				],
+				'scripts' => [ ['hm_litepicker_script', 'https://cdn.jsdelivr.net/npm/litepicker/dist/nocss/litepicker.js'] ]
 			],
 			[
 				'enable' => get_theme_option('enqueue_mixitup_styles_scripts') ? true : false,
