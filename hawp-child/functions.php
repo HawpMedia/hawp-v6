@@ -30,6 +30,11 @@ add_action('init', function() {
  * Set up child theme stuff.
  */
 add_action('after_setup_theme', function() {
+	// add_theme_support('disable-layout-styles'); // Disable layout styles
+	// add_theme_support('editor-styles'); // Add theme support for editor styles
+	// add_theme_support('wp-block-styles'); // Add theme support for block styles
+	// remove_theme_support('block-templates'); // Remove theme support for block templates
+	
 	add_editor_style(HMC_URL.'/assets/css/compiled-editor.css');
 	add_editor_style(HMC_URL.'/style-editor.css');
 });
