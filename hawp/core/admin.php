@@ -79,7 +79,13 @@ class Hawp_Theme_Admin {
 				'title' => '&lt;/&gt;',
 				'meta'  => array('class' => 'dev-site-notice'),
 				'position' => -99999,
-				'style' => 'background-color: #FF0000;'
+			));
+			$wp_admin_bar->add_node(array(
+				'parent'=> 'dev-site-notice',
+				'id'    => 'dev-site-notice-text',
+				'title' => 'This website is in development by Hawp Media',
+				'meta'  => array('class' => 'dev-site-notice-item'),
+				'position' => -99999,
 			));
 		}
 	}
@@ -88,14 +94,16 @@ class Hawp_Theme_Admin {
 	 * Add menu item to admin menu bar
 	 */
 	public function add_admin_bar_menu($meta = true) {
-		global $wp_admin_bar;
-
-		$wp_admin_bar->add_menu( array(
-			'id' => 'contact_hawp',
-			'title' => __('Need help? Contact Hawp Media'),
-			'href' => 'https://hawpmedia.com/',
-			'meta' 	=> array('target' => '_blank'))
-		);
+		if (current_user_can('manage_options')) {
+			global $wp_admin_bar;
+	
+			$wp_admin_bar->add_menu(array(
+				'id' => 'contact_hawp',
+				'title' => __('Need help? Contact Hawp Media'),
+				'href' => 'https://hawpmedia.com/',
+				'meta' 	=> array('target' => '_blank')
+			));
+		}
 	}
 
 	/**

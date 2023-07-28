@@ -41,7 +41,7 @@ class Hawp_Theme_Utilities {
 		}
 
 		// Remove WP admin items
-		if (get_theme_option('wordpress_admin_item') == 0 && is_admin()) {
+		if (get_theme_option('wordpress_admin_item') == 0 && current_user_can('manage_options')) {
 			add_action('admin_bar_menu', [$this, 'remove_wp_logo'], 999);
 			add_action('wp_dashboard_setup', [$this, 'disable_default_dashboard_widgets'], 999); // Dashboard widgets
 			add_filter('admin_head', [$this, 'disable_help_tabs']); // Help tab
