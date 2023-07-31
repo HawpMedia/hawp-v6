@@ -9,6 +9,17 @@ will probably be overwritten.
 What to do? - Add custom css to the child theme
 "style-editor.css" file.
 ------------------------------------------ */
+/*
+@font-face {
+	font-family: 'Muli';
+	src: local('Muli Regular'), local('Muli-Regular'),
+		url('fonts/Muli-Regular.woff2') format('woff2'),
+		url('fonts/Muli-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+*/
 html {
   font-size: 125%;
   box-sizing: border-box;
@@ -445,7 +456,6 @@ input[type=submit]:focus {
     margin: 0 2rem 2em 0;
     max-width: 48%;
   }
-
   .alignright {
     clear: none;
     float: right;

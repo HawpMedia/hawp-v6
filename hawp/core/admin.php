@@ -38,6 +38,11 @@ class Hawp_Theme_Admin {
 		wp_enqueue_style('hm_admin_fontawesome_6');
 		wp_register_style('hm_admin_style', HM_URL.'/assets/css/admin.css');
 		wp_enqueue_style('hm_admin_style');
+
+		$google_fonts = get_theme_option('google_fonts');
+		if ($google_fonts) {
+			wp_enqueue_style('hm_admin_google_fonts', $google_fonts);
+		}
 		
 		wp_register_style('hm_admin_options_style', HM_URL.'/assets/css/admin-options.css');
 		if (strpos($_SERVER['REQUEST_URI'], 'theme-options')) {

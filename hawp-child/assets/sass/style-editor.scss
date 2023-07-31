@@ -11,6 +11,8 @@ What to do? - Add custom css to the child theme
 "style-editor.css" file.
 ------------------------------------------ */
 
+@import "01-settings/fonts";
+
 @import "02-tools/mixins";
 @import "02-tools/functions";
 
