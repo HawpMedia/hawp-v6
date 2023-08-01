@@ -30,10 +30,8 @@ class Hawp_Theme {
 		if (class_exists('acf_pro')) {
 			$includes = [
 				'functions',
-				'helpers',
 				'setup',
 				'admin',
-				'options',
 				'shortcodes',
 				'utilities',
 				'updater',
