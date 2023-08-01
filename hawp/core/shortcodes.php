@@ -17,6 +17,7 @@ class Hawp_Theme_Shortcodes {
 		add_shortcode('home_url', [$this, 'relative_home']);
 		add_shortcode('uploads', [$this, 'relative_uploads']);
 		add_shortcode('theme', [$this, 'relative_stylesheet']);
+		add_shortcode('site_title', [$this, 'relative_site_title']);
 		add_shortcode('logo', [$this, 'shortcode_logo']);
 		add_shortcode('svg', [$this, 'shortcode_svg']);
 		add_shortcode('content_cta', [$this, 'shortcode_content_cta']);
@@ -76,6 +77,20 @@ class Hawp_Theme_Shortcodes {
 	 */
 	public function relative_stylesheet() {
 		return get_stylesheet_directory_uri();
+	}
+	
+	/**
+	 * Shortcode: Get the site name.
+	 *
+	 * [site_name]
+	 */
+	public function relative_site_title() {
+		if (function_exists('get_bloginfo')) {
+			$result = get_bloginfo('name');
+			return $result;
+		} else {
+			return '';
+		}
 	}
 
 	/**
