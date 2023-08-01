@@ -595,7 +595,7 @@ class Hawp_Theme_Admin {
 	 * Save ACF field groups to JSON based on site URL.
 	 */
 	public function acf_json_save_point($path) {
-		$subsite_url = site_url();
+		$subsite_url = get_site_url();
 		
 		// Extract the desired portion from the site URL
 		$subsite_slug = get_subsite_slug_from_url($subsite_url);
@@ -614,7 +614,7 @@ class Hawp_Theme_Admin {
 	 * Load ACF field groups from JSON based on site URL.
 	 */
 	public function acf_json_load_point($paths) {
-		$subsite_url = site_url();
+		$subsite_url = get_site_url();
 		
 		// Extract the desired portion from the site URL
 		$subsite_slug = get_subsite_slug_from_url($subsite_url);
