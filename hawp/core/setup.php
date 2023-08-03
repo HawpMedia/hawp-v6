@@ -14,6 +14,7 @@ class Hawp_Theme_Setup {
 	 */
 	public function setup() {
 		add_action('after_setup_theme', [$this, 'theme_setup']);
+		add_action('init', [$this, 'register_scripts']);
 		add_filter('widget_text', 'do_shortcode');
 		add_action('widgets_init', [$this, 'widgets_init']);
 		add_filter('wp_nav_menu_items', 'do_shortcode');
@@ -61,7 +62,70 @@ class Hawp_Theme_Setup {
 			'copyright' => 'Copyright Menu',
 		]));
 	}
-
+	
+	/**
+	 * Register scripts and styles.
+	 */
+	public function register_scripts() {
+		// Lity - modal popups
+		wp_register_script('hm-lity-script', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery'], null, true);
+		wp_register_style('hm-lity-style', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css');
+		if (get_theme_option('enqueue_lity_styles_scripts') == true) {
+			wp_enqueue_script('hm-lity-script');
+			wp_enqueue_style('hm-lity-style');
+		}
+		
+		// Swiper - carousel slider
+		wp_register_script('hm-swiper-script', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', [], null, true);
+		wp_register_style('hm-swiper-style', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css');
+		if (get_theme_option('enqueue_swiper_styles_scripts') == true) {
+			wp_enqueue_script('hm-swiper-script');
+			wp_enqueue_style('hm-swiper-style');
+		}
+		
+		// Owl - carousel slider
+		wp_register_script('hm-owl-script', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery'], null, true);
+		wp_register_style('hm-owl-style', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css');
+		wp_register_style('hm-owl-theme-style', HM_URL.'/assets/lib/owl/2.3.4/owl.theme.default.min.css');
+		if (get_theme_option('enqueue_owl_styles_scripts') == true) {
+			wp_enqueue_script('hm-owl-script');
+			wp_enqueue_style('hm-owl-style');
+			wp_enqueue_style('hm-owl-theme-style');
+		}
+		
+		// Select2 - a better select field
+		wp_register_script('hm-select2-script', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery'], null, true);
+		wp_register_style('hm-select2-style', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css');
+		if (get_theme_option('enqueue_select2_styles_scripts') == true) {
+			wp_enqueue_script('hm-select2-script');
+			wp_enqueue_style('hm-select2-style');
+		}
+		
+		// Litepicker - date range picker
+		wp_register_script('hm-litepicker-script', HM_URL.'/assets/lib/litepicker/2.0.12/litepicker.min.js', [], null, true);
+		wp_register_style('hm-litepicker-style', HM_URL.'/assets/lib/litepicker/2.0.12/litepicker.min.css');
+		if (get_theme_option('enqueue_litepicker_styles_scripts') == true) {
+			wp_enqueue_script('hm-litepicker-script');
+			wp_enqueue_style('hm-litepicker-style');
+		}
+		
+		// Mixitup - ajax tabs
+		wp_register_script('hm-mixitup-script', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js', [], null, true);
+		if (get_theme_option('enqueue_mixitup_styles_scripts')) {
+			wp_enqueue_script('hm-mixitup-script');
+		}
+		
+		// Font Awesome - versions 5-6
+		wp_register_style('hm-fontawesome-5-style', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css');
+		wp_register_style('hm-fontawesome-6-style', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css');
+		if (get_theme_option('enqueue_fontawesome_5_style') == true) {
+			wp_enqueue_style('hm-fontawesome-5-style');
+		}
+		if (get_theme_option('enqueue_fontawesome_6_style') == true) {
+			wp_enqueue_style('hm-fontawesome-6-style');
+		}
+	}
+	
 	/**
 	 * Set up theme widgets.
 	 */
@@ -104,52 +168,6 @@ class Hawp_Theme_Setup {
 		if (is_singular() && comments_open() && get_option('thread_comments')) {
 			wp_enqueue_script('comment-reply');
 		}
-
-		// Register assets
-		add_styles_and_scripts([
-			[
-				'enable' => get_theme_option('enqueue_lity_styles_scripts') ? true : false,
-				'styles' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.css'] ],
-				'scripts' => [ ['hm-lity', HM_URL.'/assets/lib/lity/2.4.0/lity.min.js', ['jquery']] ],
-			],
-			[
-				'enable' => get_theme_option('enqueue_owl_styles_scripts') ? true : false,
-				'styles' => [
-					['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css'],
-					['hm-owl-theme', HM_URL.'/assets/lib/owl/2.3.4/owl.theme.default.min.css']
-				],
-				'scripts' => [ ['hm-owl', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', ['jquery']] ],
-			],
-			[
-				'enable' => get_theme_option('enqueue_swiper_styles_scripts') ? true : false,
-				'styles' => [ ['hm-swiper', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.css'] ],
-				'scripts' => [ ['hm-swiper', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.js' ] ],
-			],
-			[
-				'enable' => get_theme_option('enqueue_select2_styles_scripts') ? true : false,
-				'styles' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.css'] ],
-				'scripts' => [ ['hm-select2', HM_URL.'/assets/lib/select2/4.0.13/select2.min.js', ['jquery']] ],
-			],
-			[
-				'enable' => get_theme_option('enqueue_litepicker_styles_scripts') ? true : false,
-				'styles' => [
-					['hm_litepicker_style', 'https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css'],
-				],
-				'scripts' => [ ['hm_litepicker_script', 'https://cdn.jsdelivr.net/npm/litepicker/dist/nocss/litepicker.js'] ]
-			],
-			[
-				'enable' => get_theme_option('enqueue_mixitup_styles_scripts') ? true : false,
-				'scripts' => [ ['hm-mixitup', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js'] ]
-			],
-			[
-				'enable' => get_theme_option('enqueue_fontawesome_5_style') ? true : false,
-				'styles' => [ ['hm-fontawesome-5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css'] ],
-			],
-			[
-				'enable' => get_theme_option('enqueue_fontawesome_6_style') ? true : false,
-				'styles' => [ ['hm-fontawesome-6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css'] ],
-			]
-		]);
 
 		$js_deps = ['jquery'];
 		
