@@ -111,6 +111,7 @@ if (!function_exists('get_subsite_slug_from_url')) {
 			return '';
 		}
 	}
+}
 
 /**
  * Automatically registers ACF blocks by looping through a directory.
