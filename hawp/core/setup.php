@@ -111,8 +111,10 @@ class Hawp_Theme_Setup {
 		
 		// Mixitup - ajax tabs
 		wp_register_script('hm-mixitup-script', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup.min.js', [], null, true);
+		wp_register_script('hm-mixitup-pagination-script', HM_URL.'/assets/lib/mixitup/3.3.1/mixitup-pagination.min.js', [], null, true);
 		if (get_theme_option('enqueue_mixitup_styles_scripts')) {
 			wp_enqueue_script('hm-mixitup-script');
+			wp_enqueue_script('hm-mixitup-pagination-script');
 		}
 		
 		// Font Awesome - versions 5-6
