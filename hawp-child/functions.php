@@ -17,13 +17,7 @@ add_action('init', function() {
 	}
 
 	// Auto register blocks by their dir name in 'blocks'
-	$block_dir = HMC_PATH.'/blocks/';
-	if (is_dir($block_dir) && function_exists('register_block_type')) {
-		$blocks = glob($block_dir . '*.php');
-		foreach ($blocks as $block) {
-			register_block_type(HMC_PATH . "/blocks/{$block}");
-		}
-	}
+	// auto_register_theme_blocks(HMC_PATH.'/blocks/');
 	
 	// Register block scripts - they get enqueued in block.json
 	// wp_register_script('block-YOUR_BLOCK', HMC_URL.'/blocks/YOUR_BLOCK_FOLDER/script.js', [ 'jquery' ], null, true);
