@@ -21,7 +21,6 @@ class Hawp_Theme_Admin {
 		add_action('acf/init', [$this, 'add_acf_options_page']);
 		add_action('acf/init', [$this, 'add_acf_options_fields']);
 		add_action('acf/init', [$this, 'save_acf_option_fields']);
-		add_action('after_switch_theme', [$this, 'save_acf_option_fields']);
 		//add_action('acf/input/admin_footer', [$this, 'add_acf_color_palette']);
 		add_action('acf/input/admin_footer', [$this, 'add_theme_colors_to_acf_color_picker']);
 		add_filter('acf/settings/save_json', [$this, 'acf_json_save_point']);
@@ -519,15 +518,6 @@ class Hawp_Theme_Admin {
 				'instruction_placement' => 'label',
 				'active' => true,
 			));
-		}
-	}
-	
-	/**
-	 * Auto save ACF options after theme is activated.
-	 */
-	public function save_acf_option_fields() {
-		if (function_exists('acf_add_options_page')) {
-			acf_save_options_page();
 		}
 	}
 

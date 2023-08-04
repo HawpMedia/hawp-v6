@@ -76,8 +76,8 @@ class Hawp_Theme_Setup {
 		}
 		
 		// Swiper - carousel slider
-		wp_register_script('hm-swiper-script', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.js', [], null, true);
-		wp_register_style('hm-swiper-style', HM_URL.'/assets/lib/owl/2.3.4/owl.carousel.min.css');
+		wp_register_script('hm-swiper-script', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.js', [], null, true);
+		wp_register_style('hm-swiper-style', HM_URL.'/assets/lib/swiper/8.1.4/swiper-bundle.min.css');
 		if (get_theme_option('enqueue_swiper_styles_scripts') == true) {
 			wp_enqueue_script('hm-swiper-script');
 			wp_enqueue_style('hm-swiper-style');
