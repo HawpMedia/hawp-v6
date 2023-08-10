@@ -43,7 +43,7 @@ class Hawp_Theme_Admin {
 		if ($google_fonts) {
 			wp_enqueue_style('hm_admin_google_fonts', $google_fonts);
 		}
-		
+
 		wp_register_style('hm_admin_options_style', HM_URL.'/assets/css/admin-options.css');
 		if (strpos($_SERVER['REQUEST_URI'], 'theme-options')) {
 			wp_enqueue_style('hm_admin_options_style');
@@ -69,7 +69,7 @@ class Hawp_Theme_Admin {
 
 	/**
 	 * Add menu node to admin bar
-	 * 
+	 *
 	 * This gets added if the url contains
 	 * .local or .dev, so its only for dev sites.
 	 */
@@ -101,7 +101,7 @@ class Hawp_Theme_Admin {
 	public function add_admin_bar_menu($meta = true) {
 		if (current_user_can('manage_options')) {
 			global $wp_admin_bar;
-	
+
 			$wp_admin_bar->add_menu(array(
 				'id' => 'contact_hawp',
 				'title' => __('Need help? Contact Hawp Media'),
@@ -596,42 +596,42 @@ class Hawp_Theme_Admin {
 	 */
 	public function acf_json_save_point($path) {
 		$subsite_url = get_site_url();
-		
+
 		// Extract the desired portion from the site URL
 		$subsite_slug = get_subsite_slug_from_url($subsite_url);
-		
+
 		$path = get_stylesheet_directory() . '/acf-json/' . $subsite_slug; // Customize the save path as needed
-		
+
 		// Create the directory if it doesn't exist
 		if (!is_dir($path)) {
 			wp_mkdir_p($path);
 		}
-		
+
 		return $path;
 	}
-	
+
 	/**
 	 * Load ACF field groups from JSON based on site URL.
 	 */
 	public function acf_json_load_point($paths) {
 		$subsite_url = get_site_url();
-		
+
 		// Extract the desired portion from the site URL
 		$subsite_slug = get_subsite_slug_from_url($subsite_url);
-		
+
 		$load_path = get_stylesheet_directory() . '/acf-json/' . $subsite_slug; // Customize the load path as needed
-		
+
 		// Create the directory if it doesn't exist
 		if (!is_dir($load_path)) {
 			wp_mkdir_p($load_path);
 		}
-		
+
 		// Remove the path to ACF post types JSON file
 		unset($paths[0]);
-		
+
 		// Add JSON path for ACF fields based on site URL
 		$paths[] = $load_path;
-		
+
 		return $paths;
 	}
 }

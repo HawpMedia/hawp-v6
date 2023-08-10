@@ -18,7 +18,7 @@ add_action('init', function() {
 
 	// Auto register blocks by their dir name in 'blocks'
 	// auto_register_theme_blocks(HMC_PATH.'/blocks/');
-	
+
 	// Register block scripts - they get enqueued in block.json
 	// wp_register_script('block-YOUR_BLOCK', HMC_URL.'/blocks/YOUR_BLOCK_FOLDER/script.js', [ 'jquery' ], null, true);
 });
@@ -31,7 +31,7 @@ add_action('after_setup_theme', function() {
 	// add_theme_support('editor-styles'); // Add theme support for editor styles
 	// add_theme_support('wp-block-styles'); // Add theme support for block styles
 	// remove_theme_support('block-templates'); // Remove theme support for block templates
-	
+
 	add_editor_style(HMC_URL.'/assets/css/compiled-editor.css');
 	add_editor_style(HMC_URL.'/style-editor.css');
 });

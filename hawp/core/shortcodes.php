@@ -78,7 +78,7 @@ class Hawp_Theme_Shortcodes {
 	public function relative_stylesheet() {
 		return get_stylesheet_directory_uri();
 	}
-	
+
 	/**
 	 * Shortcode: Get the site name.
 	 *
