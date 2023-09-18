@@ -34,7 +34,7 @@ class Hawp_Theme_Admin {
 		wp_enqueue_script('hm_admin_script');
 		wp_register_style('hm_admin_fontawesome_5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css');
 		wp_enqueue_style('hm_admin_fontawesome_5');
-		wp_register_style('hm_admin_fontawesome_6', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css');
+		wp_register_style('hm_admin_fontawesome_6', HM_URL.'/assets/lib/fontawesome/6.4.2/css/all.min.css');
 		wp_enqueue_style('hm_admin_fontawesome_6');
 		wp_register_style('hm_admin_style', HM_URL.'/assets/css/admin.css');
 		wp_enqueue_style('hm_admin_style');
