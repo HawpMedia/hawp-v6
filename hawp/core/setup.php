@@ -121,7 +121,7 @@ class Hawp_Theme_Setup {
 
 		// Font Awesome - versions 5-6
 		wp_register_style('hm-fontawesome-5-style', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css');
-		wp_register_style('hm-fontawesome-6-style', HM_URL.'/assets/lib/fontawesome/6.1.1/css/all.min.css');
+		wp_register_style('hm-fontawesome-6-style', HM_URL.'/assets/lib/fontawesome/6.4.2/css/all.min.css');
 		if (get_theme_option('enqueue_fontawesome_5_style') == true) {
 			wp_enqueue_style('hm-fontawesome-5-style');
 		}
