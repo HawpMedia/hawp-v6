@@ -54,6 +54,12 @@ class Hawp_Theme_Utilities {
 			add_action('init', [$this, 'remove_comment_support'], 100);
 			add_action('wp_before_admin_bar_render', [$this, 'admin_bar_render']); // Removes from admin bar
 		}
+
+		// Custom login logo
+		if (get_theme_option('login_logo')) {
+			add_action('login_head', [$this, 'custom_login_logo']);
+			add_filter('login_headerurl', [$this, 'custom_login_logo_url']);
+		}
 	}
 
 	/**
@@ -162,6 +168,24 @@ class Hawp_Theme_Utilities {
 	public function disable_help_tabs() {
 		$screen = get_current_screen();
 		$screen->remove_help_tabs();
+	}
+
+	/**
+	 * Custom login logo.
+	 */
+	public function custom_login_logo() {
+		$logo = wp_get_attachment_image_url(get_theme_option('login_logo'), 'full');
+
+		$result = '<style>h1 a { background-image: url('.esc_url($logo).') !important; }</style>';
+
+		echo $result;
+	}
+
+	/**
+	 * Custom login logo url.
+	 */
+	function custom_login_logo_url() {
+		return get_home_url();
 	}
 
 }
