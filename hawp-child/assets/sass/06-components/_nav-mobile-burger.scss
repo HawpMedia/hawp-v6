@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 Menu: Hamburger style
 --------------------------------------------------------------*/
-@include bp-max-width('lg') {
+@include bp-max-width('lg-break') {
 	.menu-buttons {
 		position: relative;
 		width: auto;
