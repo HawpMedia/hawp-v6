@@ -18,7 +18,7 @@ class Hawp_Theme_Setup {
 		add_filter('widget_text', 'do_shortcode');
 		add_action('widgets_init', [$this, 'widgets_init']);
 		add_filter('wp_nav_menu_items', 'do_shortcode');
-		add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts']);
+		add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts'], 99999);
 		add_action('wp_head', [$this, 'add_head_code']);
 		remove_action('wp_head', 'print_emoji_detection_script', 7);
 		add_action('wp_body_open', [$this, 'add_body_code']);
@@ -121,7 +121,7 @@ class Hawp_Theme_Setup {
 
 		// Font Awesome - versions 5-6
 		wp_register_style('hm-fontawesome-5-style', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css');
-		wp_register_style('hm-fontawesome-6-style', HM_URL.'/assets/lib/fontawesome/6.4.2/css/all.min.css');
+		wp_register_style('hm-fontawesome-6-style', HM_URL.'/assets/lib/fontawesome/6.5.1/css/all.min.css');
 		if (get_theme_option('enqueue_fontawesome_5_style') == true) {
 			wp_enqueue_style('hm-fontawesome-5-style');
 		}
