@@ -12,6 +12,7 @@ What to do? - Add custom css to the child theme
 ------------------------------------------ */
 
 @import "01-settings/fonts";
+@import "01-settings/global";
 
 @import "02-tools/mixins";
 @import "02-tools/functions";

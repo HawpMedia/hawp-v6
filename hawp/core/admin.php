@@ -164,6 +164,16 @@ class Hawp_Theme_Admin {
 						'mime_types' => 'jpg, jpeg, png, svg',
 					),
 					array(
+						'key' => get_theme_option_prefix().'header_bg_image',
+						'label' => 'Default header background image',
+						'name' => get_theme_option_prefix().'header_bg_image',
+						'type' => 'image',
+						'return_format' => 'id',
+						'preview_size' => 'full',
+						'library' => 'all',
+						'mime_types' => 'jpg, jpeg, png',
+					),
+					array(
 						'key' => get_theme_option_prefix().'catnum_posts',
 						'label' => 'Number of Posts displayed on Category pages',
 						'name' => get_theme_option_prefix().'catnum_posts',

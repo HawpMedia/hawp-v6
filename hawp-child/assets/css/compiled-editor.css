@@ -13,13 +13,14 @@ What to do? - Add custom css to the child theme
 @font-face {
 	font-family: 'Muli';
 	src: local('Muli Regular'), local('Muli-Regular'),
-		url('fonts/Muli-Regular.woff2') format('woff2'),
-		url('fonts/Muli-Regular.woff') format('woff');
+		url('../fonts/Muli-Regular.woff2') format('woff2'),
+		url('../fonts/Muli-Regular.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
 */
+/* Variables ----------------------------- */
 html {
   font-size: 125%;
   box-sizing: border-box;
@@ -89,9 +90,11 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
+  font-family: Arial, sans-serif;
   margin: 0 0 0.5em 0;
   line-height: normal;
   font-weight: 700;
+  color: #4a4a4a;
 }
 
 h1, .h1 {
