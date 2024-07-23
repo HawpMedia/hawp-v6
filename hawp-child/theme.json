@@ -1,8 +1,11 @@
 {
-	"version": 2,
+	"version": 3,
 	"settings": {
 		"appearanceTools": true,
 		"color": {
+			"defaultDuotone": false,
+			"defaultPalette": false,
+			"defaultGradients": false,
 			"palette": [
 				{
 					"name": "White",
@@ -14,17 +17,10 @@
 					"slug": "black",
 					"color": "#000000"
 				}
-			],
-			"duotone": [],
-			"defaultDuotone": false,
-			"text": true,
-			"background": true,
-			"custom": true,
-			"customGradient": true,
-			"defaultGradients": false,
-			"defaultPalette": false
+			]
 		},
 		"typography": {
+			"defaultFontSizes": false,
 			"fontSizes": [
 				{
 					"slug": "body",
@@ -39,6 +35,7 @@
 			]
 		},
 		"spacing": {
+			"defaultSpacingSizes": false,
 			"margin": true,
 			"padding": true,
 			"units": [ "rem", "em", "vh", "vw", "px" ]
