@@ -5,13 +5,17 @@
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: flex-start;
+
 		li {
 			display: inline-block;
 			margin-left: 0.5em;
+
 			&:first-child {
 				margin-left: 0;
 			}
+
 			a {
+				i,
 				span {
 					display: flex;
 					align-items: center;
@@ -27,7 +31,9 @@
 					color: #fff;
 					transition: 0.3s;
 				}
+
 				&:hover {
+					i,
 					span {
 						background: #444;
 					}

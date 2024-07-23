@@ -3,25 +3,29 @@
 		.gform_fields {
 			margin: 0;
 		}
-		.gfield_label {
-			font-size: 0.9em !important;
-			font-weight: 400 !important;
-		}
+
 		.gfield {
 			position: relative;
 			z-index: 1;
 			list-style: none;
-			margin-bottom: 1em;
+
 			select {
 				appearance: none;
 				-webkit-appearance: none;
 			}
 		}
+
+		.gfield_label {
+			font-size: 0.9em !important;
+			font-weight: 400 !important;
+		}
+
 		.ginput_container_date {
 			input {
 				width: 100% !important;
 			}
 		}
+
 		.ginput_container_select {
 			position: relative;
 			&:before {
@@ -58,16 +62,20 @@
 				pointer-events: none;
 			}
 		}
+
 		.ginput_recaptcha {
 			margin: auto;
 			padding: 1em 0 0;
 			max-width: 304px;
 			overflow: hidden;
 		}
+
 		.gform_footer {
 			margin-top: 1.5em;
+			justify-content: center;
 			text-align: center;
 		}
+
 		/* AJAX loading spinner */
 		.gform_ajax_spinner {
 			margin-left: 1em;
@@ -78,6 +86,7 @@
 			width: 1.5rem;
 			height: 1.5rem;
 		}
+
 		@keyframes gform_spinner {
 			0% { transform: rotate(0deg); }
 			100% { transform: rotate(360deg); }

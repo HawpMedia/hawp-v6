@@ -381,7 +381,7 @@ select {
 }
 
 textarea {
-  max-height: 5em;
+  max-height: 9rem;
 }
 
 label {
@@ -1047,10 +1047,10 @@ input[type=submit]:focus {
     margin: auto;
     width: 1.4em;
     height: 1.4em;
-    background: url(../images/icon-home.svg) center/contain no-repeat;
+    background: url(../../assets/images/icon-home.svg) center/contain no-repeat;
   }
   .menu-search > a:before {
-    background-image: url(../images/icon-search.svg);
+    background-image: url(../../assets/images/icon-search.svg);
   }
   .menu-search > .sub-menu {
     right: 0;
@@ -1417,19 +1417,18 @@ Menu: Hamburger style
 .gform_wrapper.gravity-theme .gform_fields {
   margin: 0;
 }
-.gform_wrapper.gravity-theme .gfield_label {
-  font-size: 0.9em !important;
-  font-weight: 400 !important;
-}
 .gform_wrapper.gravity-theme .gfield {
   position: relative;
   z-index: 1;
   list-style: none;
-  margin-bottom: 1em;
 }
 .gform_wrapper.gravity-theme .gfield select {
   appearance: none;
   -webkit-appearance: none;
+}
+.gform_wrapper.gravity-theme .gfield_label {
+  font-size: 0.9em !important;
+  font-weight: 400 !important;
 }
 .gform_wrapper.gravity-theme .ginput_container_date input {
   width: 100% !important;
@@ -1478,6 +1477,7 @@ Menu: Hamburger style
 }
 .gform_wrapper.gravity-theme .gform_footer {
   margin-top: 1.5em;
+  justify-content: center;
   text-align: center;
 }
 .gform_wrapper.gravity-theme .gform_ajax_spinner {
@@ -1561,6 +1561,7 @@ Menu: Hamburger style
 .social-navigation ul li:first-child {
   margin-left: 0;
 }
+.social-navigation ul li a i,
 .social-navigation ul li a span {
   display: flex;
   align-items: center;
@@ -1576,6 +1577,7 @@ Menu: Hamburger style
   color: #fff;
   transition: 0.3s;
 }
+.social-navigation ul li a:hover i,
 .social-navigation ul li a:hover span {
   background: #444;
 }

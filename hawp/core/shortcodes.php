@@ -146,11 +146,11 @@ class Hawp_Theme_Shortcodes {
 		];
 
 		$vals = [
-			'class' => get_option($keys['label']) ? 'wpsb-svg-'.preg_replace('/\s*/', '', strtolower(get_option($keys['label']))) : '',
+			'class' => get_option($keys['label']) ? 'hm-svg-'.preg_replace('/\s*/', '', strtolower(get_option($keys['label']))) : '',
 			'svg' => get_option($keys['svg']),
 		];
 
-		$result = '<span class="wpsb-svg wpsb-svg-id-'.$args['id'].' '.$vals['class'].'">'.$vals['svg'].'</span>';
+		$result = '<span class="hm-svg hm-svg-id-'.$args['id'].' '.$vals['class'].'">'.$vals['svg'].'</span>';
 
 		return $result;
 	}

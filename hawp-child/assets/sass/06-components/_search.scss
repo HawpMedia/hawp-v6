@@ -3,11 +3,13 @@
 	display: flex;
 	align-items: stretch;
 	flex-wrap: nowrap;
+
 	.search-field {
 		border: 1px solid #000;
 		-webkit-appearance: none;
 		border-radius: 0.25em 0 0 0.25em;
 	}
+
 	.search-submit {
 		background: #000;
 		color: #fff;
@@ -16,6 +18,7 @@
 		-webkit-transition: all 0.4s ease;
 		transition: all 0.4s ease;
 		border-radius: 0 0.25em 0.25em 0;
+
 		&:hover {
 			background: #333;
 			color: #fff;

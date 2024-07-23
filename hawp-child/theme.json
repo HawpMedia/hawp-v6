@@ -5,14 +5,14 @@
 		"color": {
 			"palette": [
 				{
-					"name": "Black",
-					"slug": "black",
-					"color": "#000000"
-				},
-				{
 					"name": "White",
 					"slug": "white",
 					"color": "#ffffff"
+				},
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#000000"
 				}
 			],
 			"duotone": [],
@@ -27,14 +27,14 @@
 		"typography": {
 			"fontSizes": [
 				{
-					"slug": "small",
-					"size": "1rem",
-					"name": "Small"
+					"slug": "body",
+					"size": "1em",
+					"name": "Body"
 				},
 				{
 					"slug": "medium",
 					"size": "1.25rem",
-					"name": "medium"
+					"name": "Medium"
 				}
 			]
 		},

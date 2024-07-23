@@ -324,13 +324,13 @@
 			margin: auto;
 			width: 1.4em;
 			height: 1.4em;
-			background: url(../images/icon-home.svg) center / contain no-repeat;
+			background: url(../../assets/images/icon-home.svg) center / contain no-repeat;
 		}
 	}
 	.menu-search {
 		> a {
 			&:before {
-				background-image: url(../images/icon-search.svg);
+				background-image: url(../../assets/images/icon-search.svg);
 			}
 		}
 		> .sub-menu {

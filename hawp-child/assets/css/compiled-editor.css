@@ -576,19 +576,18 @@ input[type=submit]:focus {
 .gform_wrapper.gravity-theme .gform_fields {
   margin: 0;
 }
-.gform_wrapper.gravity-theme .gfield_label {
-  font-size: 0.9em !important;
-  font-weight: 400 !important;
-}
 .gform_wrapper.gravity-theme .gfield {
   position: relative;
   z-index: 1;
   list-style: none;
-  margin-bottom: 1em;
 }
 .gform_wrapper.gravity-theme .gfield select {
   appearance: none;
   -webkit-appearance: none;
+}
+.gform_wrapper.gravity-theme .gfield_label {
+  font-size: 0.9em !important;
+  font-weight: 400 !important;
 }
 .gform_wrapper.gravity-theme .ginput_container_date input {
   width: 100% !important;
@@ -637,6 +636,7 @@ input[type=submit]:focus {
 }
 .gform_wrapper.gravity-theme .gform_footer {
   margin-top: 1.5em;
+  justify-content: center;
   text-align: center;
 }
 .gform_wrapper.gravity-theme .gform_ajax_spinner {
@@ -720,6 +720,7 @@ input[type=submit]:focus {
 .social-navigation ul li:first-child {
   margin-left: 0;
 }
+.social-navigation ul li a i,
 .social-navigation ul li a span {
   display: flex;
   align-items: center;
@@ -735,6 +736,7 @@ input[type=submit]:focus {
   color: #fff;
   transition: 0.3s;
 }
+.social-navigation ul li a:hover i,
 .social-navigation ul li a:hover span {
   background: #444;
 }

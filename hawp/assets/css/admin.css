@@ -63,6 +63,10 @@ background: #e31a1a;
 }
 
 /* Block Editor -------------------------- */
+.editor-styles-wrapper {
+	font-size: 125% !important;
+}
+
 .editor-styles-wrapper > * {
 	width: 100% !important;
 	max-width: 1400px !important;
