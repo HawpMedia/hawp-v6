@@ -3,6 +3,47 @@
 // Get the theme rolling!
 // ------------------------------------------
 
+// Create a helper function for easy SDK access.
+if ( ! function_exists( 'hawp_freemius' ) ) {
+
+	function hawp_freemius() {
+		global $hawp_freemius;
+
+		if ( ! isset( $hawp_freemius ) ) {
+			// Include Freemius SDK.
+			require_once dirname(__FILE__) . '/freemius/start.php';
+
+			$hawp_freemius = fs_dynamic_init( array(
+				'id'                  => '16114',
+				'slug'                => 'hawp',
+				'premium_slug'        => 'hawp',
+				'type'                => 'theme',
+				'public_key'          => 'pk_d2a774ac3e7a7585ec079e4c91e84',
+				'is_premium'          => true,
+				'is_premium_only'     => true,
+				'has_addons'          => false,
+				'has_paid_plans'      => true,
+				'is_org_compliant'    => false,
+				'menu'                => array(
+					'slug'           => 'theme-options',
+					'first-path'     => 'themes.php?page=theme-options',
+					'support'        => false,
+					'parent'         => array(
+						'slug' => 'themes.php',
+					),
+				),
+			) );
+		}
+
+		return $hawp_freemius;
+	}
+
+	// Init Freemius.
+	hawp_freemius();
+	// Signal that SDK was initiated.
+	do_action( 'hawp_freemius_loaded' );
+}
+
 // Define constants
 define('HM_PATH', get_template_directory());
 define('HM_URL', get_template_directory_uri());
