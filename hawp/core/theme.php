@@ -13,7 +13,6 @@ class Hawp_Theme {
 		'file'                => __FILE__,
 		'textdomain'          => 'hawp',
 		'option_prefix'       => 'hawp_theme_',
-		'update_url'          => 'https://update.hawp.dev/themes/hawp-v6/',
 	];
 
 	/**
@@ -34,7 +33,6 @@ class Hawp_Theme {
 				'admin',
 				'shortcodes',
 				'utilities',
-				'updater',
 			];
 			foreach ($includes as $include) {
 				require_once HM_PATH."/core/{$include}.php";

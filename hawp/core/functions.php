@@ -20,13 +20,6 @@ function get_theme_option($acf_option) {
 }
 
 /**
- * Get theme update source url.
- */
-function get_theme_update_url() {
-	return hawp_theme()::$theme['update_url'];
-}
-
-/**
  * Gets the subpages of the current or a given page.
  *
  * @param int $post_id The post to check for children.
