@@ -5,7 +5,7 @@
 
 if (!defined('ABSPATH')) exit();
 
-if (!class_exists('Hawp_Theme_Updater')):
+if (!class_exists('Hawp_Theme_Utilities')):
 
 class Hawp_Theme_Utilities {
 
