@@ -11,7 +11,7 @@ if ( ! function_exists( 'hawp_freemius' ) ) {
 
 		if ( ! isset( $hawp_freemius ) ) {
 			// Include Freemius SDK.
-			require_once dirname(__FILE__) . '/freemius-sdk/start.php';
+			require_once dirname(__FILE__) . '/freemius/start.php';
 
 			$hawp_freemius = fs_dynamic_init( array(
 				'id'                  => '16114',
