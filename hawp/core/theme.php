@@ -38,13 +38,20 @@ class Hawp_Theme {
 				require_once HM_PATH."/core/{$include}.php";
 			}
 		} else {
-			add_action('admin_notices', function () {
-				printf(
-					'<div class="error"><p>%s</p></div>',
-					esc_html__('The <strong>Advanced Custom Fields Pro</strong> plugin is either deactivated or does not exist. Please install and activate it to use the active theme.', 'hawp')
-				);
-			});
+			add_action('admin_notices', [$this, 'acf_pro_missing_notice']);
+			error_log('ACF Pro is either deactivated or does not exist. The Hawp Theme requires ACF Pro to function correctly.');
 		}
+	}
+
+	/**
+	 * Admin notice for missing ACF Pro.
+	 */
+	public function acf_pro_missing_notice() {
+		printf(
+			'<div class="error"><p><strong>Advanced Custom Fields Pro</strong> %s <strong>%s</strong></p></div>',
+			esc_attr__('plugin is deactivated or does not exist. Please install and activate it to use', 'hawp'),
+			self::$theme['name'],
+		);
 	}
 
 }
