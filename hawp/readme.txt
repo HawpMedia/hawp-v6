@@ -12,6 +12,9 @@ Hawp Theme is Hawp Media's boilerplate starter theme for all custom websites
 
 == Changelog ==
 
+= 6.5.4 =
+* Released: August 8, 2024
+
 = 6.5.3 =
 * Released: August 5, 2024
 
