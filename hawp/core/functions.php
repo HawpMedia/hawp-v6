@@ -42,7 +42,7 @@ if (!function_exists('get_child_pages')) {
  */
 if (!function_exists('get_current_url')) {
 	function get_current_url() {
-		return trailingslashit(home_url(add_query_arg($_GET, $GLOBALS['wp']->request)));
+		return esc_url(trailingslashit(home_url(add_query_arg($_GET, $GLOBALS['wp']->request))));
 	}
 }
 
@@ -59,11 +59,13 @@ if (!function_exists('get_random_post')) {
 		$count = intval(wp_count_posts($type)->publish);
 		$rand  = rand(0, $count);
 
-		return get_posts([
+		$posts = get_posts([
 			'post_type' => $type,
 			'numberposts' => 1,
-			'offset' => max(0, $rand - 1)
-		])[0];
+			'offset' => max(0, $rand - 1),
+		]);
+
+		return !empty($posts) ? $posts[0] : null;
 	}
 }
 
