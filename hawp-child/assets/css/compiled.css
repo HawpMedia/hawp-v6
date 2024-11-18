@@ -154,7 +154,7 @@ body {
   position: relative;
   font-size: 1em;
   line-height: 1.5;
-  background: #f5f5f5;
+  background: #fff;
   font-family: Arial, sans-serif;
   color: #4a4a4a;
 }
@@ -192,23 +192,60 @@ button {
     padding-right: calc(50% - 30rem);
   }
 }
+@media only screen and (min-width: 82.5em) {
+  .contain--small {
+    padding-left: calc(50% - 20rem);
+    padding-right: calc(50% - 20rem);
+  }
+}
+@media only screen and (min-width: 82.5em) {
+  .contain--medium {
+    padding-left: calc(50% - 24.5rem);
+    padding-right: calc(50% - 24.5rem);
+  }
+}
+@media only screen and (min-width: 82.5em) {
+  .contain--large {
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+  }
+}
+.contain--fullwidth {
+  padding-left: 0;
+  padding-right: 0;
+}
+.contain--vpad {
+  padding-top: 5rem;
+  padding-bottom: 4.5rem;
+}
+.contain--tpad {
+  padding-top: 5rem;
+  padding-bottom: 1px;
+}
+.contain--bpad {
+  padding-top: 1px;
+  padding-bottom: 4.5rem;
+}
 
 /* Layout -------------------------------- */
-.no-margin {
+.no-margin,
+.nomargin {
   margin: 0;
 }
 
-.no-padding {
+.no-padding,
+.nopadding,
+.nopad {
   padding: 0;
 }
 
 /* Category 04 can contain any default HTML element. Do not add classes here, just give the elements some basic styles. */
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
+h1, .h1, .is-style-h1,
+h2, .h2, .is-style-h2,
+h3, .h3, .is-style-h3,
+h4, .h4, .is-style-h4,
+h5, .h5, .is-style-h5,
+h6, .h6, .is-style-h6 {
   font-family: Arial, sans-serif;
   margin: 0 0 0.5em 0;
   line-height: normal;

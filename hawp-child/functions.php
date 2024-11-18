@@ -3,18 +3,16 @@
 // Child theme functions.
 // ------------------------------------------
 
-/**
- * Loop through folders and auto include files.
- */
+
+// Loop through inc folder and auto include files.
+$includes = [
+	//'work',
+];
+foreach ($includes as $include) {
+	require_once "inc/{$include}.php";
+}
+
 add_action('init', function() {
-	// Auto include 'inc' files
-	$inc_dir = HMC_PATH.'/inc/';
-	if (is_dir($inc_dir)) {
-		$includes = glob($inc_dir . '*.php');
-		foreach ($includes as $include) {
-			require_once $include;
-		}
-	}
 
 	// Auto register blocks by their dir name in 'blocks'
 	// auto_register_theme_blocks(HMC_PATH.'/blocks/');
@@ -27,10 +25,10 @@ add_action('init', function() {
  * Set up child theme stuff.
  */
 add_action('after_setup_theme', function() {
-	// add_theme_support('disable-layout-styles'); // Disable layout styles
-	// add_theme_support('editor-styles'); // Add theme support for editor styles
-	// add_theme_support('wp-block-styles'); // Add theme support for block styles
-	// remove_theme_support('block-templates'); // Remove theme support for block templates
+	add_theme_support('disable-layout-styles'); // Disable layout styles
+	add_theme_support('editor-styles'); // Add theme support for editor styles
+	add_theme_support('wp-block-styles'); // Add theme support for block styles
+	remove_theme_support('block-templates'); // Remove theme support for block templates
 
 	add_editor_style(HMC_URL.'/assets/css/compiled-editor.css');
 	add_editor_style(HMC_URL.'/style-editor.css');

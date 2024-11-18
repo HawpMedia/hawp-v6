@@ -19,6 +19,13 @@
 				}
 			]
 		},
+		"gradients": [
+			{
+				"gradient": "linear-gradient(to right, #fff, #000)",
+				"name": "White Black",
+				"slug": "white-black"
+			}
+		],
 		"typography": {
 			"defaultFontSizes": false,
 			"fontSizes": [
