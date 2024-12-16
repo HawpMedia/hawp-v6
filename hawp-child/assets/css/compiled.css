@@ -505,76 +505,25 @@ th {
 
 /* Category 05 is all about adjusting the default block styles to the given layout. */
 .wp-block-columns {
-  display: flex;
+  gap: 1.5rem !important;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
 }
-.wp-block-columns.has-background {
-  padding: 1em;
-}
-.wp-block-columns.are-vertically-aligned-top {
-  align-items: flex-start;
-}
-.wp-block-columns.are-vertically-aligned-center {
-  align-items: center;
-}
-.wp-block-columns.are-vertically-aligned-bottom {
-  align-items: flex-end;
-}
-.wp-block-columns .wp-block-column {
-  flex-grow: 1;
-  min-width: 0;
-  word-break: break-word;
-  overflow-wrap: break-word;
-}
-.wp-block-columns .wp-block-column.is-vertically-aligned-top {
-  align-self: flex-start;
-}
-.wp-block-columns .wp-block-column.is-vertically-aligned-center {
-  -ms-grid-row-align: center;
-  align-self: center;
-}
-.wp-block-columns .wp-block-column.is-vertically-aligned-bottom {
-  align-self: flex-end;
-}
-.wp-block-columns .wp-block-column.is-vertically-aligned-bottom, .wp-block-columns .wp-block-column.is-vertically-aligned-center, .wp-block-columns .wp-block-column.is-vertically-aligned-top {
-  width: 100%;
-}
-@media only screen and (max-width: 48.49em) {
-  .wp-block-columns .wp-block-column {
-    flex-basis: 100% !important;
-  }
-}
-@media only screen and (min-width: 48.5em) and (max-width: 58.49em) {
-  .wp-block-columns .wp-block-column {
-    flex-basis: calc(50% - 0.5rem) !important;
-    flex-grow: 0;
-  }
-  .wp-block-columns .wp-block-column:nth-child(2n) {
-    margin-left: 1rem;
-  }
-  .wp-block-columns .wp-block-column {
-    flex-basis: 100% !important;
-  }
-  .wp-block-columns .wp-block-column:nth-child(2n) {
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 58.5em) {
-  .wp-block-columns .wp-block-column {
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-  .wp-block-columns .wp-block-column[style] {
-    flex-grow: 0;
-  }
-  .wp-block-columns .wp-block-column:not(:first-child) {
-    margin-left: 1.5rem;
-  }
-}
-@media only screen and (min-width: 58.5em) {
+@media only screen and (min-width: 68.5em) {
   .wp-block-columns {
-    flex-wrap: nowrap;
+    gap: 2rem !important;
+  }
+}
+.wp-block-columns.is-style-gap-large {
+  gap: 2rem !important;
+}
+@media only screen and (min-width: 68.5em) {
+  .wp-block-columns.is-style-gap-large {
+    gap: 3.25rem !important;
+  }
+}
+@media (max-width: 781px) {
+  .wp-block-columns .wp-block-column .has-text-align-right {
+    text-align: left;
   }
 }
 
