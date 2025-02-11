@@ -522,14 +522,12 @@ input[type=submit]:focus {
   flex-wrap: nowrap;
 }
 .search-form .search-field {
-  border: 1px solid #000;
   -webkit-appearance: none;
   border-radius: 0.25em 0 0 0.25em;
 }
 .search-form .search-submit {
-  background: #000;
   color: #fff;
-  padding: 0.3em 0.5em;
+  padding: 0.3em 1.5em;
   border: 1px solid transparent;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
@@ -577,6 +575,9 @@ input[type=submit]:focus {
 }
 .gform_wrapper.gravity-theme .ginput_container_date input {
   width: 100% !important;
+}
+.gform_wrapper.gravity-theme .gform_required_legend {
+  display: none !important;
 }
 .gform_wrapper.gravity-theme .ginput_container_select {
   position: relative;

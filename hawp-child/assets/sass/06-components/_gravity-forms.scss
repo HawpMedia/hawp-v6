@@ -26,6 +26,10 @@
 			}
 		}
 
+		.gform_required_legend {
+			display: none !important;
+		}
+
 		.ginput_container_select {
 			position: relative;
 			&:before {
