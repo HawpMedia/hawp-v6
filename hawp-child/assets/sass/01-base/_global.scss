@@ -1,0 +1,26 @@
+/* Generic vars */
+$body-font: Arial, sans-serif;
+$body-color: #4a4a4a;
+$heading-font: Arial, sans-serif;
+$heading-color: #4a4a4a;
+
+/* Custom vars connected to wp preset colors we define in theme.json */
+$white: var(--wp--preset--color--white);
+$black: var(--wp--preset--color--black);
+$white-black-gradient: var(--wp--preset--gradient--white-black);
+
+/* Breakpoints used by mixins */
+$breakpoints: (
+	'xs': 28.5em,
+	'xs-break': 28.49em,
+	'sm': 38.5em,
+	'sm-break': 38.49em,
+	'md': 48.5em,
+	'md-break': 48.49em,
+	'xm': 58.5em,
+	'xm-break': 58.49em,
+	'lg': 68.5em,
+	'lg-break': 68.49em,
+	'xxl': 82.5em,
+	'xxl-break': 82.49em,
+) !default;

@@ -1,0 +1,12 @@
+@use "../dependencies" as *;
+
+table {
+	margin: 0 0 1.5em 0;
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+}
+
+th {
+	font-weight: bold;
+}

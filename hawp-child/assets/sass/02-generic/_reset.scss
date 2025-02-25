@@ -1,0 +1,29 @@
+@use "../dependencies" as *;
+
+html {
+	font-size: 125%;
+	box-sizing: border-box;
+	-webkit-overflow-scrolling: touch;
+	scroll-behavior: smooth;
+}
+
+* {
+	&,
+	&::before,
+	&::after {
+		box-sizing: inherit;
+	}
+}
+
+body {
+	position: relative;
+	font-size: 1em;
+	line-height: 1.5;
+	background: #fff;
+	font-family: $body-font;
+	color: $body-color;
+}
+
+button {
+	cursor: pointer;
+}

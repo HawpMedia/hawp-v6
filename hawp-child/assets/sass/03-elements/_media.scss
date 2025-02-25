@@ -1,0 +1,32 @@
+@use "../dependencies" as *;
+
+iframe,
+img,
+svg,
+audio,
+canvas,
+video,
+object,
+embed {
+	vertical-align: middle;
+	max-width: 100%;
+}
+
+figure {
+	margin: 0 0 1.5em 0;
+}
+iframe {
+	margin: 0 auto 1.5em auto;
+	max-width: 100%;
+}
+
+video {
+	display: block;
+}
+
+img,
+svg,
+embed {
+	height: auto;
+	max-width: 100%;
+}

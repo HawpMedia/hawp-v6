@@ -1,0 +1,155 @@
+@use "../dependencies" as *;
+
+.gform_wrapper {
+	&.gravity-theme {
+		.gform_fields {
+			margin: 0;
+		}
+
+		.gfield {
+			position: relative;
+			z-index: 1;
+			list-style: none;
+
+			select {
+				appearance: none;
+				-webkit-appearance: none;
+			}
+		}
+
+		.gfield_label {
+			font-size: 0.9em !important;
+			font-weight: 400 !important;
+		}
+
+		.ginput_container_date {
+			input {
+				width: 100% !important;
+			}
+		}
+
+		.gform_required_legend {
+			display: none !important;
+		}
+
+		.ginput_container_select {
+			position: relative;
+			&:before {
+				border-radius: 0;
+				content: "";
+				position: absolute;
+				left: unset;
+				right: 0;
+				background: transparent;
+				border: none;
+				width: 2em;
+				height: 100%;
+				top: 0;
+				z-index: 1;
+				pointer-events: none;
+				visibility: visible;
+			}
+			&:after {
+				border-radius: 0;
+				font-family: 'Font Awesome 5 Pro';
+				font-size: 1em;
+				content: '\f078';
+				width: 1em;
+				line-height: 1;
+				top: 50%;
+				transform: translateY(-50%);
+				right: 0.6em;
+				display: inline-block;
+				text-align: center;
+				position: absolute;
+				font-weight: 400;
+				z-index: 2;
+				cursor: pointer;
+				pointer-events: none;
+			}
+		}
+
+		.ginput_recaptcha {
+			margin: auto;
+			padding: 1em 0 0;
+			max-width: 304px;
+			overflow: hidden;
+		}
+
+		.gform_footer {
+			margin-top: 1.5em;
+			justify-content: center;
+			text-align: center;
+		}
+
+		/* AJAX loading spinner */
+		.gform_ajax_spinner {
+			margin-left: 1em;
+			border: 4px solid rgba(0, 0, 0, .4);
+			border-left: 4px solid #333;
+			animation: gform_spinner 1.1s infinite linear;
+			border-radius: 50%;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		@keyframes gform_spinner {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		/* START material design */
+		.gfield_material_design {
+			.gfield_label {
+				display: block;
+			}
+			.gfield_float_label {
+				position: absolute;
+				z-index: 2;
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				align-content: center;
+				font-size: 0.9em;
+				left: 0.75em;
+				color: inherit;
+				bottom: 50%;
+				transform: translateY(50%);
+				transition: 0.3s;
+				height: 1.5em;
+				pointer-events: none;
+			}
+			&.gfield_is_set .gfield_float_label {
+				position: absolute;
+				z-index: 2;
+				left: 0;
+				bottom: 100%;
+				transform: none;
+				color: inherit;
+				font-size: 0.6em;
+			}
+			.ginput_container:before {
+				background: #333;
+				bottom: 0;
+				content: '';
+				height: 2px;
+				left: 45%;
+				position: absolute;
+				transition-duration: .2s;
+				transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+				visibility: hidden;
+				width: 0.5em;
+			}
+			.gfield_in_focus.ginput_container:before {
+				left: 0;
+				visibility: visible;
+				width: 100%;
+			}
+			.gfield_in_focus.ginput_container_select:before {
+				left: unset;
+				width: 2em;
+			}
+		}
+		/* END material design */
+	}
+}

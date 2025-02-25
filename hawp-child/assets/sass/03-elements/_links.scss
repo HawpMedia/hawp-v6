@@ -1,0 +1,12 @@
+@use "../dependencies" as *;
+
+a {
+	text-decoration: none;
+	transition: all 300ms ease;
+	color: #77f;
+
+	&:hover,
+	&:focus {
+		color: #33f;
+	}
+}

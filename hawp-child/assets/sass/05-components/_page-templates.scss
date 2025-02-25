@@ -1,0 +1,42 @@
+@use "../dependencies" as *;
+
+/* Template: Default --------------------- */
+.entry-sidebar {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+
+	.entry-content {
+		flex-basis: 0;
+		flex-grow: 1;
+		width: 100%;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+
+		@include bp-min-width('lg') {
+			padding-top: 3rem;
+			padding-bottom: 3rem;
+		}
+	}
+
+	#secondary {
+		position: relative;
+		z-index: 1;
+		padding-top: 0;
+		padding-bottom: 3rem;
+		flex: 0 0 100%;
+
+		@include bp-min-width('lg') {
+			flex: 0 0 30%;
+			max-width: 30%;
+			padding-top: 3rem;
+			padding-left: 1.5rem;
+			margin-left: 1.5rem;
+		}
+
+		@include bp-min-width('xxl') {
+			padding-left: 2rem;
+			margin-left: 2rem;
+		}
+	}
+}

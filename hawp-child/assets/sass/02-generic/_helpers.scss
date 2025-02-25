@@ -1,0 +1,72 @@
+@use "../dependencies" as *;
+
+/* Container ----------------------------- */
+.contain {
+	display: block;
+	position: relative;
+	margin: auto;
+	padding: 0 1.5rem;
+	width: 100%;
+
+	@include bp-min-width('sm') {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+
+	@include bp-min-width('xxl') {
+		padding-left: calc(50% - 30rem);
+		padding-right: calc(50% - 30rem);
+	}
+
+	&--small {
+		@include bp-min-width('xxl') {
+			padding-left: calc(50% - 20rem);
+			padding-right: calc(50% - 20rem);
+		}
+	}
+
+	&--medium {
+		@include bp-min-width('xxl') {
+			padding-left: calc(50% - 24.5rem);
+			padding-right: calc(50% - 24.5rem);
+		}
+	}
+
+	&--large {
+		@include bp-min-width('xxl') {
+			padding-left: 4.5rem;
+			padding-right: 4.5rem;
+		}
+	}
+
+	&--fullwidth {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	&--vpad {
+		padding-top: 5rem;
+		padding-bottom: 4.5rem;
+	}
+
+	&--tpad {
+		padding-top: 5rem;
+		padding-bottom: 1px;
+	}
+
+	&--bpad {
+		padding-top: 1px;
+		padding-bottom: 4.5rem;
+	}
+}
+
+/* Layout -------------------------------- */
+.no-margin,
+.nomargin {
+	margin: 0;
+}
+.no-padding,
+.nopadding,
+.nopad {
+	padding: 0;
+}

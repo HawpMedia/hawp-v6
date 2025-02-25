@@ -1,0 +1,22 @@
+@use "../dependencies" as *;
+
+ul,
+ol {
+	margin: 0 0 1.5em 2.5em;
+}
+li > ul,
+li > ol {
+	margin: 0 0 0 1.5em;
+}
+li {
+	margin: 0 0 0.5em 0;
+}
+dl {
+	margin: 0 0 1.5em 0;
+}
+dd {
+	margin: 0 1.5rem 1.5em;
+}
+dt {
+	font-weight: bold;
+}

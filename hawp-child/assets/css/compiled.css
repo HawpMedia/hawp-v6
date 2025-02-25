@@ -9,6 +9,9 @@ will probably be overwritten.
 What to do? - Add custom css to the child theme
 "style.css" file.
 ------------------------------------------ */
+/* Generic vars */
+/* Custom vars connected to wp preset colors we define in theme.json */
+/* Breakpoints used by mixins */
 /* Categories 01 to 03 are the basics. */
 /*
 @font-face {
@@ -21,7 +24,6 @@ What to do? - Add custom css to the child theme
 	font-display: swap;
 }
 */
-/* Variables ----------------------------- */
 *,
 *:before,
 *:after {

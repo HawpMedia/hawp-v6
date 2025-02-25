@@ -1,0 +1,16 @@
+@use "../dependencies" as *;
+
+/* Tabs ---------------------------------- */
+.tabbed .tab-content {
+	overflow: hidden;
+	display: none;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.tabbed .tab-content.current {
+	display: block;
+	width:100%;
+}
+.tabbed .tab-link {
+	cursor: pointer;
+}

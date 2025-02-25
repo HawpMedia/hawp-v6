@@ -1,0 +1,12 @@
+@use "../dependencies" as *;
+
+#wrapper {
+	margin: auto;
+	max-width: 96rem;
+	background: #fff;
+	width: 100%;
+
+	> * {
+		width: 100%;
+	}
+}

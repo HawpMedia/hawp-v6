@@ -1,52 +1,49 @@
-@import "01-settings/file-header";
+@use "01-base/file-header";
+
+@use "dependencies" as *;
 
 /* Categories 01 to 03 are the basics. */
-@import "01-settings/fonts";
-@import "01-settings/global";
+@use "01-base/fonts";
 
-@import "02-tools/mixins";
-@import "02-tools/functions";
-
-@import "03-generic/normalize";
-@import "03-generic/breakpoints";
-@import "03-generic/reset";
-@import "03-generic/clearings";
-@import "03-generic/helpers";
+@use "02-generic/normalize";
+@use "02-generic/reset";
+@use "02-generic/clearings";
+@use "02-generic/helpers";
 
 /* Category 04 can contain any default HTML element. Do not add classes here, just give the elements some basic styles. */
-@import "04-elements/headings";
-@import "04-elements/misc";
-@import "04-elements/links";
-@import "04-elements/lists";
-@import "04-elements/forms";
-@import "04-elements/quotes";
-@import "04-elements/media";
-@import "04-elements/tables";
+@use "03-elements/headings";
+@use "03-elements/misc";
+@use "03-elements/links";
+@use "03-elements/lists";
+@use "03-elements/forms";
+@use "03-elements/quotes";
+@use "03-elements/media";
+@use "03-elements/tables";
 
 /* Category 05 is all about adjusting the default block styles to the given layout. */
-@import "05-blocks/blocks";
+@use "04-blocks/blocks";
 
 /* Category 06 contains all "bigger" components which contain elements of the previous two categories like header, footer, page template, single template, comments section, archives, ... */
-@import "06-components/header";
-@import "06-components/footer";
-@import "06-components/wrapper";
-@import "06-components/entry";
-@import "06-components/page-templates";
-@import "06-components/pages";
-@import "06-components/post-types";
-@import "06-components/search";
-@import "06-components/comments";
-@import "06-components/nav-desktop";
-@import "06-components/nav-mobile";
-@import "06-components/nav-mobile-burger";
-@import "06-components/pagination";
-@import "06-components/widgets";
-@import "06-components/gravity-forms";
-@import "06-components/nav-social";
-@import "06-components/tabs";
+@use "05-components/header";
+@use "05-components/footer";
+@use "05-components/wrapper";
+@use "05-components/entry";
+@use "05-components/page-templates";
+@use "05-components/pages";
+@use "05-components/post-types";
+@use "05-components/search";
+@use "05-components/comments";
+@use "05-components/nav-desktop";
+@use "05-components/nav-mobile";
+@use "05-components/nav-mobile-burger";
+@use "05-components/pagination";
+@use "05-components/widgets";
+@use "05-components/gravity-forms";
+@use "05-components/nav-social";
+@use "05-components/tabs";
 
 /* Category 07 is for any utility classes that are not assigned to a specific component. */
-@import "07-utilities/a11y";
-@import "07-utilities/color-palette";
-@import "07-utilities/animations";
-@import "07-utilities/print";
+@use "06-utilities/a11y";
+@use "06-utilities/color-palette";
+@use "06-utilities/animations";
+@use "06-utilities/print";

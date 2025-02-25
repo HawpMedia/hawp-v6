@@ -1,0 +1,38 @@
+@use "../dependencies" as *;
+
+.pagination {
+	margin: 2em 0;
+	text-align: center;
+
+	@include bp-min-width('lg') {
+		text-align: left;
+	}
+
+	.page-numbers {
+		display: inline-block;
+		margin: 0.5em 0.2em;
+		border-radius: 0.2em;
+		width: 2em;
+		overflow: hidden;
+		line-height: 2;
+		text-align: center;
+		color: #fff;
+		background: #333;
+
+		svg {
+			vertical-align: top;
+			margin-top: 0.5em;
+			width: 1em;
+			height: 1em;
+		}
+
+		&.current {
+			background: #777;
+		}
+
+		&:hover {
+			color: #fff;
+			background: #555;
+		}
+	}
+}

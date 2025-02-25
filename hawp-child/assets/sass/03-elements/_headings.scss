@@ -1,0 +1,38 @@
+@use "../dependencies" as *;
+
+h1, .h1, .is-style-h1,
+h2, .h2, .is-style-h2,
+h3, .h3, .is-style-h3,
+h4, .h4, .is-style-h4,
+h5, .h5, .is-style-h5,
+h6, .h6, .is-style-h6 {
+	font-family: $heading-font;
+	margin: 0 0 0.5em 0;
+	line-height: normal;
+	font-weight: 700;
+	color: $heading-color;
+}
+
+h1, .h1, .is-style-h1 {
+	font-size: 2em;
+}
+
+h2, .h2, .is-style-h2 {
+	font-size: 1.75em;
+}
+
+h3, .h3, .is-style-h3 {
+	font-size: 1.5em;
+}
+
+h4, .h4, .is-style-h4 {
+	font-size: 1.25em;
+}
+
+h5, .h5, .is-style-h5 {
+	font-size: 1em;
+}
+
+h6, .h6, .is-style-h6 {
+	font-size: 0.75em;
+}

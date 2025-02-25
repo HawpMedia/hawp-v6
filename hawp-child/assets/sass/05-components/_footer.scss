@@ -1,0 +1,74 @@
+@use "../dependencies" as *;
+
+/* Site Info ----------------------------- */
+.site-info {
+	font-size: 0.8rem;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	text-align: center;
+	color: #fff;
+	background-color: #000;
+
+	@include bp-min-width('lg') {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		text-align: left;
+	}
+
+	a {
+		color: #fff;
+
+		&:hover,
+		&:focus {
+			color: #ccc;
+		}
+	}
+
+	.copyright {
+		margin-bottom: 0.75em;
+		@include bp-min-width('lg') {
+			margin-bottom: 0;
+		}
+	}
+
+	.menu {
+		list-style: none;
+		margin: 0;
+
+		@include bp-min-width('lg') {
+			display: flex;
+			justify-content: space-between;
+
+			li {
+				position: relative;
+
+				@include bp-min-width('lg') {
+					padding: 0 0.5rem 0 0;
+					margin: 0 0.5rem 0 0;
+
+					&:after {
+						position: absolute;
+						display: block;
+						content: '';
+						right: 0;
+						width: 1px;
+						height: 1em;
+						top: 50%;
+						transform: translateY(-50%);
+						background-color: #fff;
+					}
+
+					&:last-child {
+						padding-right: 0;
+						margin-right: 0;
+
+						&:after {
+							display:none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

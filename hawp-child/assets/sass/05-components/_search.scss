@@ -1,0 +1,27 @@
+@use "../dependencies" as *;
+
+.search-form {
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	flex-wrap: nowrap;
+
+	.search-field {
+		-webkit-appearance: none;
+		border-radius: 0.25em 0 0 0.25em;
+	}
+
+	.search-submit {
+		color: #fff;
+		padding: 0.3em 1.5em;
+		border: 1px solid transparent;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+		border-radius: 0 0.25em 0.25em 0;
+
+		&:hover {
+			background: #333;
+			color: #fff;
+		}
+	}
+}

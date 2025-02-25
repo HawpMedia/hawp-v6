@@ -1,0 +1,46 @@
+@use "../dependencies" as *;
+
+.social-navigation {
+	ul {
+		list-style: none;
+		margin: 0;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+
+		li {
+			display: inline-block;
+			margin-left: 0.5em;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			a {
+				i,
+				span {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					font-size: 1.25em;
+					padding: .5em;
+					margin: 0;
+					border-radius: 50%;
+					width: 2em;
+					height: 2em;
+					background: #222;
+					color: #fff;
+					transition: 0.3s;
+				}
+
+				&:hover {
+					i,
+					span {
+						background: #444;
+					}
+				}
+			}
+		}
+	}
+}

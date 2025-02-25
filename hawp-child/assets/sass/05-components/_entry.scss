@@ -1,0 +1,54 @@
+@use "../dependencies" as *;
+
+/* Entry Meta ---------------------------- */
+.entry-meta,
+.entry-by {
+	display: none;
+}
+.single-post .entry-meta {
+	display: block;
+}
+
+/* Alignment Classes --------------------- */
+.alignleft,
+.alignright,
+.aligncenter,
+.wp-post-image {
+	display: block;
+	clear: both;
+	margin: 0 auto 1.5em auto;
+	text-align: center;
+}
+.has-text-align-center {
+	text-align: center;
+}
+@include bp-min-width('xs') {
+	.alignleft {
+		clear: none;
+		float: left;
+		margin: 0 2rem 2em 0;
+		max-width: 48%;
+	}
+	.alignright {
+		clear: none;
+		float: right;
+		margin: 0 0 2em 2rem;
+		max-width: 48%;
+	}
+}
+
+/* Captions ------------------------------ */
+.wp-caption {
+	margin: 0 0 1.5em 0;
+	max-width: 100%;
+	img[class*="wp-image-"] {
+		display: block;
+		margin: 0 auto;
+	}
+	.wp-caption-text {
+		margin: 0.75em 0;
+	}
+}
+.wp-caption-text {
+	text-align: center;
+}

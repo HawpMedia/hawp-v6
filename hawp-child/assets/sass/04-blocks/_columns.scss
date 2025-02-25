@@ -1,0 +1,27 @@
+@use "../dependencies" as *;
+
+.wp-block-columns {
+	gap: 1.5rem !important;
+	margin-bottom: 1rem;
+
+	@include bp-min-width('lg') {
+		gap: 2rem !important;
+	}
+
+	&.is-style-gap-large {
+		gap: 2rem !important;
+
+		@include bp-min-width('lg') {
+			gap: 3.25rem !important;
+		}
+	}
+
+	.wp-block-column {
+
+		.has-text-align-right {
+			@media (max-width: 781px) {
+				text-align: left;
+			}
+		}
+	}
+}
