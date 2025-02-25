@@ -8,15 +8,19 @@
 /**
  * Get theme option prefix.
  */
-function get_theme_option_prefix() {
-	return hawp_theme()::$theme['option_prefix'];
+if (!function_exists('get_theme_option_prefix')) {
+	function get_theme_option_prefix() {
+		return hawp_theme()::$theme['option_prefix'];
+	}
 }
 
 /**
  * Get acf theme option.
  */
-function get_theme_option($acf_option) {
-	return get_option('options_'.get_theme_option_prefix().$acf_option, true);
+if (!function_exists('get_theme_option')) {
+	function get_theme_option($acf_option) {
+		return get_option('options_'.get_theme_option_prefix().$acf_option, true);
+	}
 }
 
 /**
