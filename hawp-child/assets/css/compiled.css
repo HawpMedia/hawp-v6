@@ -799,7 +799,7 @@ input[type=submit]:focus {
     position: relative;
     text-align: center;
     background: transparent;
-    /* Toggle submenus */
+    /* Toggle submenus - overrides the default ul ul styles */
   }
   #primary-menu,
   #primary-menu ul {
@@ -831,6 +831,8 @@ input[type=submit]:focus {
   }
   #primary-menu ul {
     background: #fff;
+    /* START Default nested sub-menu. */
+    /* END Default nested sub-menu. */
   }
   #primary-menu ul a {
     padding: 0.5em 1.2rem;
@@ -838,6 +840,64 @@ input[type=submit]:focus {
   }
   #primary-menu ul a:hover {
     background: #e5e5e5;
+  }
+  #primary-menu ul ul {
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 500ms, opacity 300ms;
+    position: absolute;
+    left: calc(100% + 1rem);
+    top: 0;
+    padding: 0;
+    width: 13rem;
+    max-height: 26rem;
+    box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
+    background: #fff;
+  }
+  #primary-menu ul ul:before {
+    content: "";
+    position: absolute;
+    right: calc(100% - 0.6rem);
+    bottom: calc(100% - 1.6rem);
+    display: inline-block;
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+    transition: all 200ms;
+    box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
+    border: none;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+  #primary-menu ul .menu-item-has-children.js-on > ul {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #primary-menu ul .menu-item-has-children > a:after {
+    content: "";
+    position: absolute;
+    right: 1.5em;
+    vertical-align: top;
+    margin: 0.55em 0 0 0.5em;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0.3em 0.25em 0 0.25em;
+    transition: all 200ms;
+    border-top-color: #9b9b9b;
+  }
+  #primary-menu li {
+    display: block;
+    position: relative;
+    z-index: 4;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  #primary-menu li li {
+    background: #fff;
   }
   #primary-menu > li {
     flex: 1 0 auto;
@@ -859,7 +919,6 @@ input[type=submit]:focus {
     margin-left: -6.5rem;
     padding: 0.5rem 0;
     width: 13rem;
-    max-height: 25rem;
     box-shadow: 0.05rem 0.05rem 0.25rem rgba(0, 0, 0, 0.2);
     opacity: 0;
     transform: scale(0.9);
@@ -899,6 +958,18 @@ input[type=submit]:focus {
     transition: transform 500ms, opacity 300ms;
     pointer-events: auto;
   }
+  #primary-menu > li.mega-menu ul ul, #primary-menu > li.menu-mega ul ul {
+    position: relative;
+    opacity: 1;
+    left: auto;
+    top: auto;
+    box-shadow: none;
+    width: auto;
+    pointer-events: auto;
+  }
+  #primary-menu > li.mega-menu ul ul:before, #primary-menu > li.menu-mega ul ul:before {
+    display: none;
+  }
   #primary-menu > li.mega-menu > ul, #primary-menu > li.menu-mega > ul {
     display: flex;
     flex-flow: row wrap;
@@ -914,6 +985,9 @@ input[type=submit]:focus {
     color: #333;
     background: none;
     cursor: default;
+  }
+  #primary-menu > li.mega-menu > ul > li > a:after, #primary-menu > li.menu-mega > ul > li > a:after {
+    display: none;
   }
   #primary-menu > li.mega-menu > ul > li.menu-span-2, #primary-menu > li.menu-mega > ul > li.menu-span-2 {
     flex: 2 1 0;
@@ -946,23 +1020,11 @@ input[type=submit]:focus {
     margin: 0;
     width: auto;
   }
-  #primary-menu .menu-toggle > a:after {
-    content: "";
-    display: inline-block;
-    vertical-align: top;
-    margin: 0.55em 0 0 0.5em;
-    border-style: solid;
-    border-color: transparent;
-    border-top-color: #595959;
-    border-width: 0.3em 0.25em 0 0.25em;
-    transition: all 200ms;
-    position: absolute;
-    left: calc(100% - 1.5rem);
-  }
   #primary-menu .menu-toggle li {
     overflow: hidden;
     max-height: 0;
     transition: max-height 500ms;
+    background: transparent;
   }
   #primary-menu .menu-toggle ul {
     pointer-events: none;
@@ -973,6 +1035,10 @@ input[type=submit]:focus {
     width: 100%;
     background: #f2f2f2;
     z-index: 5;
+    box-shadow: none;
+  }
+  #primary-menu .menu-toggle ul:before {
+    display: none;
   }
   #primary-menu .menu-toggle ul a {
     font-size: 0.8em;
