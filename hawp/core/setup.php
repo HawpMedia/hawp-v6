@@ -226,10 +226,20 @@ class Hawp_Theme_Setup {
 	}
 
 	public function add_featured_image_body_class($classes) {
-		global $post;
+		// 1) Handle singular posts/pages
+		if ( is_singular() ) {
+			global $post;
+			if ( isset( $post->ID ) && has_post_thumbnail( $post->ID ) ) {
+				$classes[] = 'has-featured-image';
+			}
+		}
 
-		if (isset ($post->ID) && get_the_post_thumbnail($post->ID)) {
-			$classes[] = 'has-featured-image';
+		// 2) Handle the designated blog page (the "Posts Page")
+		elseif ( is_home() ) {
+			$page_for_posts = get_option( 'page_for_posts' );
+			if ( $page_for_posts && has_post_thumbnail( $page_for_posts ) ) {
+				$classes[] = 'has-featured-image';
+			}
 		}
 
 		return $classes;
