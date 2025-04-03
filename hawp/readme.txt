@@ -12,14 +12,31 @@ Hawp Theme is Hawp Media's boilerplate starter theme for all custom websites
 
 == Changelog ==
 
+= 6.5.9 =
+* Released: April 3, 2025
+
+* New - Added dynamic localization of ACF theme options to the child theme JavaScript file so we can get our theme option values in the child javascript file.
+
 = 6.5.8 =
 * Released: April 3, 2025
+
+* New - Added widget_area shortcode that can return a widget area by its ID.
+* Enhancement - Disable sticky header scripts, sometimes we don't need these.
+* Enhancement - Combine primary nav styles into one file.
+* Enhancement - Improve desktop nav submenu styles.
+* Fix - Adjust the function adding has-featured-image body class so it works properly with the posts page.
 
 = 6.5.7 =
 * Released: February 25, 2025
 
+* Enhancement - Refactor sass so that we no longer use @import since it will be deprecated in Dart Sass 3.0. Removed 01-settings and 02-tools and replaced with 01-base and renamed sass directories accordingly.
+* Enhancement - Add a function_exists check to get_theme_option and get_theme_option_prefix.
+
 = 6.5.6 =
 * Released: February 11, 2025
+
+* Enhancement - Update Freemius SDK to 2.11.0
+* Enhancement - Adjust a few default styles for search forms and gravity forms.
 
 = 6.5.5 =
 * Released: December 16, 2024
