@@ -194,11 +194,11 @@ class Hawp_Theme_Setup {
 		// Array of keys to exclude (after prefix removal)
 		$exclude_keys = array('head_code', 'body_code', 'footer_code', 'svgs');
 
-		if ($all_options) {
-			foreach ($all_options as $key => $value) {
-				// Check if the key starts with our dynamic prefix.
-				if (strpos($key, $prefix) === 0) {
-					// Remove the prefix for cleaner JS keys
+		if ( !empty($all_options) ) {
+			foreach ( $all_options as $key => $value ) {
+				// Only process fields with your dynamic prefix.
+				if ( strpos($key, $prefix) === 0 ) {
+					// Optionally remove the prefix from the key for a cleaner JS object.
 					$option_key = str_replace($prefix, '', $key);
 
 					// Skip any keys that are in the exclude list.
@@ -206,8 +206,12 @@ class Hawp_Theme_Setup {
 						continue;
 					}
 
-					// Add the option value to our theme data.
-					$theme_data[$option_key] = $value;
+					// Check if the value is numeric and corresponds to a valid post.
+					if ( is_numeric($value) && get_post($value) ) {
+						$theme_data[$option_key] = get_permalink($value);
+					} else {
+						$theme_data[$option_key] = $value;
+					}
 				}
 			}
 		}
