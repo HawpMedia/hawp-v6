@@ -266,14 +266,14 @@ jQuery(function($) {
 		//hawp.targetBlankWarning();
 		hawp.animateContent();
 		//hawp.owlAnimations();
-		hawp.stickyHeader();
-		hawp.headerAnimationDown();
+		//hawp.stickyHeader();
+		//hawp.headerAnimationDown();
 	});
 
 	// Place items in here to have them run when the window is scrolled
 	$(window).scroll(function() {
 		hawp.animateContent();
-		hawp.headerAnimationDown();
+		//hawp.headerAnimationDown();
 	});
 
 });

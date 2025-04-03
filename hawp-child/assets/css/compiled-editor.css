@@ -932,10 +932,10 @@ What to do? - Add custom css to the child theme
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  grid-gap: 0.45rem;
 }
 .social-navigation ul li {
   display: inline-block;
-  margin-left: 0.5em;
 }
 .social-navigation ul li:first-child {
   margin-left: 0;
@@ -946,7 +946,7 @@ What to do? - Add custom css to the child theme
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 1.25em;
+  font-size: 0.9rem;
   padding: 0.5em;
   margin: 0;
   border-radius: 50%;
