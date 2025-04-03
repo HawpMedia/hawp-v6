@@ -23,9 +23,8 @@ class Hawp_Theme_Shortcodes {
 		add_shortcode('content_cta', [$this, 'shortcode_content_cta']);
 		add_shortcode('sitemap', [$this, 'shortcode_sitemap']);
 		add_shortcode('menu', [$this, 'shortcode_menu']);
+		add_shortcode('widget_area', [$this, 'shortcode_widget_area']);
 		add_shortcode('year', [$this, 'shortcode_year']);
-		add_shortcode('custom_loop', [$this, 'shortcode_custom_loop']);
-		add_filter('the_content', [$this, 'do_custom_loop'], 2);
 	}
 
 	/**
@@ -259,6 +258,27 @@ class Hawp_Theme_Shortcodes {
 	}
 
 	/**
+	 * Shortcode: [widget_area].
+	 */
+	public function shortcode_widget_area($atts) {
+		$atts = shortcode_atts([
+			'id' => '',
+		], $atts);
+
+		// Start buffering
+		ob_start();
+
+		if (is_active_sidebar($atts['id'])) {
+			echo '<aside id="'. esc_attr($atts['id']) .'-widget-area" class="'. esc_attr($atts['id']) .'-widget-area widget-area">';
+			dynamic_sidebar($atts['id']);
+			echo '</aside>';
+		}
+
+		// Get buffer contents and end buffering
+		return ob_get_clean();
+	}
+
+	/**
 	 * Shortcode: [year].
 	 */
 	public function shortcode_year($atts) {
@@ -274,103 +294,6 @@ class Hawp_Theme_Shortcodes {
 
 		return $result;
 	}
-
-	/**
-	 * Shortcode: [custom_loop].
-	 */
-	public function shortcode_custom_loop($atts, $content) {
-		$atts = shortcode_atts([
-			'type'     => 'post',
-			'id'       => '',
-			'cat_type' => 'category_name',
-			'cat'      => '',
-			'meta_key' => '',
-			'include'  => '',
-			'exclude'  => '',
-			'num'      => '-1',
-			'orderby'  => 'date title',
-			'order'    => 'DESC',
-			'status'   => 'publish',
-			'size'     => 'medium',
-		], $atts);
-
-		$atts['include'] = !empty($atts['include']) ? array_map('trim',explode(',', $atts['include'])) : $atts['id'];
-		$atts['exclude'] = !empty($atts['exclude']) ? array_map('trim',explode(',', $atts['exclude'])) : '';
-
-		$args = [
-			'post_type'        => $atts['type'],
-			$atts['cat_type']  => $atts['cat'],
-			'meta_key'         => $atts['meta_key'],
-			'posts_per_page'   => $atts['num'],
-			'include'          => $atts['include'],
-			'exclude'          => $atts['exclude'],
-			'orderby'          => $atts['orderby'],
-			'order'            => $atts['order'],
-			'post_status'      => $atts['status'],
-		];
-
-		$posts = get_posts($args);
-
-		$result = '';
-		$counter = 0;
-		foreach ($posts as $post) {
-			$counter++;
-			$vals['ID'] = $post->ID;
-			$vals['post_author'] = $post->post_author;
-			$vals['post_title'] = $post->post_title;
-			$vals['post_content'] = apply_filters('the_content', $post->post_content);
-			$vals['post_excerpt'] = apply_filters('the_excerpt', $post->post_excerpt);
-			$vals['post_excerpt_content'] = apply_filters('the_excerpt', $post->post_excerpt) ?: wp_trim_words($post->post_content);
-			$vals['post_date'] = get_the_date('', $post->ID);
-			$vals['permalink'] = get_the_permalink($post->ID);
-			$vals['thumbnail'] = get_the_post_thumbnail($post->ID, $atts['size']);
-			$vals['thumbnail_url'] = get_the_post_thumbnail_url($post->ID, $atts['size']);
-			$item = $content;
-			$item = str_ireplace('{counter}', $counter, $item);
-			preg_match_all('/\{([A-Z][A-Z0-9_-]*)([^}]*)\}(.*?)\{\/\1\}/is',$item,$matches);
-			for ($i=0;$i<=count($matches[0]);$i++) {
-				if (array_key_exists($matches[1][$i],$vals)) {
-					$val = $vals[$matches[1][$i]];
-				} else {
-					$val = get_post_meta($post->ID, $matches[1][$i], true);
-				}
-				if ($val) {
-					$item = str_ireplace($matches[0][$i], $matches[3][$i], $item);
-				} else {
-					$item = str_ireplace($matches[0][$i], '', $item);
-				}
-			}
-			preg_match_all('/\{([A-Z][A-Z0-9_-]*)([^}]*)\}/is',$item,$matches);
-			for ($i=0;$i<count($matches[0]);$i++) {
-				if (array_key_exists($matches[1][$i],$vals)) {
-					$val = $vals[$matches[1][$i]];
-				} else {
-					$val = get_post_meta($post->ID, $matches[1][$i], true);
-				}
-				$item = str_ireplace($matches[0][$i], $val, $item);
-			}
-			$result.= $item;
-		}
-		return $result;
-	}
-
-	/**
-	 * Search content for custom_loop and filter it through hooks.
-	 */
-	public function do_custom_loop($content='') {
-		preg_match_all('/\[custom_loop([^\]]*)\](.*?)\[\/custom_loop\]/is', $content, $matches);
-		for ($i=0;$i<count($matches[0]);$i++) {
-			$content = str_replace($matches[0][$i], do_shortcode($matches[0][$i]), $content);
-		}
-		return $content;
-	}
-}
-
-/**
- * Custom loop function.
- */
-function do_custom_loop($content) {
-	return do_shortcode(hawp_theme_shortcodes()->do_custom_loop($content));
 }
 
 /**
