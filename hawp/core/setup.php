@@ -186,6 +186,36 @@ class Hawp_Theme_Setup {
 			$js_deps[] = 'hm-child-script-old';
 		}
 
+		// Localize theme options to hm-child-script
+		$prefix = hawp_theme()::$theme['option_prefix']; // Get our theme option prefix
+		$all_options = get_fields('option'); // Get all ACF fields from the options page.
+		$theme_data  = array();
+
+		// Array of keys to exclude (after prefix removal)
+		$exclude_keys = array('head_code', 'body_code', 'footer_code', 'svgs');
+
+		if ($all_options) {
+			foreach ($all_options as $key => $value) {
+				// Check if the key starts with our dynamic prefix.
+				if (strpos($key, $prefix) === 0) {
+					// Remove the prefix for cleaner JS keys
+					$option_key = str_replace($prefix, '', $key);
+
+					// Skip any keys that are in the exclude list.
+					if (in_array($option_key, $exclude_keys)) {
+						continue;
+					}
+
+					// Add the option value to our theme data.
+					$theme_data[$option_key] = $value;
+				}
+			}
+		}
+
+		// Pass the filtered theme options to the child script.
+		wp_localize_script('hm-child-script', 'theme_options', $theme_data);
+
+		// Child theme google fonts
 		$css_deps = [];
 		$google_fonts = get_theme_option('google_fonts');
 		if ($google_fonts) {
