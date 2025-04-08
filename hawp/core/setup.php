@@ -34,8 +34,6 @@ class Hawp_Theme_Setup {
 		add_filter('get_the_archive_title', [$this, 'remove_archive_title']);
 		add_action('pre_get_posts', [$this, 'num_posts_per_page']);
 		add_filter('excerpt_length', [$this, 'adjust_excerpt_length']);
-		add_filter('gform_ajax_spinner_url', [$this, 'gform_ajax_spinner_url'], 10, 2);
-		add_filter('gform_submit_button', [$this, 'gform_submit_button'], 10, 5);
 		add_filter('gform_tabindex', '__return_false');
 		remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 		remove_action('wp_body_open', 'gutenberg_global_styles_render_svg_filters');
@@ -399,23 +397,6 @@ class Hawp_Theme_Setup {
 		$initArray['valid_elements'] = $opts;
 		$initArray['extended_valid_elements'] = $opts;
 		return $initArray;
-	}
-
-	/**
-	 * Change gravity forms submit to button.
-	 */
-	public function gform_submit_button($button, $form) {
-		$button = str_replace("input", "button", $button);
-		$button = str_replace("/", "", $button);
-		$button .= "{$form['button']['text']}</button>";
-		return $button;
-	}
-
-	/**
-	 * Replaces the default gravity form spinner image with a blank pixel, so you can style it with css
-	 */
-	public function gform_ajax_spinner_url($image_src, $form) {
-		return 'data:images/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 	}
 
 }
