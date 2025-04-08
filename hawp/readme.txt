@@ -12,6 +12,11 @@ Hawp Theme is Hawp Media's boilerplate starter theme for all custom websites
 
 == Changelog ==
 
+= 6.5.10 =
+* Released: April 8, 2025
+
+* Fix - Remove gravity forms spinner and input to button replacer, it was causing issues and often times users would submit forms multiple times.
+
 = 6.5.9 =
 * Released: April 3, 2025
 
