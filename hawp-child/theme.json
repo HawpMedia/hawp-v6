@@ -45,7 +45,7 @@
 			"defaultSpacingSizes": false,
 			"margin": true,
 			"padding": true,
-			"units": [ "rem", "em", "vh", "vw", "px" ]
+			"units": [ "rem", "em", "vh", "vw", "px", "%" ]
 		},
 		"layout": {
 			"contentSize": "1200px",
