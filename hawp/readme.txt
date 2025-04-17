@@ -12,6 +12,13 @@ Hawp Theme is Hawp Media's boilerplate starter theme for all custom websites
 
 == Changelog ==
 
+= 6.5.11 =
+* Released: April 17, 2025
+
+* New - Added whitelabel functionality for the admin area. This allows devs to remove hawp media related branding in the wp-admin.
+* Fix - Fix issue causing RankMath conflicts with admin script loading, removed hawp theme admin scripts since we dont need them.
+* Fix - There was an scss issue with map-has-key no longer working in Dart SASS 3.0.0, so we changed it to map.has-key. 
+
 = 6.5.10 =
 * Released: April 8, 2025
 
