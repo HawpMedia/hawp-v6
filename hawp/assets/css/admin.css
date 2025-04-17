@@ -51,12 +51,6 @@ color: #fff;
 #adminmenu .update-plugins, .yoast-issue-counter {
 background: #e31a1a;
 }
-#footer-left svg {
-	max-width: 50px;
-	position: absolute;
-	right: 27px;
-	top: -36px;
-}
 #wpadminbar .dev-site-notice {
 	background-color: #e31a1a;
 	color: #FFFFFF;

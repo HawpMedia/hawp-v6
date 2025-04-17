@@ -62,3 +62,21 @@ add_action('after_setup_theme', function() {
 // 	);
 // 	return $categories;
 // });
+
+function hm_child_theme_whitelabel($whitelabel) {
+	// Change the brand name and URL
+	$whitelabel['brand_name'] = 'My Company';
+	$whitelabel['brand_url'] = 'https://mycompany.com';
+	
+	// Change the admin footer text
+	$whitelabel['admin_footer_text'] = 'Developed by';
+	
+	// Or use an image instead of SVG
+	// $whitelabel['admin_footer_logo'] = '<img src="' . get_stylesheet_directory_uri() . '/assets/images/logo.png" style="width: 50px; height: 50px;">';
+	
+	// Or remove the logo completely
+	$whitelabel['admin_footer_logo'] = '';
+	
+	return $whitelabel;
+}
+//add_filter('hawp_whitelabel_settings', 'hm_child_theme_whitelabel');

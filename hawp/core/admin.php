@@ -30,8 +30,6 @@ class Hawp_Theme_Admin {
 	 * Add admin styles and scripts.
 	 */
 	public function admin_enqueue_scripts() {
-		wp_register_script('hm_admin_script', HM_URL.'/assets/js/admin.js', ['jquery']);
-		wp_enqueue_script('hm_admin_script');
 		wp_register_style('hm_admin_fontawesome_5', HM_URL.'/assets/lib/fontawesome/5.15.4/css/all.min.css');
 		wp_enqueue_style('hm_admin_fontawesome_5');
 		wp_register_style('hm_admin_fontawesome_6', HM_URL.'/assets/lib/fontawesome/6.5.1/css/all.min.css');
@@ -49,7 +47,11 @@ class Hawp_Theme_Admin {
 			wp_enqueue_style('hm_admin_options_style');
 		}
 
-		wp_enqueue_code_editor(['type'=>'application/x-httpd-php']);
+		// Load admin options style only on theme options page
+		if (strpos($_SERVER['REQUEST_URI'], 'theme-options')) {
+			wp_register_style('hm_admin_options_style', HM_URL.'/assets/css/admin-options.css', [], filemtime(HM_PATH.'/assets/css/admin-options.css'));
+			wp_enqueue_style('hm_admin_options_style');
+		}
 	}
 
 	/**
@@ -88,7 +90,7 @@ class Hawp_Theme_Admin {
 			$wp_admin_bar->add_node(array(
 				'parent'=> 'dev-site-notice',
 				'id'    => 'dev-site-notice-text',
-				'title' => 'This website is in development by Hawp Media',
+				'title' => sprintf('This website is in development by %s', Hawp_Theme::$whitelabel['brand_name']),
 				'meta'  => array('class' => 'dev-site-notice-item'),
 				'position' => -99999,
 			));
@@ -104,8 +106,8 @@ class Hawp_Theme_Admin {
 
 			$wp_admin_bar->add_menu(array(
 				'id' => 'contact_hawp',
-				'title' => __('Need help? Contact Hawp Media'),
-				'href' => 'https://hawpmedia.com/',
+				'title' => sprintf(__('Need help? Contact %s'), Hawp_Theme::$whitelabel['brand_name']),
+				'href' => Hawp_Theme::$whitelabel['brand_url'],
 				'meta' 	=> array('target' => '_blank')
 			));
 		}
@@ -115,7 +117,13 @@ class Hawp_Theme_Admin {
 	 * Change admin footer text
 	 */
 	public function change_admin_footer() {
-		echo '<span id="hm-footer-note">This website was developed by <a href="https://hawpmedia.com/" target="_blank">Hawp Media</a>.</span><svg style="max-width: 50px; position: absolute; right: 27px; top: -36px;" viewBox="0 0 50 43.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m0 0h50v43.5h-50z"/></clipPath><g clip-path="url(#a)" fill="#48bdee"><path d="m35.8 20.09c6.45.74 3.61 4.89-1.78 6.66 3.57-5.3.77-3.93-7.05-6.21 13.25-4.4 13.2-9.92 12.5-14.12-1.24-2.44-3.2-4.43-1.79-6.43.97.5 2.66 2.17 3.12 3.02 2.83.45 4.69 3.11 9.17 5.41.07.24-.1 1.4-1.25 1.86-1.48.59-3.21-.51-4.83 1.12-1.05 1.06-1.24 3.08-2.19 4.36-1.54 2.13-3.97 3.45-5.91 4.32z"/><path d="m36.84 9.38c0 .57-.91 5.01-7.13 7-2.65.72-5.41.69-8.63-.6 8.12 8.68-.13 11.51-2.81 17.5-.66 1.79.86 5.04.88 6.74-.06 1.81-1.44 3.3-3.24 3.49.07-.54.52-3.26.32-4.33-.23-1.21-1.38-2.99-1.61-4.62-.4-2.9 2.79-6.01 3.24-8.17.17-.79-.36-1.8-1.11-3.02-.79-1.27-1.92-2.32-2.04-2.28-.59.31-1.5 2.31-1.81 3.17-1.02 2.79-2.68 8.68-4.57 10.97-1.38 1.67-4.87 3.33-8.31 2.34 3.09 0 6.05-2.33 6.84-4.17 1.99-4.69.94-12.6 6.58-19.31 6.5-6.99 13.05-3.86 18.6-3.67 2.82.09 4.77-1 4.82-1.03z"/></g></svg>';
+		printf(
+			'<span id="hm-footer-note">%s <a href="%s" target="_blank">%s</a>.<span style="width: 50px; height: 50px; position: absolute; right: 27px; top: -36px;">%s</span>',
+			Hawp_Theme::$whitelabel['admin_footer_text'],
+			Hawp_Theme::$whitelabel['brand_url'],
+			Hawp_Theme::$whitelabel['brand_name'],
+			Hawp_Theme::$whitelabel['admin_footer_logo']
+		);
 	}
 
 	/**
