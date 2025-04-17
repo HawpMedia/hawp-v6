@@ -21,7 +21,7 @@
 
 // min-width and max-width
 @mixin bp-min-width-max-width($min_width, $max_width) {
-	@if map.has-key($breakpoints, $min_width) and map-has-key($breakpoints, $max_width) {
+	@if map.has-key($breakpoints, $min_width) and map.has-key($breakpoints, $max_width) {
 		@media only screen and (min-width: map.get($breakpoints, $min_width)) and (max-width: map.get($breakpoints, $max_width)) {
 			@content;
 		}
@@ -30,7 +30,7 @@
 
 // min-width and min-height
 @mixin bp-min-width-min-height($min_width, $min_height) {
-	@if map.has-key($breakpoints, $min_width) and map-has-key($breakpoints, $min_height) {
+	@if map.has-key($breakpoints, $min_width) and map.has-key($breakpoints, $min_height) {
 		@media only screen and (min-width: map.get($breakpoints, $min_width)) and (min-height: map.get($breakpoints, $min_height)) {
 			@content;
 		}

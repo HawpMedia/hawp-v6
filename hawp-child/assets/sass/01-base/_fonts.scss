@@ -1,11 +1,12 @@
-// Do we need to serve a font? Add the @font-face styles here.
+@use "../dependencies" as *;
+
 /*
 @font-face {
-	font-family: 'Muli';
-	src: local('Muli Regular'), local('Muli-Regular'),
-		url('../fonts/Muli-Regular.woff2') format('woff2'),
-		url('../fonts/Muli-Regular.woff') format('woff');
-	font-weight: normal;
+	font-family: 'Fira Sans Condensed';
+	src: local('Fira Sans Condensed Medium'), local('FiraSansCondensed-Medium'),
+		hmc_url('/assets/fonts/FiraSansCondensed-Medium.woff2') format('woff2'),
+		hmc_url('/assets/fonts/FiraSansCondensed-Medium.woff') format('woff');
+	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
