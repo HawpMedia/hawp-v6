@@ -702,7 +702,7 @@ class Hawp_Theme_Options {
                 </div>
                 <div class="hm-nav-upgrade-wrap">
                     <a href="https://hawpmedia.com/?utm_source=hm_theme&amp;utm_medium=referral&amp;utm_content=hm_theme_topbar_logo" target="_blank" class="hm-nav-hawp-logo">
-                        <img src="http://hawpv6.local/wp-content/plugins/advanced-custom-fields-pro/assets/images/wp-engine-horizontal-white.svg" alt="Hawp Media logo">
+                        <?php echo Hawp_Theme::$whitelabel['brand_name']; ?>
                     </a>
                 </div>
             </div>
