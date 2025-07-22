@@ -12,6 +12,11 @@ Hawp Theme is Hawp Media's boilerplate starter theme for all custom websites
 
 == Changelog ==
 
+= 7.0.0‑beta.2 =
+* Released: Jul 22, 2025
+
+* Fixed - Replaced logo on the top right with Hawp Media whitelabel brand name for now. 
+
 = 7.0.0‑beta.1 =
 * Released: Jul 22, 2025
 
