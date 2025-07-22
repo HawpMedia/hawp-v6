@@ -25,12 +25,9 @@ if ( ! function_exists( 'hawp_freemius' ) ) {
 				'has_paid_plans'      => true,
 				'is_org_compliant'    => false,
 				'menu'                => array(
-					'slug'           => 'theme-options',
-					'first-path'     => 'themes.php?page=theme-options',
+					'slug'           => 'hm-theme-options',
+					'first-path'     => 'admin.php?page=hm-theme-options',
 					'support'        => false,
-					'parent'         => array(
-						'slug' => 'themes.php',
-					),
 				),
 			) );
 		}

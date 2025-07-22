@@ -17,6 +17,8 @@
 :root {
 	--options-theme-color: #006ba1;
 	--options-theme-color2: #007cba;
+
+	--hm-admin-header-color: #00405E;
 }
 
 /*--------------------------------------------------------------
@@ -372,4 +374,436 @@ code {
 
 #submitdiv #publishing-action {
 	width: 100%;
+}
+
+
+
+
+
+
+
+
+.hawp-image-controls {
+    margin-bottom: 10px;
+}
+.hawp-image-controls .button {
+    margin-right: 10px;
+}
+.hawp-image-controls .button:last-child {
+    margin-right: 0;
+}
+.hawp-image-preview {
+    margin: 10px 0;
+}
+
+.hawp-image-preview img {
+	width: 100%;
+    height: auto;
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.form-table th {
+    width: 200px;
+}
+
+.form-table td {
+    padding: 20px 10px;
+}
+
+.form-table td p.description {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+.form-table input[type="number"],
+.form-table input[type="url"],
+.form-table textarea {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-table textarea.large-text {
+    min-height: 100px;
+}
+
+.form-table input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.form-table pre {
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 5px 0;
+}
+
+.form-table code {
+    background: #f5f5f5;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+
+#wpcontent .hm-admin-toolbar {
+    box-sizing: border-box;
+    margin-left: -20px;
+    padding-top: 16px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+}
+
+.hm-settings-wrap {
+	margin-top: 48px;
+    margin-right: 32px;
+    margin-bottom: 0;
+    margin-left: 12px;
+}
+
+.hm-settings-wrap h1 {
+    display: none !important;
+}
+
+.hm-settings-wrap .button.button-large {
+	max-width: none;
+	width: auto;
+}
+
+.hm-admin-toolbar {
+    position: unset;
+    top: 32px;
+    height: 72px;
+    z-index: 800;
+    background: var(--hm-admin-header-color);
+    color: #98a2b3;
+}
+
+.hm-admin-toolbar .hm-admin-toolbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.hm-admin-toolbar .hm-admin-toolbar-inner .hm-nav-wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* padding-left: 72px; */
+}
+
+.hm-admin-toolbar .hm-nav-tab {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 40px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    color: #98a2b3;
+    text-decoration: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.hm-admin-toolbar .hm-nav-tab:hover,
+.hm-admin-toolbar .hm-nav-tab.active {
+    background-color: #09577c;
+    color: #f9fafb;
+}
+
+.hm-admin-toolbar .hm-more ul {
+    display: none;
+    position: absolute;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 1051;
+    overflow: hidden;
+    min-width: 280px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .04), 0px 8px 23px rgba(0, 0, 0, .12);
+}
+.hm-admin-toolbar .hm-more ul li {
+    margin: 0;
+    padding: 0 16px;
+}
+.hm-admin-toolbar .hm-more ul li a {
+    margin: 0;
+    padding: 0;
+    color: #1d2939;
+    border-radius: 0;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #f2f4f7;
+}
+.hm-admin-toolbar .hm-more ul li:first-child a {
+    border-bottom: none;
+}
+.hm-admin-toolbar .hm-more ul li a:hover,
+.hm-admin-toolbar .hm-more ul li a.hm-nav-tab.active {
+    background-color: unset;
+    color: #0783be;
+}
+.hm-admin-toolbar .hm-more:hover ul,
+.hm-admin-toolbar .hm-more:focus ul {
+    display: block;
+}
+.hm-admin-toolbar .hm-more ul .hm-hawp-media {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    border-top: 1px solid rgba(0, 0, 0, .08);
+    background: #ecfbfc;
+}
+
+
+.hm-admin-toolbar .hm-logo {
+    display: flex;
+    margin-right: 24px;
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hm-admin-toolbar .hm-logo img {
+    display: block;
+	height: 46px;
+}
+
+.hm-admin-toolbar .hm-admin-toolbar-inner .hm-nav-upgrade-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.hm-admin-toolbar .hm-admin-toolbar-inner .hm-nav-hawp-logo {
+    display: inline-flex;
+    margin-left: 24px;
+}
+
+.hm-admin-toolbar .hm-admin-toolbar-inner .hm-nav-hawp-logo img {
+    height: 20px;
+}
+
+.hm-admin-headerbar {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 32px;
+    z-index: 700;
+    box-sizing: border-box;
+    min-height: 72px;
+    margin-left: -20px;
+    padding-top: 8px;
+    padding-right: 32px;
+    padding-bottom: 8px;
+    padding-left: 32px;
+    background-color: #fff;
+    box-shadow: 0px 1px 2px rgba(16,24,40,.1)
+}
+
+.hm-admin-headerbar .hm-page-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0;
+    margin-right: 16px;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.hm-admin-headerbar h1 {
+    font-size: 21px;
+    font-weight: 400;
+	color: #344054;
+}
+
+.hm-settings-wrap .form-table h2 {
+    display: none;
+}
+
+
+
+
+.hm-settings-field {
+	margin-bottom: 20px;
+	padding: 15px;
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.hm-settings-label {
+	margin-bottom: 8px;
+	font-weight: 600;
+}
+.hm-settings-input {
+	margin-top: 8px;
+}
+.hm-settings-input input[type="text"],
+.hm-settings-input input[type="url"],
+.hm-settings-input input[type="number"],
+.hm-settings-input textarea {
+	width: 100%;
+	max-width: 500px;
+}
+.hm-settings-input .description {
+	margin-top: 8px;
+	color: #666;
+}
+
+
+
+
+
+.hm-settings-box {
+	margin-bottom: 32px;
+	border: none;
+    border-radius: 8px;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, .1);
+	background: #fff;
+}
+.hm-settings-box-header {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	min-height: 64px;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding-top: 0;
+	padding-right: 24px;
+	padding-bottom: 0;
+	padding-left: 24px;
+	border-bottom: 1px solid #eaecf0;
+}
+.hm-settings-box-header h3 {
+	font-size: 16px;
+    font-weight: 400;
+	margin: 0;
+	display: inline-flex;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+}
+.hm-settings-box-content {
+	padding: 24px;
+}
+.hm-settings-field {
+	margin-bottom: 15px;
+}
+.hm-settings-field:last-child {
+	margin-bottom: 0;
+}
+.hm-settings-label {
+	margin-bottom: 8px;
+	font-weight: 600;
+}
+.hm-settings-input {
+	margin-top: 8px;
+}
+.hm-settings-input input[type="text"],
+.hm-settings-input input[type="url"],
+.hm-settings-input input[type="number"],
+.hm-settings-input textarea {
+	width: 100%;
+	max-width: 500px;
+}
+.hm-settings-input .description {
+	margin-top: 8px;
+	color: #666;
+}
+
+
+
+.hawp-svg-library {
+	margin-bottom: 20px;
+}
+.hawp-svg-item {
+	margin-bottom: 15px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+.hawp-svg-item-header {
+	margin-bottom: 10px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+.hawp-svg-preview {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f0f0f0;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.hawp-svg-preview svg {
+	max-width: 100%;
+	max-height: 100%;
+}
+.hawp-svg-controls {
+	flex: 1;
+	display: flex;
+	gap: 10px;
+}
+.hawp-svg-controls input[type="text"] {
+	flex: 1;
+}
+
+.hm-admin-page .notice {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 48px;
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 16px !important;
+    margin-left: 0 !important;
+    padding-top: 13px !important;
+    padding-right: 16px;
+    padding-bottom: 12px !important;
+    padding-left: 16px !important;
+    background-color: #e7eff9;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #9dbaee;
+    border-radius: 8px;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, .1);
+    color: #344054;
+}
+
+.hm-admin-page .notice.notice-success {
+    background-color: #edf7ef;
+    border-color: #b6deb9;
+}
+
+.hm-admin-page .acf-form-submit {
+	padding: 0 16px;
 }

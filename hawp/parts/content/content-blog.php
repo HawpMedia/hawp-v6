@@ -7,11 +7,11 @@ if (have_posts()) : ?>
 
 	<?php while (have_posts()) : the_post(); ?>
 
-		<?php get_template_part('parts/listing/listing', get_post_type()); ?>
+		<?php get_template_part('parts/components/listing', get_post_type()); ?>
 
 	<?php endwhile; ?>
 
-	<?php get_template_part('parts/pagination/pagination', 'blog'); ?>
+	<?php get_template_part('parts/components/pagination', 'blog'); ?>
 
 <?php else : ?>
 

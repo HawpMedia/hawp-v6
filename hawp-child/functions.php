@@ -80,3 +80,53 @@ function hm_child_theme_whitelabel($whitelabel) {
 	return $whitelabel;
 }
 //add_filter('hawp_whitelabel_settings', 'hm_child_theme_whitelabel');
+
+add_action('acf/init', function() {
+    // Debug log
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+        error_log('HAWP Child Theme: Registering custom settings field group');
+    }
+
+    // Create a field group
+    acf_add_local_field_group([
+        'key' => 'group_custom_settings',
+        'title' => 'Custom Settings',
+        'fields' => [
+            [
+                'key' => 'field_custom_text',
+                'label' => 'Custom Text Field',
+                'name' => 'custom_text',
+                'type' => 'text',
+                'instructions' => 'Enter some custom text',
+                'required' => 0,
+            ],
+            [
+                'key' => 'field_custom_image',
+                'label' => 'Custom Image',
+                'name' => 'custom_image',
+                'type' => 'image',
+                'return_format' => 'id',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+            ],
+        ],
+        'location' => [[[
+            'param' => 'options_page',
+            'operator' => '==',
+            'value' => 'hm-theme-options-custom_settings',
+        ]]],
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+    ]);
+
+    // Debug log after registration
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+        $field_group = acf_get_field_group('group_custom_settings');
+        error_log('HAWP Child Theme: Field group exists after registration: ' . ($field_group !== false ? 'true' : 'false'));
+    }
+}, 5);

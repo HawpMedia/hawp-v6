@@ -25,8 +25,8 @@ get_header(); ?>
 <?php endif; ?>
 
 	<header class="contain main-header">
-		<?php get_template_part('parts/title/title', $type); ?>
-		<?php if(is_singular()){ get_template_part('parts/meta/meta', $type); } ?>
+		<?php get_template_part('parts/components/title', $type); ?>
+		<?php if(is_singular()){ get_template_part('parts/components/meta', $type); } ?>
 	</header>
 
 	<div class="contain entry-wrapper entry-sidebar">

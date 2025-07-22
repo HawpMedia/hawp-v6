@@ -172,14 +172,16 @@ class Hawp_Theme_Setup {
 
 		// Child theme script
 		if (file_exists(HMC_PATH.'/assets/js/script.js')) {
-			wp_register_script('hm-child-script', HMC_URL.'/assets/js/script.js', $js_deps);
+			$version = filemtime(HMC_PATH.'/assets/js/script.js');
+			wp_register_script('hm-child-script', HMC_URL.'/assets/js/script.js', $js_deps, $version);
 			wp_enqueue_script('hm-child-script');
 			$js_deps[] = 'hm-child-script';
 		}
 
 		// Deprecated: for child theme with older script path
 		if (file_exists(HMC_PATH.'/js/script.js')) {
-			wp_register_script('hm-child-script-old', HMC_URL.'/js/script.js', $js_deps);
+			$version = filemtime(HMC_PATH.'/js/script.js');
+			wp_register_script('hm-child-script-old', HMC_URL.'/js/script.js', $js_deps, $version);
 			wp_enqueue_script('hm-child-script-old');
 			$js_deps[] = 'hm-child-script-old';
 		}
@@ -227,20 +229,23 @@ class Hawp_Theme_Setup {
 
 		// Child theme compiled scss stylesheet
 		if (file_exists(HMC_PATH.'/assets/css/compiled.css')) {
-			wp_register_style('hm-child-style-compiled', HMC_URL.'/assets/css/compiled.css', $css_deps);
+			$version = filemtime(HMC_PATH.'/assets/css/compiled.css');
+			wp_register_style('hm-child-style-compiled', HMC_URL.'/assets/css/compiled.css', $css_deps, $version);
 			wp_enqueue_style('hm-child-style-compiled');
 			$css_deps[] = 'hm-child-style-compiled';
 		}
 
 		// Deprecated: for child theme with older compiled scss paths
 		if (file_exists(HMC_PATH.'/css/compiled.css')) {
-			wp_register_style('hm-child-style-compiled-old', HMC_URL.'/css/compiled.css', $css_deps);
+			$version = filemtime(HMC_PATH.'/css/compiled.css');
+			wp_register_style('hm-child-style-compiled-old', HMC_URL.'/css/compiled.css', $css_deps, $version);
 			wp_enqueue_style('hm-child-style-compiled-old');
 			$css_deps[] = 'hm-child-style-compiled-old';
 		}
 
 		// Child theme stylesheet - this is required so no need to check if it exists
-		wp_register_style('hm-child-style', HMC_URL.'/style.css', $css_deps);
+		$version = filemtime(HMC_PATH.'/style.css');
+		wp_register_style('hm-child-style', HMC_URL.'/style.css', $css_deps, $version);
 		wp_enqueue_style('hm-child-style');
 		$css_deps[] = 'hm-child-style';
 	}
@@ -281,7 +286,7 @@ class Hawp_Theme_Setup {
 	 * Gutenberg style option.
 	 */
 	public function enqueue_gutenberg_style() {
-		if (get_theme_option('dequeue_gutenberg_style') == 0) {
+		if (get_theme_option('dequeue_gutenberg_style') == false) {
 			wp_dequeue_style('wp-block-library');
 			remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 		}
@@ -291,7 +296,7 @@ class Hawp_Theme_Setup {
 	 * jQuery Migrate script option.
 	 */
 	public function enqueue_jquery_migrate($scripts){
-		if (get_theme_option('enqueue_jquery_migrate') == 0) {
+		if (get_theme_option('enqueue_jquery_migrate') == false) {
 			if (!is_admin() && isset($scripts->registered['jquery'])) {
 				$script = $scripts->registered['jquery'];
 				if ($script->deps) { // Check whether the script has any dependencies

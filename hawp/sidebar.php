@@ -15,4 +15,4 @@ if (is_active_sidebar($sidebar)): ?>
 		<?php dynamic_sidebar($sidebar); ?>
 	</aside>
 
-<?php endif;
+<?php endif; ?>

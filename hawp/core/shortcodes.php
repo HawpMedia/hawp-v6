@@ -111,47 +111,55 @@ class Hawp_Theme_Shortcodes {
 			$atts['format'] = 'wrap';
 		}
 
-		$img = '';
+		// Start with site name as default content
+		$content = get_bloginfo('name');
+		
+		// If logo image exists, use it instead
 		$logo = get_theme_option('logo');
 		if (!empty($logo)) {
-			$img = wp_get_attachment_image($logo, $atts['size'], false, [
+			$content = wp_get_attachment_image($logo, $atts['size'], false, [
 				'class' => (!empty($atts['class']) ? $atts['class'].'-img' : ''),
 				'alt' => get_bloginfo('name'),
 			]);
 		}
-		return sprintf($format[$atts['format']], $img);
+		
+		return sprintf($format[$atts['format']], $content);
 	}
 
 	/**
 	 * Shortcode: svg
 	 *
-	 * @todo	Loop throgh the svgs using a foreach as key
-	 *			val loop on the repeater object.
-	 *
-	 * [svg id=""]
+	 * [svg id="1"] or [svg id="phone"]
 	 */
 	public function shortcode_svg($atts) {
 		$atts = shortcode_atts([
 			'id' => '',
 		], $atts);
 
-		$args = [
-			'id' => intval($atts['id']-1),
-		];
+		$svg_index = -1;
+		$svgs = get_option(get_theme_option_prefix() . 'svgs', []);
 
-		$keys = [
-			'label' => 'options_'.get_theme_option_prefix().'svgs_'.($args['id']).'_'.get_theme_option_prefix().'label',
-			'svg' => 'options_'.get_theme_option_prefix().'svgs_'.($args['id']).'_'.get_theme_option_prefix().'svg',
-		];
+		// Check if id is numeric (old behavior) or a label
+		if (is_numeric($atts['id'])) {
+			$svg_index = intval($atts['id']) - 1;
+		} else {
+			// Search for matching label in SVGs array
+			foreach ($svgs as $index => $svg) {
+				if (strtolower($svg['label']) === strtolower($atts['id'])) {
+					$svg_index = $index;
+					break;
+				}
+			}
+		}
 
-		$vals = [
-			'class' => get_option($keys['label']) ? 'hm-svg-'.preg_replace('/\s*/', '', strtolower(get_option($keys['label']))) : '',
-			'svg' => get_option($keys['svg']),
-		];
+		if ($svg_index === -1 || !isset($svgs[$svg_index])) {
+			return ''; // Return empty if no match found
+		}
 
-		$result = '<span class="hm-svg hm-svg-id-'.$args['id'].' '.$vals['class'].'">'.$vals['svg'].'</span>';
-
-		return $result;
+		$svg = $svgs[$svg_index];
+		$class = !empty($svg['label']) ? 'hm-svg-' . preg_replace('/\s*/', '', strtolower($svg['label'])) : '';
+		
+		return '<span class="hm-svg hm-svg-id-' . $svg_index . ' ' . $class . '">' . $svg['code'] . '</span>';
 	}
 
 	/**

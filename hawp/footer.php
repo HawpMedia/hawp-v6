@@ -1,7 +1,6 @@
 <?php
 /**
- * The footer content file.
+ * The footer for our theme
  */
-?>
 
-<?php get_template_part('parts/footer/foot'); ?>
+get_template_part('parts/layout/foot');

@@ -1,0 +1,5 @@
+// get the child theme url for images
+$child-theme-path: '/wp-content/themes/hawp-child';
+@function hmc_url($path) {
+	@return url(#{$child-theme-path}#{$path});
+}

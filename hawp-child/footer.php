@@ -8,7 +8,7 @@
 
 <footer id="footer" class="footer" role="contentinfo">
 
-	<?php get_template_part('parts/footer/footer-widgets'); ?>
+	<?php get_template_part('parts/layout/footer-widgets'); ?>
 
 	<div class="contain site-info">
 		<div class="copyright">
@@ -18,5 +18,5 @@
 	</div>
 
 </footer>
+<?php get_template_part('parts/layout/foot'); ?>
 
-<?php get_template_part('parts/footer/foot'); ?>
