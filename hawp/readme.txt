@@ -12,6 +12,15 @@ Hawp Theme is Hawp Media's boilerplate starter theme for all custom websites
 
 == Changelog ==
 
+= 7.0.0‑beta.1 =
+* Released: Jul 22, 2025
+
+* NOTE - This version release is not for production, it will be moved into hawp-core a new version of this theme that will start at version 1.
+* New - SVG library rebuilt. Id's are now the label of the svg. 
+* New - Options for rankmath compatibility added. 
+* Enhancement - Remove reliance on ACF Pro for all theme options.
+* Enhancement - File structure rebuilt. 
+
 = 6.5.11 =
 * Released: April 17, 2025
 
